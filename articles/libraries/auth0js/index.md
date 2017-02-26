@@ -157,7 +157,7 @@ webAuth.popup.loginWithCredentials({
 
 ### webAuth.client.login()
 
-The `client.login` method allows for non redirect auth using custom database connections, using /`oauth/token`.
+The `client.login` method allows for non redirect auth using custom database connections, using /`oauth/token`. See also [Resource Owner Password Grant](/docs/api-auth/grant/password).
 
 ```js
 webAuth.client.login({
