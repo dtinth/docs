@@ -1,16 +1,29 @@
-name: CI
+name: GitHub Pages
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main  # Set a branch name to trigger deployment
   workflow_dispatch:
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
       - run: yarn
       - run: yarn antora antora-playbook.yml
-      - name: Deploy to GitHub Pages
+
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./public
+          cname: docs.dt.in.th
