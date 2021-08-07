@@ -7,5 +7,29 @@
     "express": "^4.17.1",
     "serve-index": "^1.9.1",
     "tmp": "^0.2.1"
+  },
+  "name": "docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dtinth/docs.git"
+  },
+  "author": "dtinth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dtinth/docs/issues"
+  },
+  "homepage": "https://github.com/dtinth/docs#readme",
+  "description": "",
+  "bin": {
+    "dtinth-docs-dev": "./dev.mjs"
   }
 }
