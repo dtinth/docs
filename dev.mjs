@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import express from 'express'
 import chokidar from 'chokidar'
 import execa from 'execa'
@@ -38,7 +40,7 @@ content:
     start_path: docs
 ui:
   bundle:
-    url: ${docsDir}/ui-bundle-637d0a7.zip
+    url: ${docsDir}/ui-bundle-637d0a70.zip
 `)
 
 chokidar.watch('docs').on('all', (event, path) => {
