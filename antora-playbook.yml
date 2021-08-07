@@ -8,6 +8,9 @@ content:
   - url: ./
     branches: HEAD
     start_path: docs
+  - url: https://github.com/dtinth/dtinth.tools-android.git
+    branches: main
+    start_path: docs
 ui:
   bundle:
     url: ./ui-bundle-637d0a7.zip
