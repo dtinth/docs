@@ -1,0 +1,53 @@
+= Authoring guide
+
+== Writing docs
+
+To develop a documentation in individual project, first create `docs/antora.yml`:
+
+[source,yaml]
+----
+name: project-name
+version: main
+title: 'Project name'
+----
+
+Then create `modules/ROOT/pages/index.adoc` with the contents.
+
+== Previewing docs
+
+=== In VS Code
+
+In VS Code, AsciiDoc files can be previewed using the https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc extension].
+
+=== With a previewing server
+
+Install the development server:
+
+[source,bash]
+----
+npm install --global dtinth/docs
+----
+
+Then run this script from project root directory:
+
+[source,bash]
+----
+dtinth-docs-server
+----
+
+== Creating a navigation file
+
+Add this to `docs/antora.yml`:
+
+[source,yaml]
+----
+nav:
+- modules/ROOT/nav.adoc
+----
+
+Then create `docs/modules/ROOT/nav.adoc`:
+
+[source,asciidoc]
+----
+* xref:index.adoc[]
+----
