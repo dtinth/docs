@@ -6,4 +6,7 @@
 <sitemap>
 <loc>https://docs.dt.in.th/sitemap-dtinth.tools-android.xml</loc>
 </sitemap>
+<sitemap>
+<loc>https://docs.dt.in.th/sitemap-encrypted.xml</loc>
+</sitemap>
 </sitemapindex>
