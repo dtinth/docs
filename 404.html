@@ -43,6 +43,14 @@
         </li>
       </ul>
     </li>
+    <li class="component">
+      <a class="title" href="/dtinth.tools-android/main/index.html">dtinth’s Tools (Android App)</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="/dtinth.tools-android/main/index.html">main</a>
+        </li>
+      </ul>
+    </li>
   </ul>
 </div>
     </div>
@@ -72,6 +80,8 @@ If you typed the URL of this page manually, please double check that you entered
   var startPages = [
     { name: "docs", title: "docs.dt.in.th", url: "/docs/main/index.html", prefix: "/docs" },
     { name: "docs", title: "docs.dt.in.th", version: "main", url: "/docs/main/index.html", prefix: "/docs/main" },
+    { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", url: "/dtinth.tools-android/main/index.html", prefix: "/dtinth.tools-android" },
+    { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", version: "main", url: "/dtinth.tools-android/main/index.html", prefix: "/dtinth.tools-android/main" },
   ].reduce(function (accum, it) {
     var prefix = it.prefix
     delete it.prefix

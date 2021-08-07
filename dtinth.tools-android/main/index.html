@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>dtinth’s Tools :: @dtinth’s documentation site</title>
+    <link rel="canonical" href="https://docs.dt.in.th/dtinth.tools-android/main/index.html">
+    <meta name="page-spec" content="dtinth.tools-android::index.adoc">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item title" href="https://docs.dt.in.th/docs/main/index.html">docs.dt.in.th</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+
+        <a class="navbar-item" href="https://github.com/dtinth/docs" target="_blank" rel="noopener">
+          <span class="icon"><img src="../../_/img/octicons-16.svg#view-mark-github"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active is-loading" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
+    <h3 class="title"><a href="index.html">dtinth’s Tools (Android App)</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-url" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="morse.html">Morse code notifier</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="exfiltrate.html">Notification exfiltrator</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+  <script>
+;(function () {
+  var panel = document.querySelector('.nav-panel-menu')
+  var page
+  var hash = window.location.hash
+  if (hash) {
+    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
+    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
+    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
+    if (link) page = link.parentNode
+    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
+  } else {
+    page = panel.querySelector('.is-current-url')
+  }
+  if (page) {
+    var ancestor = page
+    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
+      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
+    }
+    page.classList.add('is-current-page', 'is-active')
+    if (panel.scrollHeight > panel.clientHeight) {
+      var panelRect = panel.getBoundingClientRect()
+      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
+      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
+    }
+  } else {
+    panel.scrollTop = 0
+  }
+  panel.classList.remove('is-loading')
+})()
+  </script>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">dtinth’s Tools (Android App)</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../docs/main/index.html">docs.dt.in.th</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../docs/main/index.html">main</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">dtinth’s Tools (Android App)</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../docs/main/index.html" class="home-link" title="Home"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">dtinth’s Tools (Android App)</a></li>
+    <li><a href="index.html">Overview</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/dtinth.tools-android/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">dtinth’s Tools</h1>
+<div class="paragraph">
+<p><strong>A personal Android enhancement app</strong> that I use on my device.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="morse.html" class="page">Morse code notifier</a> vibrates my phone when I receive a notification.</p>
+</li>
+<li>
+<p><a href="exfiltrate.html" class="page">Notification exfiltrator</a> sends the received notifications into a remote server. It has end-to-end encryption, and aims to be resilient. The primary use case is to integrate with <a href="https://dt.in.th/automatron.html:">my personal chatbot, expense tracker, and home automator, “automatron”</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Sounds cool and want something like this? I encourage you to create your own personal Android enhancement app. Feel free to <a href="https://github.com/dtinth/dtinth.tools-android">look at my code</a> and reuse parts of it!
+</td>
+</tr>
+</table>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+  </div>
+  <div class="footer-legal">
+  </div>
+  <div class="footer-thanks">
+    <p>Authored in AsciiDoc.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Notification exfiltrator :: @dtinth’s documentation site</title>
+    <link rel="canonical" href="https://docs.dt.in.th/dtinth.tools-android/main/exfiltrate.html">
+    <meta name="page-spec" content="dtinth.tools-android::exfiltrate.adoc">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item title" href="https://docs.dt.in.th/docs/main/index.html">docs.dt.in.th</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+
+        <a class="navbar-item" href="https://github.com/dtinth/docs" target="_blank" rel="noopener">
+          <span class="icon"><img src="../../_/img/octicons-16.svg#view-mark-github"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active is-loading" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
+    <h3 class="title"><a href="index.html">dtinth’s Tools (Android App)</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="morse.html">Morse code notifier</a>
+  </li>
+  <li class="nav-item is-current-url" data-depth="1">
+    <a class="nav-link" href="exfiltrate.html">Notification exfiltrator</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+  <script>
+;(function () {
+  var panel = document.querySelector('.nav-panel-menu')
+  var page
+  var hash = window.location.hash
+  if (hash) {
+    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
+    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
+    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
+    if (link) page = link.parentNode
+    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
+  } else {
+    page = panel.querySelector('.is-current-url')
+  }
+  if (page) {
+    var ancestor = page
+    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
+      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
+    }
+    page.classList.add('is-current-page', 'is-active')
+    if (panel.scrollHeight > panel.clientHeight) {
+      var panelRect = panel.getBoundingClientRect()
+      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
+      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
+    }
+  } else {
+    panel.scrollTop = 0
+  }
+  panel.classList.remove('is-loading')
+})()
+  </script>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">dtinth’s Tools (Android App)</span>
+    <span class="version">main</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../docs/main/index.html">docs.dt.in.th</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../docs/main/index.html">main</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">dtinth’s Tools (Android App)</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">main</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../docs/main/index.html" class="home-link" title="Home"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">dtinth’s Tools (Android App)</a></li>
+    <li><a href="exfiltrate.html">Notification exfiltrator</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/dtinth.tools-android/edit/main/docs/modules/ROOT/pages/exfiltrate.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Notification exfiltrator</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <strong>notification exfiltrator</strong> feature sends notifications received on the phone to an external server.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>End-to-end encryption:</strong> Notification data is <a href="https://libsodium.gitbook.io/doc/public-key_cryptography/sealed_boxes:">sealed</a>. The private key corresponding to the configured public key is required to decrypt the data.</p>
+</li>
+<li>
+<p><strong>Resilient:</strong> <a href="https://developer.android.com/topic/libraries/architecture/workmanager:">WorkManager</a> is used to schedule reliable, asynchronous tasks. Notifications are stored locally, in encrypted form, so that it survives app exit, network disconnection, and device restarts. They will be dispatched to the server when <a href="https://developer.android.com/reference/androidx/work/NetworkType#CONNECTED:">the device is connected to the internet</a>. In case of server errors (5xx response), it will be retried with a backoff strategy. This is all handled by WorkManager.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_integration_guide"><a class="anchor" href="#_integration_guide"></a>Integration guide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following steps assume you have Node.js installed with these dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">yarn add tweetnacl tweetnacl-sealedbox-js</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Key generation:</strong> To generate a keypair, run in Node.js REPL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">fs.writeFileSync('keys.json', JSON.stringify(Object.fromEntries(Object.entries(require('tweetnacl').box.keyPair()).map(x =&gt; [x[0], Buffer.from(x[1]).toString('base64')]))))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>keys.json</code> file will look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"publicKey":"Uk9KZm56CA4R73EcgvXw7bJe23XMKgVQEC8pE6aytxk="
+,"secretKey":"yJ78TckijJSzd0+ZBDzIV+TO0jb722SSc9McM+l99MI="}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Encrypted payload format:</strong> The notification data is sent with <code>Content-Type: text/plain</code> through an HTTP POST request to the configured URL. The body of the request is the encrypted notification data, represented as a hex-encoded string:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>84F19300DDF5CF7C7907E131882D37A1E33FF31142FDEB708DCEE04385A3C468A4FFF17A94B6D54FC99DDB2DBCFC784ABBBED416CB778733375037430345B5E42FEC8443900FD46F345696CC12B9DCE377E2BF5507C779CC66D12CBD50944F3D0792D8B7BA7B24FC49A6D4CA6D96F8F87FC936EC992EF255A4D326F86D97602BB9BBE32D2EA97293630620A383AE6D9FE527EF1B7672936FBEB12B69</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script can be used to decrypt the payload:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">var sealedbox = require('tweetnacl-sealedbox-js');
+const keys = require('./keys.json')
+
+var result = sealedbox.open(
+  Buffer.from(process.argv[2], 'hex'),
+  Buffer.from(keys.publicKey, 'base64'),
+  Buffer.from(keys.secretKey, 'base64')
+);
+
+console.log(Buffer.from(result).toString());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Decrypted payload format:</strong> It is a JSON object.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"packageName":"net.superblock.pushover"
+,"title":"test"
+,"text":"sawasdee"
+,"time":"2021-08-07T08:59:24.909Z"}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+  </div>
+  <div class="footer-legal">
+  </div>
+  <div class="footer-thanks">
+    <p>Authored in AsciiDoc.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
