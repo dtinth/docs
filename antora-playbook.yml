@@ -1,11 +1,13 @@
 site:
   title: '@dtinth’s documentation site'
   url: https://docs.dt.in.th
+  start_page: docs::index.adoc
+  robots: allow
 content:
   sources:
-  - url: ./docs
+  - url: ./
     branches: HEAD
+    start_path: docs
 ui:
   bundle:
-    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
-    snapshot: true
+    url: ./ui-bundle-f3a0ace.zip
