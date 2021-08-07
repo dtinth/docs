@@ -40,7 +40,7 @@ content:
     start_path: docs
 ui:
   bundle:
-    url: ${docsDir}/ui-bundle-637d0a70.zip
+    url: ${docsDir}/ui-bundle-637d0a7.zip
 `)
 
 chokidar.watch('docs').on('all', (event, path) => {
