@@ -52,7 +52,7 @@ function generatePlaybook(options) {
       robots: 'allow',
       ...(options.production
         ? {
-            start_page: 'docs::index.adoc',
+            start_page: 'home::index.adoc',
             url: 'https://docs.dt.in.th',
             keys: {
               google_analytics: 'UA-4343503-11',
