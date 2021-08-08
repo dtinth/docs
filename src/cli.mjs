@@ -54,6 +54,9 @@ function generatePlaybook(options) {
         ? {
             start_page: 'docs::index.adoc',
             url: 'https://docs.dt.in.th',
+            keys: {
+              google_analytics: 'UA-4343503-11',
+            },
           }
         : {}),
     },

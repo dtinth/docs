@@ -15,8 +15,6 @@ jobs:
       - uses: actions/checkout@v2
       - run: yarn
       - run: node src/cli.mjs build
-        env:
-          GOOGLE_ANALYTICS_KEY: UA-4343503-11
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}

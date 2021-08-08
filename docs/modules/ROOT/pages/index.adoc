@@ -34,5 +34,5 @@ Social image::
 https://github.com/dtinth/personal-puppeteer[personal-puppeteer] is used to generate screenshots for each page, which are then used for social image.
 When a documentation page is shared, people can see the contents of the page before clicking on the shared link.
 Analytics::
-Google Analytics support https://docs.antora.org/antora/2.3/playbook/environment-variables/#:~:text=GOOGLE_ANALYTICS_KEY[comes built-in with Antora through the `GOOGLE_ANALYTICS_KEY` environment variable].
+Google Analytics integration is https://docs.antora.org/antora/2.3/playbook/site-keys/#google-analytics-key[supported natively by Antora].
 
