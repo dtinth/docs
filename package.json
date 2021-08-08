@@ -33,6 +33,6 @@
   "homepage": "https://github.com/dtinth/docs#readme",
   "description": "",
   "bin": {
-    "dtinth-docs-dev": "./dev.mjs"
+    "dtinth-docs-dev": "./src/cli.mjs"
   }
 }
