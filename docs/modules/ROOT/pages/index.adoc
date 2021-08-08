@@ -18,3 +18,10 @@ https://github.com/dtinth/docs[The source code is on GitHub.]
 == Easy to add new project documentations
 
 * New documentation can be added to the site by xref:authoring.adoc#publish[adding a new entry in the Google Sheets spreadsheet], so there is no need to fiddle with playbook files.
+
+.Why Antora?
+****
+* Antora uses https://asciidoc.org/[AsciiDoc], which is more flexible than Markdown. AsciiDoc has been used successfully for big projects, such as https://github.com/elastic/docs[the Elastic stack].
+* Antora uses https://asciidoctor.org/[Asciidoctor], which is a https://asciidoc.org/#:~:text=Asciidoctor%20provides%20a,the%20AsciiDoc%20syntax[recommended by AsciiDoc].
+* Antora is used to generate https://docs.asciidoctor.org/[Asciidoctor documentation].
+****

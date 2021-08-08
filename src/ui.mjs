@@ -1,1 +1,1 @@
-export const uiBundleFileName = 'ui-bundle-30df733.zip'
+export const uiBundleFileName = 'ui-bundle-8fa94fb.zip'
