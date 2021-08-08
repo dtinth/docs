@@ -7,6 +7,11 @@ export const sources = [
   {
     url: packageDir,
     branches: 'HEAD',
+    start_path: 'home',
+  },
+  {
+    url: packageDir,
+    branches: 'HEAD',
     start_path: 'docs',
   },
   {

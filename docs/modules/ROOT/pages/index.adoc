@@ -1,9 +1,14 @@
 = docs.dt.in.th
 
-Welcome to docs.dt.in.th.
+*docs.dt.in.th* builds upon the https://antora.org/[Antora] multi-repository documentation site generator to provide an improved xref:authoring.adoc[authoring process], inspired by https://backstage.io/docs/features/techdocs/techdocs-overview[Backstage’s TechDocs]. https://github.com/dtinth/docs[The source code is on GitHub.]
 
-I am now too lazy to create a separate documentation site for each of my projects, so I decided to create a single site for all of them.
+== Enforced convention
 
-This website is powered by https://antora.org/[Antora].
+* All project docs must be in the `docs` folder with an `antora.yml` file.
+* See more information in xref:authoring.adoc[].
 
-- xref:authoring.adoc[]
+== High-fidelity preview server
+
+* By running the `dtinth-docs-dev` command, a project documentation can be previewed in a local development server.
+* The playbook file for the project is generated on-the-fly, so documentation is previewed in isolation, but with the same setup that would be used to deploy the site to GitHub Pages.
+* The development server automatically rebuilds the documentation whenever a file is changed.
