@@ -1,5 +1,5 @@
 name: docs-internals
-version: main
+version: master
 title: 'docs.dt.in.th'
 nav:
   - modules/ROOT/nav.adoc
