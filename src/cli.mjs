@@ -3,7 +3,7 @@
 import generateSite from '@antora/site-generator-default'
 import chokidar from 'chokidar'
 import express from 'express'
-import { writeFileSync } from 'fs'
+import { existsSync, writeFileSync } from 'fs'
 import { dirname } from 'path'
 import serveIndex from 'serve-index'
 import { dirSync, setGracefulCleanup } from 'tmp'
@@ -12,6 +12,7 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { BuildTask } from './BuildTask.mjs'
 import { uiBundleFileName } from './ui.mjs'
+import mkdirp from 'mkdirp'
 
 const packageDir = dirname(dirname(fileURLToPath(import.meta.url)))
 const cwdDir = process.cwd()
@@ -98,6 +99,28 @@ function main() {
         rebuildTask.trigger()
       })
     })
+    .command(
+      'init <name>',
+      'Initializes Antora files',
+      {
+        name: {
+          description: 'The name of the project',
+        },
+      },
+      async (argv) => {
+        mkdirp.sync('docs/modules/ROOT')
+        if (!existsSync('docs/antora.yml')) {
+          writeFileSync(
+            'docs/antora.yml',
+            [
+              `name: ${argv.name}`,
+              `version: main`,
+              `title: '${argv.name}'`,
+            ].join('\n'),
+          )
+        }
+      },
+    )
     .command(
       'build',
       'Build the documentation for all projects',

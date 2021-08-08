@@ -5,6 +5,7 @@
     "chokidar": "^3.5.2",
     "execa": "^5.1.1",
     "express": "^4.17.1",
+    "mkdirp": "^1.0.4",
     "serve-index": "^1.9.1",
     "tmp": "^0.2.1",
     "yargs": "^17.1.0"
