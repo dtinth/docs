@@ -44,10 +44,10 @@
       </ul>
     </li>
     <li class="component">
-      <a class="title" href="/docs/main/index.html">docs.dt.in.th</a>
+      <a class="title" href="/docs-internals/main/index.html">docs.dt.in.th</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="/docs/main/index.html">main</a>
+          <a href="/docs-internals/main/index.html">main</a>
         </li>
       </ul>
     </li>
@@ -56,6 +56,14 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="/dtinth.tools-android/main/index.html">main</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="/docs/main/index.html">Home</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="/docs/main/index.html">main</a>
         </li>
       </ul>
     </li>
@@ -88,10 +96,12 @@ If you typed the URL of this page manually, please double check that you entered
   var startPages = [
     { name: "encrypted", title: "@dtinth/encrypted", url: "/encrypted/main/index.html", prefix: "/encrypted" },
     { name: "encrypted", title: "@dtinth/encrypted", version: "main", url: "/encrypted/main/index.html", prefix: "/encrypted/main" },
-    { name: "docs", title: "docs.dt.in.th", url: "/docs/main/index.html", prefix: "/docs" },
-    { name: "docs", title: "docs.dt.in.th", version: "main", url: "/docs/main/index.html", prefix: "/docs/main" },
+    { name: "docs-internals", title: "docs.dt.in.th", url: "/docs-internals/main/index.html", prefix: "/docs-internals" },
+    { name: "docs-internals", title: "docs.dt.in.th", version: "main", url: "/docs-internals/main/index.html", prefix: "/docs-internals/main" },
     { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", url: "/dtinth.tools-android/main/index.html", prefix: "/dtinth.tools-android" },
     { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", version: "main", url: "/dtinth.tools-android/main/index.html", prefix: "/dtinth.tools-android/main" },
+    { name: "docs", title: "Home", url: "/docs/main/index.html", prefix: "/docs" },
+    { name: "docs", title: "Home", version: "main", url: "/docs/main/index.html", prefix: "/docs/main" },
   ].reduce(function (accum, it) {
     var prefix = it.prefix
     delete it.prefix

@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>dtinth’s Tools :: docs.dt.in.th</title>
-    <link rel="canonical" href="https://docs.dt.in.th/dtinth.tools-android/main/index.html">
-    <meta name="page-spec" content="dtinth.tools-android::index.adoc">
+    <title>docs.dt.in.th :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/docs-internals/main/index.html">
+    <meta name="page-spec" content="docs-internals::index.adoc">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -38,18 +38,15 @@
 <div class="nav-panel-menu is-active is-loading" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
-    <h3 class="title"><a href="index.html">dtinth’s Tools (Android App)</a></h3>
+    <h3 class="title"><a href="index.html">docs.dt.in.th</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item is-current-url" data-depth="1">
-    <a class="nav-link" href="index.html">Overview</a>
+    <a class="nav-link" href="index.html">docs.dt.in.th</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="morse.html">Morse code notifier</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="exfiltrate.html">Notification exfiltrator</a>
+    <a class="nav-link" href="authoring.html">Authoring guide</a>
   </li>
 </ul>
   </li>
@@ -89,7 +86,7 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">dtinth’s Tools (Android App)</span>
+    <span class="title">docs.dt.in.th</span>
     <span class="version">main</span>
   </div>
   <ul class="components">
@@ -101,19 +98,19 @@
         </li>
       </ul>
     </li>
-    <li class="component">
-      <a class="title" href="../../docs-internals/main/index.html">docs.dt.in.th</a>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../docs-internals/main/index.html">main</a>
-        </li>
-      </ul>
-    </li>
     <li class="component is-current">
-      <a class="title" href="index.html">dtinth’s Tools (Android App)</a>
+      <a class="title" href="index.html">docs.dt.in.th</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">main</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../dtinth.tools-android/main/index.html">dtinth’s Tools (Android App)</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../dtinth.tools-android/main/index.html">main</a>
         </li>
       </ul>
     </li>
@@ -136,39 +133,56 @@
   <a href="../../docs/main/index.html" class="home-link" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">dtinth’s Tools (Android App)</a></li>
-    <li><a href="index.html">Overview</a></li>
+    <li><a href="index.html">docs.dt.in.th</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dtinth/dtinth.tools-android/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
-  </div>
-  <div class="content">
-<article class="doc">
-<h1 class="page">dtinth’s Tools</h1>
-<div class="paragraph">
-<p><strong>A personal Android enhancement app</strong> that I use on my device.</p>
+  <div class="edit-this-page"><a href="file:///home/runner/work/docs/docs/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
 </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">docs.dt.in.th</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>docs.dt.in.th</strong> builds upon the <a href="https://antora.org/">Antora</a> multi-repository documentation site generator to provide an improved <a href="authoring.html" class="page">authoring process</a>, inspired by <a href="https://backstage.io/docs/features/techdocs/techdocs-overview">Backstage’s TechDocs</a>. <a href="https://github.com/dtinth/docs">The source code is on GitHub.</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enforced_convention"><a class="anchor" href="#_enforced_convention"></a>Enforced convention</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="morse.html" class="page">Morse code notifier</a> vibrates my phone when I receive a notification.</p>
+<p>All project docs must be in the <code>docs</code> folder with an <code>antora.yml</code> file.</p>
 </li>
 <li>
-<p><a href="exfiltrate.html" class="page">Notification exfiltrator</a> sends the received notifications into a remote server. It has end-to-end encryption, and aims to be resilient. The primary use case is to integrate with <a href="https://dt.in.th/automatron.html:">my personal chatbot, expense tracker, and home automator, “automatron”</a>.</p>
+<p>See more information in <a href="authoring.html" class="page">Authoring guide</a>.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Sounds cool and want something like this? I encourage you to create your own personal Android enhancement app. Feel free to <a href="https://github.com/dtinth/dtinth.tools-android">look at my code</a> and reuse parts of it!
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_high_fidelity_preview_server"><a class="anchor" href="#_high_fidelity_preview_server"></a>High-fidelity preview server</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>By running the <code>dtinth-docs-dev</code> command, a project documentation can be previewed in a local development server.</p>
+</li>
+<li>
+<p>The playbook file for the project is generated on-the-fly, so documentation is previewed in isolation, but with the same setup that would be used to deploy the site to GitHub Pages.</p>
+</li>
+<li>
+<p>The development server automatically rebuilds the documentation whenever a file is changed.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </article>
   </div>
