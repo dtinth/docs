@@ -2,4 +2,4 @@
 
 Welcome to docs.dt.in.th.
 
-I am now too lazy to create a separate documentation site for each of my projects, so I decided to xref:docs-internals::index.adoc[create a single site for all of them].
+I am now too lazy to create a separate documentation site for each of my projects, so I decided to xref:docs::index.adoc[create a single site for all of them].
