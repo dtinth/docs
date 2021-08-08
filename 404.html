@@ -42,13 +42,13 @@
       <a class="title" href="/encrypted/index.html">@dtinth/encrypted</a>
     </li>
     <li class="component">
-      <a class="title" href="/docs-internals/index.html">docs.dt.in.th</a>
+      <a class="title" href="/docs/index.html">docs.dt.in.th</a>
     </li>
     <li class="component">
       <a class="title" href="/dtinth.tools-android/index.html">dtinth’s Tools (Android App)</a>
     </li>
     <li class="component">
-      <a class="title" href="/docs/index.html">Home</a>
+      <a class="title" href="/home/index.html">Home</a>
     </li>
   </ul>
 </div>
@@ -79,12 +79,12 @@ If you typed the URL of this page manually, please double check that you entered
   var startPages = [
     { name: "encrypted", title: "@dtinth/encrypted", url: "/encrypted/index.html", prefix: "/encrypted" },
     { name: "encrypted", title: "@dtinth/encrypted", version: "master", url: "/encrypted/index.html", prefix: "/encrypted/master" },
-    { name: "docs-internals", title: "docs.dt.in.th", url: "/docs-internals/index.html", prefix: "/docs-internals" },
-    { name: "docs-internals", title: "docs.dt.in.th", version: "master", url: "/docs-internals/index.html", prefix: "/docs-internals/master" },
+    { name: "docs", title: "docs.dt.in.th", url: "/docs/index.html", prefix: "/docs" },
+    { name: "docs", title: "docs.dt.in.th", version: "master", url: "/docs/index.html", prefix: "/docs/master" },
     { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", url: "/dtinth.tools-android/index.html", prefix: "/dtinth.tools-android" },
     { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", version: "master", url: "/dtinth.tools-android/index.html", prefix: "/dtinth.tools-android/master" },
-    { name: "docs", title: "Home", url: "/docs/index.html", prefix: "/docs" },
-    { name: "docs", title: "Home", version: "master", url: "/docs/index.html", prefix: "/docs/master" },
+    { name: "home", title: "Home", url: "/home/index.html", prefix: "/home" },
+    { name: "home", title: "Home", version: "master", url: "/home/index.html", prefix: "/home/master" },
   ].reduce(function (accum, it) {
     var prefix = it.prefix
     delete it.prefix

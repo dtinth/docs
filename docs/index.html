@@ -38,23 +38,72 @@
 <div class="nav-container">
   <aside class="nav">
     <div class="panels">
-<div class="nav-panel-explore is-active" data-panel="explore">
+<div class="nav-panel-menu is-active is-loading" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
+    <h3 class="title"><a href="index.html">docs.dt.in.th</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-url" data-depth="1">
+    <a class="nav-link" href="index.html">docs.dt.in.th</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="authoring.html">Authoring guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+  <script>
+;(function () {
+  var panel = document.querySelector('.nav-panel-menu')
+  var page
+  var hash = window.location.hash
+  if (hash) {
+    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
+    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
+    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
+    if (link) page = link.parentNode
+    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
+  } else {
+    page = panel.querySelector('.is-current-url')
+  }
+  if (page) {
+    var ancestor = page
+    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
+      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
+    }
+    page.classList.add('is-current-page', 'is-active')
+    if (panel.scrollHeight > panel.clientHeight) {
+      var panelRect = panel.getBoundingClientRect()
+      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
+      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
+    }
+  } else {
+    panel.scrollTop = 0
+  }
+  panel.classList.remove('is-loading')
+})()
+  </script>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Home</span>
+    <span class="title">docs.dt.in.th</span>
     <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component">
       <a class="title" href="../encrypted/index.html">@dtinth/encrypted</a>
     </li>
-    <li class="component">
-      <a class="title" href="../docs-internals/index.html">docs.dt.in.th</a>
+    <li class="component is-current">
+      <a class="title" href="index.html">docs.dt.in.th</a>
     </li>
     <li class="component">
       <a class="title" href="../dtinth.tools-android/index.html">dtinth’s Tools (Android App)</a>
     </li>
-    <li class="component is-current">
-      <a class="title" href="index.html">Home</a>
+    <li class="component">
+      <a class="title" href="../home/index.html">Home</a>
     </li>
   </ul>
 </div>
@@ -66,17 +115,108 @@
 <button class="nav-toggle"></button>
   <a href="index.html" class="home-link is-current" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">docs.dt.in.th</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dtinth/docs/edit/main/home/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/docs/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <h1 class="page">docs.dt.in.th</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Welcome to docs.dt.in.th.</p>
+<p><strong>docs.dt.in.th</strong> builds upon the <a href="https://antora.org/">Antora multi-repository documentation site generator</a> to provide an improved <a href="authoring.html" class="page">authoring workflow</a> through a custom CLI script, inspired by <a href="https://backstage.io/docs/features/techdocs/techdocs-overview">Backstage’s TechDocs</a>.</p>
 </div>
 <div class="paragraph">
-<p>I am now too lazy to create a separate documentation site for each of my projects, so I decided to <a href="../docs-internals/index.html" class="page">create a single site for all of them</a>.</p>
+<p><a href="https://github.com/dtinth/docs">The source code is on GitHub.</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_easy_to_author_with_high_fidelity_previewing"><a class="anchor" href="#_easy_to_author_with_high_fidelity_previewing"></a>Easy to author with high fidelity previewing</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>By running the <code>dtinth-docs-dev</code> command, a project documentation can be previewed in isolation through a local development server.</p>
+</li>
+<li>
+<p>The development server automatically rebuilds the documentation whenever a file is changed.</p>
+</li>
+<li>
+<p>See more information in <a href="authoring.html" class="page">Authoring guide</a>.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">How it works</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="https://docs.antora.org/antora/2.3/playbook/">playbook file</a> for the project is generated on-the-fly, so documentation is previewed in isolation, but with the same setup that would be used to deploy the site to GitHub Pages.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_easy_to_add_new_project_documentations"><a class="anchor" href="#_easy_to_add_new_project_documentations"></a>Easy to add new project documentations</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>New documentation can be added to the site by <a href="authoring.html#publish" class="page">adding a new entry in the Google Sheets spreadsheet</a>, so there is no need to fiddle with playbook files.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Why Antora?</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Antora uses <a href="https://asciidoc.org/">AsciiDoc</a>, which is more flexible than Markdown. AsciiDoc has been used successfully for big projects, such as <a href="https://github.com/elastic/docs">the Elastic stack</a>.</p>
+</li>
+<li>
+<p>Antora uses <a href="https://asciidoctor.org/">Asciidoctor</a>, which is a <a href="https://asciidoc.org/#:~:text=Asciidoctor%20provides%20a,the%20AsciiDoc%20syntax">recommended by AsciiDoc</a>.</p>
+</li>
+<li>
+<p>Antora is used to generate <a href="https://docs.asciidoctor.org/">Asciidoctor documentation</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_minimize_laborious_tasks"><a class="anchor" href="#_minimize_laborious_tasks"></a>Minimize laborious tasks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Building and publishing a documentation site is only part of the whole story. How about social share images? How about SEO? How about analytics? These are things that you have to do each time you set up a new documentation site. Putting documentation together in a single place allows each project documentations to benefit from shared tools.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Social image</dt>
+<dd>
+<p><a href="https://github.com/dtinth/personal-puppeteer">personal-puppeteer</a> is used to generate screenshots for each page, which are then used for social image.
+When a documentation page is shared, people can see the contents of the page before clicking on the shared link.</p>
+</dd>
+<dt class="hdlist1">Analytics</dt>
+<dd>
+<p>Google Analytics integration is <a href="https://docs.antora.org/antora/2.3/playbook/site-keys/#google-analytics-key">supported natively by Antora</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </article>
   </div>

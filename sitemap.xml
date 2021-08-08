@@ -4,12 +4,12 @@
 <loc>https://docs.dt.in.th/sitemap-docs.xml</loc>
 </sitemap>
 <sitemap>
-<loc>https://docs.dt.in.th/sitemap-docs-internals.xml</loc>
-</sitemap>
-<sitemap>
 <loc>https://docs.dt.in.th/sitemap-dtinth.tools-android.xml</loc>
 </sitemap>
 <sitemap>
 <loc>https://docs.dt.in.th/sitemap-encrypted.xml</loc>
+</sitemap>
+<sitemap>
+<loc>https://docs.dt.in.th/sitemap-home.xml</loc>
 </sitemap>
 </sitemapindex>
