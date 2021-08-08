@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { BuildTask } from './BuildTask.mjs'
+import { uiBundleFileName } from './ui.mjs'
 
 const packageDir = dirname(dirname(fileURLToPath(import.meta.url)))
 const cwdDir = process.cwd()
@@ -51,7 +52,7 @@ function generatePlaybook(options) {
     },
     ui: {
       bundle: {
-        url: `${packageDir}/ui-bundle-637d0a7.zip`,
+        url: `${packageDir}/${uiBundleFileName}`,
       },
     },
   }
