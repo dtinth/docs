@@ -130,7 +130,7 @@ function main() {
             'docs/antora.yml',
             [
               `name: ${argv.name}`,
-              `version: main`,
+              `version: master`,
               `title: '${argv.name}'`,
             ].join('\n'),
           )
