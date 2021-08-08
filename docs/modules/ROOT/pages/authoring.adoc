@@ -1,5 +1,6 @@
 = Authoring guide
 
+[#write]
 == Writing docs
 
 To develop a documentation in individual project, first create `docs/antora.yml`:
@@ -13,15 +14,10 @@ title: 'Project name'
 
 Then create `modules/ROOT/pages/index.adoc` with the contents.
 
+[#preview]
 == Previewing docs
 
-=== In VS Code
-
-In VS Code, AsciiDoc files can be previewed using the https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc extension].
-
-=== With a previewing server
-
-Install the development server:
+In VS Code, AsciiDoc files can be previewed using the https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc extension]. This gives faster feedback but has lower fidelity. For high fidelity preview, install the development server:
 
 [source,bash]
 ----
@@ -35,6 +31,7 @@ Then run this script from project root directory:
 dtinth-docs-server
 ----
 
+[#nav]
 == Creating a navigation file
 
 Add this to `docs/antora.yml`:
@@ -51,3 +48,9 @@ Then create `docs/modules/ROOT/nav.adoc`:
 ----
 * xref:index.adoc[]
 ----
+
+[#publish]
+== Publishing
+
+. Add a new entry to https://docs.google.com/spreadsheets/d/1kFc9bDizrANULuVSUuHYiZENdPzXZpXvuUWlbZbF_uU/edit#gid=0[the docs.dt.in.th spreadsheet on Google Sheets].
+. https://github.com/dtinth/docs/actions/workflows/pages.yml[Rebuild the site on GitHub Actions]

@@ -1,7 +1,8 @@
 {
   "dependencies": {
-    "chokidar": "^3.5.2",
     "@antora/site-generator-default": "2.3",
+    "axios": "^0.21.1",
+    "chokidar": "^3.5.2",
     "execa": "^5.1.1",
     "express": "^4.17.1",
     "serve-index": "^1.9.1",

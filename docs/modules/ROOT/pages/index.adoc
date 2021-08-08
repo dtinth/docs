@@ -1,14 +1,20 @@
 = docs.dt.in.th
 
-*docs.dt.in.th* builds upon the https://antora.org/[Antora] multi-repository documentation site generator to provide an improved xref:authoring.adoc[authoring process], inspired by https://backstage.io/docs/features/techdocs/techdocs-overview[Backstage’s TechDocs]. https://github.com/dtinth/docs[The source code is on GitHub.]
+*docs.dt.in.th* builds upon the https://antora.org/[Antora multi-repository documentation site generator] to provide an improved xref:authoring.adoc[authoring workflow] through a custom CLI script, inspired by https://backstage.io/docs/features/techdocs/techdocs-overview[Backstage’s TechDocs].
 
-== Enforced convention
+https://github.com/dtinth/docs[The source code is on GitHub.]
 
-* All project docs must be in the `docs` folder with an `antora.yml` file.
+== Easy to author with high fidelity previewing
+
+* By running the `dtinth-docs-dev` command, a project documentation can be previewed in isolation through a local development server.
+* The development server automatically rebuilds the documentation whenever a file is changed.
 * See more information in xref:authoring.adoc[].
 
-== High-fidelity preview server
+.How it works
+****
+* The https://docs.antora.org/antora/2.3/playbook/[playbook file] for the project is generated on-the-fly, so documentation is previewed in isolation, but with the same setup that would be used to deploy the site to GitHub Pages.
+****
 
-* By running the `dtinth-docs-dev` command, a project documentation can be previewed in a local development server.
-* The playbook file for the project is generated on-the-fly, so documentation is previewed in isolation, but with the same setup that would be used to deploy the site to GitHub Pages.
-* The development server automatically rebuilds the documentation whenever a file is changed.
+== Easy to add new project documentations
+
+* New documentation can be added to the site by xref:authoring.adoc#publish[adding a new entry in the Google Sheets spreadsheet], so there is no need to fiddle with playbook files.
