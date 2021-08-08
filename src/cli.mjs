@@ -124,7 +124,7 @@ function main() {
         },
       },
       async (argv) => {
-        mkdirp.sync('docs/modules/ROOT')
+        mkdirp.sync('docs/modules/ROOT/pages')
         if (!existsSync('docs/antora.yml')) {
           writeFileSync(
             'docs/antora.yml',
@@ -133,6 +133,12 @@ function main() {
               `version: master`,
               `title: '${argv.name}'`,
             ].join('\n'),
+          )
+        }
+        if (!existsSync('docs/modules/ROOT/pages/index.adoc')) {
+          writeFileSync(
+            'docs/modules/ROOT/pages/index.adoc',
+            [`= ${argv.name}`].join('\n'),
           )
         }
       },
