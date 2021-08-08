@@ -15,4 +15,7 @@
 <sitemap>
 <loc>https://docs.dt.in.th/sitemap-home.xml</loc>
 </sitemap>
+<sitemap>
+<loc>https://docs.dt.in.th/sitemap-osa.xml</loc>
+</sitemap>
 </sitemapindex>
