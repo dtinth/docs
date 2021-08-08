@@ -18,10 +18,19 @@ const packageDir = dirname(dirname(fileURLToPath(import.meta.url)))
 const cwdDir = process.cwd()
 setGracefulCleanup()
 
-async function runBuild(playbookPath, outDir) {
+async function runBuild(playbookPath, outDir, fetch = false) {
   console.time('Build')
   try {
-    await generateSite(['--playbook', playbookPath, '--to-dir', outDir], {})
+    await generateSite(
+      [
+        '--playbook',
+        playbookPath,
+        '--to-dir',
+        outDir,
+        ...(fetch ? ['--fetch'] : []),
+      ],
+      {},
+    )
     return true
   } catch (error) {
     console.error(error)
@@ -65,6 +74,13 @@ function main() {
     .strict()
     .help()
     .command(['$0', 'dev'], 'Start a development server', {}, (argv) => {
+      if (!existsSync('docs/antora.yml')) {
+        console.error(
+          'ERROR: `docs/antora.yml` not found. Run `dtinth-docs-dev init <name>` to generate it.',
+        )
+        process.exit(1)
+      }
+
       const tmpDir = dirSync()
       const playbookPath = tmpDir.name + '/antora-playbook.json'
       const outDir = tmpDir.name + '/build/site'
@@ -124,7 +140,13 @@ function main() {
     .command(
       'build',
       'Build the documentation for all projects',
-      {},
+      {
+        fetch: {
+          description: 'Whether to fetch the latest versions of all projects',
+          type: 'boolean',
+          default: false,
+        },
+      },
       async (argv) => {
         const tmpDir = dirSync()
         const playbookPath = tmpDir.name + '/antora-playbook.json'
@@ -139,7 +161,7 @@ function main() {
         })
         console.log(JSON.stringify(playbook, null, 2))
         writeFileSync(playbookPath, JSON.stringify(playbook, null, 2))
-        if (!(await runBuild(playbookPath, outDir))) {
+        if (!(await runBuild(playbookPath, outDir, argv.fetch))) {
           process.exitCode = 1
         }
       },
