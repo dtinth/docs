@@ -3,7 +3,7 @@
 import generateSite from '@antora/site-generator-default'
 import chokidar from 'chokidar'
 import express from 'express'
-import { existsSync, writeFileSync } from 'fs'
+import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { dirname } from 'path'
 import serveIndex from 'serve-index'
 import { dirSync, setGracefulCleanup } from 'tmp'
@@ -173,6 +173,25 @@ function main() {
         if (!(await runBuild(playbookPath, outDir, argv.fetch))) {
           process.exitCode = 1
         }
+      },
+    )
+    .command(
+      'link',
+      'Generate a link to the documentation.',
+      {},
+      async (argv) => {
+        const contents = readFileSync('docs/antora.yml', 'utf8')
+
+        // XXX: Gonna parse YAML with a regexp for now
+        const name = /name: (.*)/.exec(contents)[1] // thanks copilot
+
+        const url = `https://docs.dt.in.th/${name}/index.html`
+        const imageUrl = `https://ss.dt.in.th/api/screenshots/docs-${name}__index.png`
+        console.log(
+          `For more information, check out the [project documention page](${url}).`,
+        )
+        console.log(``)
+        console.log(`[![Project documention page](${imageUrl})](${url})`)
       },
     )
     .parse()
