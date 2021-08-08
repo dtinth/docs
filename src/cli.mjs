@@ -29,7 +29,7 @@ async function runBuild(playbookPath, outDir, fetch = false) {
         outDir,
         ...(fetch ? ['--fetch'] : []),
       ],
-      {},
+      process.env,
     )
     return true
   } catch (error) {
