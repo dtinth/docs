@@ -12,7 +12,7 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item title" href="https://docs.dt.in.th/docs/main/index.html">docs.dt.in.th</a>
+      <a class="navbar-item title" href="https://docs.dt.in.th/docs/index.html">docs.dt.in.th</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -36,36 +36,16 @@
 <div class="nav-panel-explore is-active" data-panel="explore">
   <ul class="components">
     <li class="component">
-      <a class="title" href="/encrypted/main/index.html">@dtinth/encrypted</a>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="/encrypted/main/index.html">main</a>
-        </li>
-      </ul>
+      <a class="title" href="/encrypted/index.html">@dtinth/encrypted</a>
     </li>
     <li class="component">
-      <a class="title" href="/docs-internals/main/index.html">docs.dt.in.th</a>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="/docs-internals/main/index.html">main</a>
-        </li>
-      </ul>
+      <a class="title" href="/docs-internals/index.html">docs.dt.in.th</a>
     </li>
     <li class="component">
-      <a class="title" href="/dtinth.tools-android/main/index.html">dtinth’s Tools (Android App)</a>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="/dtinth.tools-android/main/index.html">main</a>
-        </li>
-      </ul>
+      <a class="title" href="/dtinth.tools-android/index.html">dtinth’s Tools (Android App)</a>
     </li>
     <li class="component">
-      <a class="title" href="/docs/main/index.html">Home</a>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="/docs/main/index.html">main</a>
-        </li>
-      </ul>
+      <a class="title" href="/docs/index.html">Home</a>
     </li>
   </ul>
 </div>
@@ -75,7 +55,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="/docs/main/index.html" class="home-link" title="Home"></a>
+  <a href="/docs/index.html" class="home-link" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
 </nav>
 </div>
@@ -83,7 +63,7 @@
 <article class="doc">
 <h1 class="page">Page Not Found</h1>
 <div class="paragraph">
-<p>The page you&#8217;re looking for does not exist. It may have been moved. You can return to the <a id="return-link" href="/docs/main/index.html">start page</a>, or follow one of the links in the navigation on the left.</p>
+<p>The page you&#8217;re looking for does not exist. It may have been moved. You can return to the <a id="return-link" href="/docs/index.html">start page</a>, or follow one of the links in the navigation on the left.</p>
 </div>
 <div class="paragraph">
 <p>If you arrived on this page by clicking a link on another site, please notify the owner of that site that the link is broken.
@@ -94,14 +74,14 @@ If you typed the URL of this page manually, please double check that you entered
 ;(function (pathname, returnLink) {
   if (!returnLink) return
   var startPages = [
-    { name: "encrypted", title: "@dtinth/encrypted", url: "/encrypted/main/index.html", prefix: "/encrypted" },
-    { name: "encrypted", title: "@dtinth/encrypted", version: "main", url: "/encrypted/main/index.html", prefix: "/encrypted/main" },
-    { name: "docs-internals", title: "docs.dt.in.th", url: "/docs-internals/main/index.html", prefix: "/docs-internals" },
-    { name: "docs-internals", title: "docs.dt.in.th", version: "main", url: "/docs-internals/main/index.html", prefix: "/docs-internals/main" },
-    { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", url: "/dtinth.tools-android/main/index.html", prefix: "/dtinth.tools-android" },
-    { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", version: "main", url: "/dtinth.tools-android/main/index.html", prefix: "/dtinth.tools-android/main" },
-    { name: "docs", title: "Home", url: "/docs/main/index.html", prefix: "/docs" },
-    { name: "docs", title: "Home", version: "main", url: "/docs/main/index.html", prefix: "/docs/main" },
+    { name: "encrypted", title: "@dtinth/encrypted", url: "/encrypted/index.html", prefix: "/encrypted" },
+    { name: "encrypted", title: "@dtinth/encrypted", version: "master", url: "/encrypted/index.html", prefix: "/encrypted/master" },
+    { name: "docs-internals", title: "docs.dt.in.th", url: "/docs-internals/index.html", prefix: "/docs-internals" },
+    { name: "docs-internals", title: "docs.dt.in.th", version: "master", url: "/docs-internals/index.html", prefix: "/docs-internals/master" },
+    { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", url: "/dtinth.tools-android/index.html", prefix: "/dtinth.tools-android" },
+    { name: "dtinth.tools-android", title: "dtinth’s Tools (Android App)", version: "master", url: "/dtinth.tools-android/index.html", prefix: "/dtinth.tools-android/master" },
+    { name: "docs", title: "Home", url: "/docs/index.html", prefix: "/docs" },
+    { name: "docs", title: "Home", version: "master", url: "/docs/index.html", prefix: "/docs/master" },
   ].reduce(function (accum, it) {
     var prefix = it.prefix
     delete it.prefix
