@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>IAC :: docs.dt.in.th</title>
-    <link rel="canonical" href="https://docs.dt.in.th/webmidicon/connect/IAC.html">
-    <meta name="page-spec" content="webmidicon:connect:IAC.adoc">
+    <title>BLE-MIDI :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/webmidicon/connect/BLE-MIDI.html">
+    <meta name="page-spec" content="webmidicon:connect:BLE-MIDI.adoc">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
-    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-webmidicon__connect__IAC.png">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-webmidicon__connect__BLE-MIDI.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
@@ -52,10 +52,10 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">MIDI connection guide</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-url" data-depth="2">
     <a class="nav-link" href="BLE-MIDI.html">BLE-MIDI</a>
   </li>
-  <li class="nav-item is-current-url" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="IAC.html">IAC</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -154,21 +154,33 @@
   <ul>
     <li><a href="../index.html">WebMIDICon</a></li>
     <li><a href="index.html">MIDI connection guide</a></li>
-    <li><a href="IAC.html">IAC</a></li>
+    <li><a href="BLE-MIDI.html">BLE-MIDI</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dtinth/WebMIDICon/edit/stuff/docs/modules/connect/pages/IAC.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/WebMIDICon/edit/stuff/docs/modules/connect/pages/BLE-MIDI.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">IAC</h1>
+<h1 class="page">BLE-MIDI</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>An <strong>IAC (Inter-App Communication) device</strong> is a virtual MIDI device that allows multiple MIDI applications on the same device to communicate with each other.</p>
+<p>When it comes to <strong>BLE-MIDI (MIDI over Bluetooth Low Energy)</strong> there are 2
+main roles:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>Central</strong> (who discovers and connects to Peripherals); and</p>
+</li>
+<li>
+<p>The <strong>Peripheral</strong> (who advertises MIDI services so Centrals can connect
+to it).</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -176,21 +188,83 @@
 <h2 id="macOS"><a class="anchor" href="#macOS"></a>macOS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>macOS comes with a built-in <strong>IAC Driver</strong> to facilitate MIDI connections
-between applications. See
-<a href="https://support.apple.com/guide/audio-midi-setup/transfer-midi-information-between-apps-ams1013/mac"><strong>“Transfer
-MIDI information between apps in Audio MIDI Setup on Mac”</strong> on Apple
-Support</a> for more information.</p>
+<p>A macOS device can act as both the <strong>Central</strong> and the <strong>Peripheral</strong> at the
+same time. You set this up in the <strong>Audio MIDI Setup</strong> app.
+Once the Bluetooth connection is establised, the Bluetooth device
+becomes available to every macOS app.</p>
+</div>
+<div class="paragraph">
+<p>See
+<a href="https://support.apple.com/guide/audio-midi-setup/set-up-bluetooth-midi-devices-ams33f013765/mac"><strong>“Set
+up Bluetooth MIDI devices in Audio MIDI Setup on Mac”</strong> on Apple Support</a>
+for more information.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Android"><a class="anchor" href="#Android"></a>Android</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use the
+<a href="https://play.google.com/store/apps/details?id=com.mobileer.example.midibtlepairing"><strong>MIDI
+BLE Connect</strong></a> app to become a Central establish a MIDI connection to
+other peripherals. Other apps can then use this connection to send and
+receive MIDI data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="iOS"><a class="anchor" href="#iOS"></a>iOS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An iOS device can act as both the <strong>Central</strong> and the <strong>Peripheral</strong> at the
+same time, but it varies from application to application.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>GarageBand</strong> can act as the Central.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To set up: Settings → Advanced → Bluetooth MIDI Devices.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Web MIDI Browser</strong> can act as both the Central and the Peripheral.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To set up: Settings → Bluetooth MIDI → Setup Bluetooth MIDI
+Central/Peripheral</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Midiflow</strong> can act as both the Central and the Peripheral.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To set up: Config → Bluetooth → “Advertise this device” or “Find
+nearby devices”</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p>Connecting <strong>WebMIDICon</strong> through <strong>IAC Driver</strong> to <strong>Logic Pro</strong> running on
-the same machine:</p>
+<p>Connecting <strong>WebMIDICon</strong> running on <strong>iOS</strong> through <strong>Bluetooth</strong> to <strong>Logic
+Pro</strong> running on <strong>macOS</strong>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/IAC-macOS.png" alt="image">
+<img src="_images/BLE-MIDI-iOS-macOS.png" alt="image">
 </div>
 </div>
 </div>
@@ -201,47 +275,64 @@ the same machine:</p>
 <h2 id="Windows"><a class="anchor" href="#Windows"></a>Windows</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can install <a href="https://www.nerds.de/en/loopbe1.html">LoopBe1</a>, a virtual
-MIDI device driver for Windows which is free for non-commercial use. If
-you need more than 1 port, you can buy the
-<a href="https://www.nerds.de/en/loopbe30.html">LoopBe30</a> device.</p>
+<p>There is an application called
+<a href="https://www.microsoft.com/en-us/p/midiberry/9n39720h2m05?activetab=pivot:overviewtab">MIDIberry</a>
+that makes your device act as a <strong>Central</strong>. At least Windows 10 is
+required.</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>Connecting <strong>WebMIDICon</strong> through <strong>LoopBe1</strong> to <strong>FL Studio</strong> running on the
-same machine:</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+From my testing, only Bluetooth Input is supported; I could not get
+Output to work. Also the app may crash from time to time.
+</td>
+</tr>
+</table>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/IAC-Windows.png" alt="image">
-</div>
-</div>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to <strong>Bluetooth and other devices settings</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Add device</strong> and then make sure your device is discoverable.</p>
+</li>
+<li>
+<p>Select <strong>Bluetooth</strong> and then pair your devices together.</p>
+</li>
+<li>
+<p>Open <strong>MIDIberry</strong>.</p>
+</li>
+<li>
+<p>Select the Bluetooth <strong>Input</strong>.</p>
+</li>
+<li>
+<p>Select the output MIDI device to send the input to. If you want to
+send it to another Windows application, use an <a href="./IAC.md">IAC
+device</a>.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="iOS"><a class="anchor" href="#iOS"></a>iOS</h2>
+<h2 id="device"><a class="anchor" href="#device"></a>MIDI devices</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can buy <a href="https://www.midiflow.com/">Midiflow</a> which lets you create
-virtual MIDI devices that other apps can use. Please note that iOS is
-not that great at multitasking, and from my experience, the application
-in the background is automatically killed by the OS after a while.</p>
+<p>Some devices have built-in BLE-MIDI support, such as the KORG’s
+<a href="https://www.korg.com/us/products/computergear/microkey2_air/">microKEY
+Air</a>.</p>
 </div>
-<div class="exampleblock">
-<div class="content">
 <div class="paragraph">
-<p>Connecting <strong>WebMIDICon</strong> through <strong>Midiflow</strong> to <strong>GarageBand</strong> running on
-the same iPhone:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/IAC-macOS.png" alt="image">
-</div>
-</div>
-</div>
+<p>For other devices, you can buy adapters such as Yamaha’s
+<a href="https://jp.yamaha.com/products/music_production/accessories/md-bt01/index.html">MD-BT01</a>
+(for devices with MIDI ports) or
+<a href="https://jp.yamaha.com/products/musical_instruments/pianos/accessories/interfaces/ud-bt01/index.html">UD-BT01</a>
+(for devices with a USB port).</p>
 </div>
 </div>
 </div>
