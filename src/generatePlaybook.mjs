@@ -31,5 +31,11 @@ export function generatePlaybook(options) {
         url: `${packageDir}/${uiBundleFileName}`,
       },
     },
+    asciidoc: {
+      attributes: {
+        'page-pagination': '',
+        experimental: '',
+      },
+    },
   }
 }
