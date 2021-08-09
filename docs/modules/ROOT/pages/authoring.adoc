@@ -31,6 +31,13 @@ Then run this script from project root directory:
 dtinth-docs-server
 ----
 
+Then open http://localhost:9090/ in a web browser. The documentation site will automatically build when files are changed.
+
+.How it works
+****
+The `dtinth/docs` package bundles Antora and the UI bundle used in `docs.dt.in.th`, and exposes a CLI that starts a preview server, watches for changes and rebuilds the preview site.
+****
+
 [#nav]
 == Creating a navigation file
 
