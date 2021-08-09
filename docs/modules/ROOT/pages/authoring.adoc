@@ -62,4 +62,8 @@ For converience, the deployment workflow action can be triggered from the CLI:
 
  $ dtinth-docs-dev deploy
 
+After committing your changes, you can push and redeploy the site in one go:
+
+ $ git push && dtinth-docs-dev deploy
+
 NOTE: The https://cli.github.com/[GitHub CLI] must be installed.
