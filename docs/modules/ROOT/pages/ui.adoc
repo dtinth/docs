@@ -1,0 +1,33 @@
+= UI development
+
+Antora uses https://docs.antora.org/antora/2.3/playbook/set-up-playbook/#configure-your-sites-ui-bundle[UI bundles] to define the look and feel of a documentation site. They are https://gitlab.com/antora/antora-ui-default[developed separately] and are built into a ZIP file, to be consumed by Antora’s https://docs.antora.org/antora/2.3/how-antora-works/#steps-in-the-default-generator-pipeline[default site generator pipeline].
+
+docs.dt.in.th, like other Antora-based sites, uses its own UI bundle. The source code is located in https://github.com/dtinth/docs-ui[the `dtinth/docs-ui` repository], while the built ZIP file is directly checked in to https://github.com/dtinth/docs[the `dtinth/docs` repository.]
+
+.Why check the UI bundle directly into the `docs` repo?
+****
+Most Antora projects https://github.com/asciidoctor/docs.asciidoctor.org/blob/d96cba2d4123c3b8b5a07239dcf46ac3ecb327a5/antora-playbook.yml#L65[use a URL] to point to the Antora UI bundle. But checking in the UI bundle directly into the `docs` repo allows the UI to be bundled xref:authoring.adoc[with the `dtinth-docs-dev` command] without requiring https://github.com/asciidoctor/asciidoctor-docs-ui/blob/main/.github/workflows/release.yml[a separate release process] which introduces unnecessary overhead.
+****
+
+== Updating UI bundle
+
+Assuming that the `docs` repo and `docs-ui` repos are next to each other:
+
+----
+📒 docs
+  📂 .git
+  📄 update-ui.sh
+  📄 ui-bundle-*.zip
+  📄 …
+📒 docs-ui
+  📂 .git
+  📄 …
+----
+
+Within the `docs` repo, run:
+
+----
+./update-ui.sh
+----
+
+to update the UI bundle.
