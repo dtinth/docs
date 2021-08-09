@@ -164,17 +164,17 @@ title: 'Project name'</code></pre>
 <div class="paragraph">
 <p>In VS Code, AsciiDoc files can be previewed using the <a href="https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode">AsciiDoc extension</a>. This gives faster feedback but has lower fidelity. For high fidelity preview, install the development server:</p>
 </div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install --global dtinth/docs</code></pre>
+<pre>$ npm install --global dtinth/docs</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Then run this script from project root directory:</p>
 </div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dtinth-docs-server</code></pre>
+<pre>$ dtinth-docs-server</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -224,6 +224,31 @@ title: 'Project name'</code></pre>
 <p><a href="https://github.com/dtinth/docs/actions/workflows/pages.yml">Rebuild the site on GitHub Actions</a></p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_the_documentation_site_from_cli"><a class="anchor" href="#_deploying_the_documentation_site_from_cli"></a>Deploying the documentation site from CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For converience, the deployment workflow action can be triggered from the CLI:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ dtinth-docs-dev deploy</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <a href="https://cli.github.com/">GitHub CLI</a> must be installed.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
