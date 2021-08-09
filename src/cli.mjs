@@ -93,6 +93,10 @@ function main() {
       )
 
       const app = express()
+      app.use(async (req, res, next) => {
+        await rebuildTask.promise
+        next()
+      })
       app.use(express.static(outDir))
       app.use(serveIndex(outDir))
       app.listen(9090, () => {

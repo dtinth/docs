@@ -6,6 +6,8 @@ export class BuildTask {
     this.fn = fn
     this.version = 0
     this.waiting = false
+    this.resolve = null
+    this.promise = Promise.resolve(0)
   }
   trigger() {
     this.version++
@@ -13,16 +15,25 @@ export class BuildTask {
       return
     }
     this.waiting = true
+    if (!this.resolve) {
+      const promise = new Promise((resolve) => {
+        this.resolve = resolve
+      })
+      this.promise = promise
+    }
     setTimeout(async () => {
       this.waiting = false
       const version = this.version
       try {
         await this.fn()
       } finally {
-        if (this.version !== version) {
+        if (this.version === version) {
+          this.resolve(version)
+          this.resolve = null
+        } else {
           this.trigger()
         }
       }
-    }, 500)
+    }, 100)
   }
 }
