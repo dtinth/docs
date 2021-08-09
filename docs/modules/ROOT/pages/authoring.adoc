@@ -19,17 +19,11 @@ Then create `modules/ROOT/pages/index.adoc` with the contents.
 
 In VS Code, AsciiDoc files can be previewed using the https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc extension]. This gives faster feedback but has lower fidelity. For high fidelity preview, install the development server:
 
-[source,bash]
-----
-npm install --global dtinth/docs
-----
+ $ npm install --global dtinth/docs
 
 Then run this script from project root directory:
 
-[source,bash]
-----
-dtinth-docs-server
-----
+ $ dtinth-docs-server
 
 Then open http://localhost:9090/ in a web browser. The documentation site will automatically build when files are changed.
 
@@ -61,3 +55,11 @@ Then create `docs/modules/ROOT/nav.adoc`:
 
 . Add a new entry to https://docs.google.com/spreadsheets/d/1kFc9bDizrANULuVSUuHYiZENdPzXZpXvuUWlbZbF_uU/edit#gid=0[the docs.dt.in.th spreadsheet on Google Sheets].
 . https://github.com/dtinth/docs/actions/workflows/pages.yml[Rebuild the site on GitHub Actions]
+
+== Deploying the documentation site from CLI
+
+For converience, the deployment workflow action can be triggered from the CLI:
+
+ $ dtinth-docs-dev deploy
+
+NOTE: The https://cli.github.com/[GitHub CLI] must be installed.

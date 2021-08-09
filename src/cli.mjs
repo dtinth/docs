@@ -13,6 +13,7 @@ import { hideBin } from 'yargs/helpers'
 import { BuildTask } from './BuildTask.mjs'
 import { uiBundleFileName } from './ui.mjs'
 import mkdirp from 'mkdirp'
+import execa from 'execa'
 
 const packageDir = dirname(dirname(fileURLToPath(import.meta.url)))
 const cwdDir = process.cwd()
@@ -198,6 +199,13 @@ function main() {
         console.log(`[![Project documention page](${imageUrl})](${url})`)
       },
     )
+    .command('deploy', 'Deploy the new site.', {}, async (argv) => {
+      await execa(
+        'gh',
+        ['workflow', 'run', 'pages.yml', '--repo', 'dtinth/docs'],
+        { stdio: 'inherit' },
+      )
+    })
     .parse()
 }
 
