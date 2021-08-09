@@ -22,3 +22,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/site
           cname: docs.dt.in.th
+          user_name: 'dtinth-bot'
+          user_email: 'dtinth-bot@users.noreply.github.com'
