@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Authoring guide :: docs.dt.in.th</title>
-    <link rel="canonical" href="https://docs.dt.in.th/docs/authoring.html">
-    <meta name="page-spec" content="docs::authoring.adoc">
+    <title>UI development :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/docs/ui.html">
+    <meta name="page-spec" content="docs::ui.adoc">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
-    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-docs__authoring.png">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-docs__ui.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
@@ -48,10 +48,10 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="index.html">docs.dt.in.th</a>
   </li>
-  <li class="nav-item is-current-url" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="authoring.html">Authoring guide</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-url" data-depth="1">
     <a class="nav-link" href="ui.html">UI development</a>
   </li>
 </ul>
@@ -129,101 +129,63 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">docs.dt.in.th</a></li>
-    <li><a href="authoring.html">Authoring guide</a></li>
+    <li><a href="ui.html">UI development</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dtinth/docs/edit/main/docs/modules/ROOT/pages/authoring.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/docs/edit/main/docs/modules/ROOT/pages/ui.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Authoring guide</h1>
-<div class="sect1">
-<h2 id="write"><a class="anchor" href="#write"></a>Writing docs</h2>
+<h1 class="page">UI development</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>To develop a documentation in individual project, first create <code>docs/antora.yml</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: project-name
-version: main
-title: 'Project name'</code></pre>
-</div>
+<p>Antora uses <a href="https://docs.antora.org/antora/2.3/playbook/set-up-playbook/#configure-your-sites-ui-bundle">UI bundles</a> to define the look and feel of a documentation site. They are <a href="https://gitlab.com/antora/antora-ui-default">developed separately</a> and are built into a ZIP file, to be consumed by Antora’s <a href="https://docs.antora.org/antora/2.3/how-antora-works/#steps-in-the-default-generator-pipeline">default site generator pipeline</a>.</p>
 </div>
 <div class="paragraph">
-<p>Then create <code>modules/ROOT/pages/index.adoc</code> with the contents.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="preview"><a class="anchor" href="#preview"></a>Previewing docs</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In VS Code, AsciiDoc files can be previewed using the <a href="https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode">AsciiDoc extension</a>. This gives faster feedback but has lower fidelity. For high fidelity preview, install the development server:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install --global dtinth/docs</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then run this script from project root directory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dtinth-docs-server</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then open <a href="http://localhost:9090/" class="bare">http://localhost:9090/</a> in a web browser. The documentation site will automatically build when files are changed.</p>
+<p>docs.dt.in.th, like other Antora-based sites, uses its own UI bundle. The source code is located in <a href="https://github.com/dtinth/docs-ui">the <code>dtinth/docs-ui</code> repository</a>, while the built ZIP file is directly checked in to <a href="https://github.com/dtinth/docs">the <code>dtinth/docs</code> repository.</a></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">How it works</div>
+<div class="title">Why check the UI bundle directly into the <code>docs</code> repo?</div>
 <div class="paragraph">
-<p>The <code>dtinth/docs</code> package bundles Antora and the UI bundle used in <code>docs.dt.in.th</code>, and exposes a CLI that starts a preview server, watches for changes and rebuilds the preview site.</p>
+<p>Most Antora projects <a href="https://github.com/asciidoctor/docs.asciidoctor.org/blob/d96cba2d4123c3b8b5a07239dcf46ac3ecb327a5/antora-playbook.yml#L65">use a URL</a> to point to the Antora UI bundle. But checking in the UI bundle directly into the <code>docs</code> repo allows the UI to be bundled <a href="authoring.html" class="page">with the <code>dtinth-docs-dev</code> command</a> without requiring <a href="https://github.com/asciidoctor/asciidoctor-docs-ui/blob/main/.github/workflows/release.yml">a separate release process</a> which introduces unnecessary overhead.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="nav"><a class="anchor" href="#nav"></a>Creating a navigation file</h2>
+<h2 id="_updating_ui_bundle"><a class="anchor" href="#_updating_ui_bundle"></a>Updating UI bundle</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Add this to <code>docs/antora.yml</code>:</p>
+<p>Assuming that the <code>docs</code> repo and <code>docs-ui</code> repos are next to each other:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">nav:
-- modules/ROOT/nav.adoc</code></pre>
+<pre>📒 docs
+  📂 .git
+  📄 update-ui.sh
+  📄 ui-bundle-*.zip
+  📄 …
+📒 docs-ui
+  📂 .git
+  📄 …</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then create <code>docs/modules/ROOT/nav.adoc</code>:</p>
+<p>Within the <code>docs</code> repo, run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* xref:index.adoc[]</code></pre>
+<pre>./update-ui.sh</pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="publish"><a class="anchor" href="#publish"></a>Publishing</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add a new entry to <a href="https://docs.google.com/spreadsheets/d/1kFc9bDizrANULuVSUuHYiZENdPzXZpXvuUWlbZbF_uU/edit#gid=0">the docs.dt.in.th spreadsheet on Google Sheets</a>.</p>
-</li>
-<li>
-<p><a href="https://github.com/dtinth/docs/actions/workflows/pages.yml">Rebuild the site on GitHub Actions</a></p>
-</li>
-</ol>
+<div class="paragraph">
+<p>to update the UI bundle.</p>
 </div>
 </div>
 </div>
