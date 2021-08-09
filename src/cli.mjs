@@ -2,20 +2,17 @@
 
 import generateSite from '@antora/site-generator-default'
 import chokidar from 'chokidar'
+import execa from 'execa'
 import express from 'express'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
-import { dirname } from 'path'
+import mkdirp from 'mkdirp'
 import serveIndex from 'serve-index'
 import { dirSync, setGracefulCleanup } from 'tmp'
-import { fileURLToPath } from 'url'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { BuildTask } from './BuildTask.mjs'
-import { uiBundleFileName } from './ui.mjs'
-import mkdirp from 'mkdirp'
-import execa from 'execa'
+import { generatePlaybook } from './generatePlaybook.mjs'
 
-const packageDir = dirname(dirname(fileURLToPath(import.meta.url)))
 const cwdDir = process.cwd()
 setGracefulCleanup()
 
@@ -38,37 +35,6 @@ async function runBuild(playbookPath, outDir, fetch = false) {
     return false
   } finally {
     console.timeEnd('Build')
-  }
-}
-
-/**
- * @param {object} options
- * @param {any[]} options.source
- * @param {boolean} [options.production]
- */
-function generatePlaybook(options) {
-  return {
-    site: {
-      title: 'docs.dt.in.th',
-      robots: 'allow',
-      ...(options.production
-        ? {
-            start_page: 'home::index.adoc',
-            url: 'https://docs.dt.in.th',
-            keys: {
-              google_analytics: 'UA-4343503-11',
-            },
-          }
-        : {}),
-    },
-    content: {
-      sources: options.source,
-    },
-    ui: {
-      bundle: {
-        url: `${packageDir}/${uiBundleFileName}`,
-      },
-    },
   }
 }
 
