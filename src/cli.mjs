@@ -46,7 +46,7 @@ function main() {
     .command(['$0', 'dev'], 'Start a development server', {}, (argv) => {
       if (!existsSync('docs/antora.yml')) {
         console.error(
-          'ERROR: `docs/antora.yml` not found. Run `dtinth-docs-dev init <name>` to generate it.',
+          'ERROR: `docs/antora.yml` not found. Run `dtinth-docs init <name>` to generate it.',
         )
         process.exit(1)
       }
@@ -106,6 +106,8 @@ function main() {
               `name: ${argv.name}`,
               `version: master`,
               `title: '${argv.name}'`,
+              `nav:`,
+              `  - modules/ROOT/nav.adoc`,
             ].join('\n'),
           )
         }
@@ -113,6 +115,12 @@ function main() {
           writeFileSync(
             'docs/modules/ROOT/pages/index.adoc',
             [`= ${argv.name}`].join('\n'),
+          )
+        }
+        if (!existsSync('docs/modules/ROOT/nav.adoc')) {
+          writeFileSync(
+            'docs/modules/ROOT/nav.adoc',
+            [`* xref:index.adoc[]`].join('\n'),
           )
         }
       },

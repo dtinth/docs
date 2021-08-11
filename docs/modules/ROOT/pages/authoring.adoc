@@ -1,5 +1,34 @@
 = Authoring guide
 
+[#tldr]
+== tl;dr
+
+. Install `dtinth/docs` repository directly from GitHub. It installs a CLI tool `dtinth-docs`.
++
+ $ npm i -g dtinth/docs
++
+With the CLI, one can preview how the documentation would look like on the website without having to clone the documentation site repository. https://antora.org/[Antora] and the https://docs.antora.org/antora/2.3/playbook/set-up-playbook/#configure-your-sites-ui-bundle[UI bundle] are included with the package and the CLI automatically generates https://docs.antora.org/antora/2.3/playbook/[the Antora playbook] for the project.
++
+WARNING: This CLI tool is not tested on Windows at all. It probably won’t work.
+
+. Initialize a documentation for a project.
++
+ $ dtinth-docs init my-project
+
+. Start the documentation preview server.
++
+ $ dtinth-docs
+
+. Go to http://localhost:9090/[].
+
+. Write documentation. The server will automatically rebuild the documentation on file change.
+
+. xref:#publish[Update the Google Docs file to add the new repository.]
+
+. Deploy the documentation site.
++
+ $ dtinth-docs deploy
+
 [#write]
 == Writing docs
 
@@ -14,6 +43,8 @@ title: 'Project name'
 
 Then create `modules/ROOT/pages/index.adoc` with the contents.
 
+TIP: Run `dtinth-docs init project-name` to automatically generate the initial documentation structure.
+
 [#preview]
 == Previewing docs
 
@@ -23,7 +54,7 @@ In VS Code, AsciiDoc files can be previewed using the https://marketplace.visual
 
 Then run this script from project root directory:
 
- $ dtinth-docs-server
+ $ dtinth-docs
 
 Then open http://localhost:9090/ in a web browser. The documentation site will automatically build when files are changed.
 
@@ -60,10 +91,10 @@ Then create `docs/modules/ROOT/nav.adoc`:
 
 For converience, the deployment workflow action can be triggered from the CLI:
 
- $ dtinth-docs-dev deploy
+ $ dtinth-docs deploy
 
 After committing your changes, you can push and redeploy the site in one go:
 
- $ git push && dtinth-docs-dev deploy
+ $ git push && dtinth-docs deploy
 
 NOTE: The https://cli.github.com/[GitHub CLI] must be installed.

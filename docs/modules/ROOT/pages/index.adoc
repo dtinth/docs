@@ -6,13 +6,13 @@ https://github.com/dtinth/docs[The source code is on GitHub.]
 
 == Easy to author with high fidelity previewing
 
-* By running the `dtinth-docs-dev` command, a project documentation can be previewed in isolation through a local development server.
+* By running the `dtinth-docs` command, a project documentation can be previewed in isolation through a local development server.
 * The development server automatically rebuilds the documentation whenever a file is changed.
 * See more information in xref:authoring.adoc[].
 
 .How it works
 ****
-* The https://docs.antora.org/antora/2.3/playbook/[playbook file] for the project is generated on-the-fly, so documentation is previewed in isolation, but with the same setup that would be used to deploy the site to GitHub Pages.
+* The CLI generates an https://docs.antora.org/antora/2.3/playbook/[Antora playbook file] on-the-fly, so documentation can be previewed in isolation without having to manually clone the documentation repo, setting up Antora, and updating playbook files.
 ****
 
 == Easy to add new project documentations
@@ -23,12 +23,12 @@ https://github.com/dtinth/docs[The source code is on GitHub.]
 ****
 * Antora uses https://asciidoc.org/[AsciiDoc], which is more flexible than Markdown. AsciiDoc has been used successfully for big projects, such as https://github.com/elastic/docs[the Elastic stack].
 * Antora uses https://asciidoctor.org/[Asciidoctor], which is a https://asciidoc.org/#:~:text=Asciidoctor%20provides%20a,the%20AsciiDoc%20syntax[recommended by AsciiDoc].
-* Antora is used to generate https://docs.asciidoctor.org/[Asciidoctor documentation].
+* Antora is used to generate https://docs.asciidoctor.org/[Asciidoctor’s documentation site].
 ****
 
 == Minimize laborious tasks
 
-Building and publishing a documentation site is only part of the whole story. How about social share images? How about SEO? How about analytics? These are things that you have to do each time you set up a new documentation site. Putting documentation together in a single place allows each project documentations to benefit from shared tools.
+Building and publishing a documentation site is only part of the whole story. How about social share images? How about SEO? How about analytics? These are things that I had to do each time I set up a new documentation site. Putting documentation together in a single place allows each project documentations to benefit from shared tools.
 
 Social image::
 https://github.com/dtinth/personal-puppeteer[personal-puppeteer] is used to generate screenshots for each page, which are then used for social image.

@@ -1,0 +1,44 @@
+= Generate content from code
+
+Some projects may benefit from having part of the documentation generated automatically from code. This removes the need to manually keep code and documentation in sync. An example project that does this is the xref:fresh-app-factory::index.adoc[Fresh App Factory].
+
+. Create a script to generate the partial file.
++
+[source,shell]
+----
+#!/bin/bash
+# update-docs.sh
+echo generated content > docs/modules/ROOT/partials/contents.adoc
+----
+
+. Include the partial into a documentation page.
++
+[source,asciidoc]
+----
+\include::partial$contents.adoc[]
+----
+
+. Create a GitHub Actions workflow to keep the repo in sync.
++
+[source,yaml]
+----
+# .github/workflows/docs.yml
+name: Update docs
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./update-docs.sh
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update documentation
+          commit_user_name: dtinth-bot
+          commit_user_email: dtinth-bot@users.noreply.github.com
+          commit_author: dtinth-bot <dtinth-bot@users.noreply.github.com>
+----
