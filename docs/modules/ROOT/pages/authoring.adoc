@@ -1,93 +1,48 @@
 = Authoring guide
 
-[#tldr]
-== tl;dr
+== Install the CLI
 
-. Install `dtinth/docs` repository directly from GitHub. It installs a CLI tool `dtinth-docs`.
-+
+Install `dtinth/docs` repository directly from GitHub. It installs a CLI tool `dtinth-docs`.
+
  $ npm i -g dtinth/docs
-+
-With the CLI, one can preview how the documentation would look like on the website without having to clone the documentation site repository. https://antora.org/[Antora] and the https://docs.antora.org/antora/2.3/playbook/set-up-playbook/#configure-your-sites-ui-bundle[UI bundle] are included with the package and the CLI automatically generates https://docs.antora.org/antora/2.3/playbook/[the Antora playbook] for the project.
-+
-WARNING: This CLI tool is not tested on Windows at all. It probably won’t work.
 
-. Initialize a documentation for a project.
-+
+With the CLI, one can preview how the documentation would look like on the website without having to clone the documentation site repository. The CLI package includes https://antora.org/[Antora] and the https://docs.antora.org/antora/2.3/playbook/set-up-playbook/#configure-your-sites-ui-bundle[UI bundle], and automatically generates https://docs.antora.org/antora/2.3/playbook/[the Antora playbook] for editing a project documentation in isolation. This makes it ideal for documenting projects in cloud-based environments such as https://github.com/codespaces[GitHub Codespaces].
+
+⚠️ This CLI tool is not tested on Windows at all. It probably won’t work.
+
+== Initialize a documentation structure for a project
+
+Run this from the repository root:
+
  $ dtinth-docs init my-project
 
-. Start the documentation preview server.
-+
- $ dtinth-docs
+This command generates the following structure:
 
-. Go to http://localhost:9090/[].
+ 📒 <repo>
+   📂 docs
+     📄 antora.yml
+     📂 modules/ROOT
+       📄 nav.adoc
+       📂 pages
+         📄 index.adoc
 
-. Write documentation. The server will automatically rebuild the documentation on file change.
+== Start the documentation preview server
 
-. xref:#publish[Update the Google Docs file to add the new repository.]
-
-. Deploy the documentation site.
-+
- $ dtinth-docs deploy
-
-[#write]
-== Writing docs
-
-To develop a documentation in individual project, first create `docs/antora.yml`:
-
-[source,yaml]
-----
-name: project-name
-version: main
-title: 'Project name'
-----
-
-Then create `modules/ROOT/pages/index.adoc` with the contents.
-
-TIP: Run `dtinth-docs init project-name` to automatically generate the initial documentation structure.
-
-[#preview]
-== Previewing docs
-
-In VS Code, AsciiDoc files can be previewed using the https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc extension]. This gives faster feedback but has lower fidelity. For high fidelity preview, install the development server:
-
- $ npm install --global dtinth/docs
-
-Then run this script from project root directory:
+Run this from the repository root:
 
  $ dtinth-docs
 
-Then open http://localhost:9090/ in a web browser. The documentation site will automatically build when files are changed.
+Then go to http://localhost:9090/[]. As you make changes to the documentation, the server will automatically rebuild the documentation.
 
-.How it works
-****
-The `dtinth/docs` package bundles Antora and the UI bundle used in `docs.dt.in.th`, and exposes a CLI that starts a preview server, watches for changes and rebuilds the preview site.
-****
-
-[#nav]
-== Creating a navigation file
-
-Add this to `docs/antora.yml`:
-
-[source,yaml]
-----
-nav:
-- modules/ROOT/nav.adoc
-----
-
-Then create `docs/modules/ROOT/nav.adoc`:
-
-[source,asciidoc]
-----
-* xref:index.adoc[]
-----
+TIP: In VS Code, AsciiDoc files can also quickly be previewed using the https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc extension]. This gives faster feedback but has lower fidelity.
 
 [#publish]
-== Publishing
+== Publishing new documentation
 
-. Add a new entry to https://docs.google.com/spreadsheets/d/1kFc9bDizrANULuVSUuHYiZENdPzXZpXvuUWlbZbF_uU/edit#gid=0[the docs.dt.in.th spreadsheet on Google Sheets].
-. https://github.com/dtinth/docs/actions/workflows/pages.yml[Rebuild the site on GitHub Actions]
+. Add a new entry to https://docs.google.com/spreadsheets/d/1kFc9bDizrANULuVSUuHYiZENdPzXZpXvuUWlbZbF_uU/edit#gid=0[the *docs.dt.in.th* spreadsheet on Google Sheets].
+. https://github.com/dtinth/docs/actions/workflows/pages.yml[Rebuild the site on GitHub Actions].
 
-== Deploying the documentation site from CLI
+== Deploying documentation updates using the CLI
 
 For converience, the deployment workflow action can be triggered from the CLI:
 
