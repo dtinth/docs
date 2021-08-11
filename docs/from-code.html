@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>docs.dt.in.th :: docs.dt.in.th</title>
-    <link rel="canonical" href="https://docs.dt.in.th/docs/index.html">
-    <meta name="page-spec" content="docs::index.adoc">
+    <title>Generate content from code :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/docs/from-code.html">
+    <meta name="page-spec" content="docs::from-code.adoc">
     <meta name="generator" content="Antora 2.3.4">
-    <link rel="next" href="authoring.html">
+    <link rel="prev" href="authoring.html">
+    <link rel="next" href="ui.html">
     <link rel="stylesheet" href="../_/css/site.css">
-    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-docs__index.png">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-docs__from-code.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
@@ -46,13 +47,13 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-url" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="index.html">docs.dt.in.th</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="authoring.html">Authoring guide</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-url" data-depth="1">
     <a class="nav-link" href="from-code.html">Generate content from code</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -136,109 +137,68 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">docs.dt.in.th</a></li>
+    <li><a href="from-code.html">Generate content from code</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dtinth/docs/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/docs/edit/main/docs/modules/ROOT/pages/from-code.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
 <article class="doc">
-<h1 class="page">docs.dt.in.th</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Generate content from code</h1>
 <div class="paragraph">
-<p><strong>docs.dt.in.th</strong> builds upon the <a href="https://antora.org/">Antora multi-repository documentation site generator</a> to provide an improved <a href="authoring.html" class="page">authoring workflow</a> through a custom CLI script, inspired by <a href="https://backstage.io/docs/features/techdocs/techdocs-overview">Backstage’s TechDocs</a>.</p>
+<p>Some projects may benefit from having part of the documentation generated automatically from code. This removes the need to manually keep code and documentation in sync. An example project that does this is the <a href="../fresh-app-factory/index.html" class="page">Fresh App Factory</a>.</p>
 </div>
-<div class="paragraph">
-<p><a href="https://github.com/dtinth/docs">The source code is on GitHub.</a></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_easy_to_author_with_high_fidelity_previewing"><a class="anchor" href="#_easy_to_author_with_high_fidelity_previewing"></a>Easy to author with high fidelity previewing</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>By running the <code>dtinth-docs</code> command, a project documentation can be previewed in isolation through a local development server.</p>
-</li>
-<li>
-<p>The development server automatically rebuilds the documentation whenever a file is changed.</p>
-</li>
-<li>
-<p>See more information in <a href="authoring.html" class="page">Authoring guide</a>.</p>
-</li>
-</ul>
-</div>
-<div class="sidebarblock">
+<p>Create a script to generate the partial file.</p>
+<div class="listingblock">
 <div class="content">
-<div class="title">How it works</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The CLI generates an <a href="https://docs.antora.org/antora/2.3/playbook/">Antora playbook file</a> on-the-fly, so documentation can be previewed in isolation without having to manually clone the documentation repo, setting up Antora, and updating playbook files.</p>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">#!/bin/bash
+# update-docs.sh
+echo generated content &gt; docs/modules/ROOT/partials/contents.adoc</code></pre>
+</div>
+</div>
 </li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_easy_to_add_new_project_documentations"><a class="anchor" href="#_easy_to_add_new_project_documentations"></a>Easy to add new project documentations</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
 <li>
-<p>New documentation can be added to the site by <a href="authoring.html#publish" class="page">adding a new entry in the Google Sheets spreadsheet</a>, so there is no need to fiddle with playbook files.</p>
-</li>
-</ul>
-</div>
-<div class="sidebarblock">
+<p>Include the partial into a documentation page.</p>
+<div class="listingblock">
 <div class="content">
-<div class="title">Why Antora?</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Antora uses <a href="https://asciidoc.org/">AsciiDoc</a>, which is more flexible than Markdown. AsciiDoc has been used successfully for big projects, such as <a href="https://github.com/elastic/docs">the Elastic stack</a>.</p>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">include::partial$contents.adoc[]</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Antora uses <a href="https://asciidoctor.org/">Asciidoctor</a>, which is a <a href="https://asciidoc.org/#:~:text=Asciidoctor%20provides%20a,the%20AsciiDoc%20syntax">recommended by AsciiDoc</a>.</p>
+<p>Create a GitHub Actions workflow to keep the repo in sync.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># .github/workflows/docs.yml
+name: Update docs
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./update-docs.sh
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update documentation
+          commit_user_name: dtinth-bot
+          commit_user_email: dtinth-bot@users.noreply.github.com
+          commit_author: dtinth-bot &lt;dtinth-bot@users.noreply.github.com&gt;</code></pre>
+</div>
+</div>
 </li>
-<li>
-<p>Antora is used to generate <a href="https://docs.asciidoctor.org/">Asciidoctor’s documentation site</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_minimize_laborious_tasks"><a class="anchor" href="#_minimize_laborious_tasks"></a>Minimize laborious tasks</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Building and publishing a documentation site is only part of the whole story. How about social share images? How about SEO? How about analytics? These are things that I had to do each time I set up a new documentation site. Putting documentation together in a single place allows each project documentations to benefit from shared tools.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Social image</dt>
-<dd>
-<p><a href="https://github.com/dtinth/personal-puppeteer">personal-puppeteer</a> is used to generate screenshots for each page, which are then used for social image.
-When a documentation page is shared, people can see the contents of the page before clicking on the shared link.</p>
-</dd>
-<dt class="hdlist1">Analytics</dt>
-<dd>
-<p>Google Analytics integration is <a href="https://docs.antora.org/antora/2.3/playbook/site-keys/#google-analytics-key">supported natively by Antora</a>.</p>
-</dd>
-</dl>
-</div>
-</div>
+</ol>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="authoring.html">Authoring guide</a></span>
+  <span class="prev"><a href="authoring.html">Authoring guide</a></span>
+  <span class="next"><a href="ui.html">UI development</a></span>
 </nav>
 </article>
   </div>

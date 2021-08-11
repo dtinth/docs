@@ -8,7 +8,7 @@
     <meta name="page-spec" content="docs::authoring.adoc">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="prev" href="index.html">
-    <link rel="next" href="ui.html">
+    <link rel="next" href="from-code.html">
     <link rel="stylesheet" href="../_/css/site.css">
     <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-docs__authoring.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
@@ -52,6 +52,9 @@
   </li>
   <li class="nav-item is-current-url" data-depth="1">
     <a class="nav-link" href="authoring.html">Authoring guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="from-code.html">Generate content from code</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ui.html">UI development</a>
@@ -146,6 +149,71 @@
 <article class="doc">
 <h1 class="page">Authoring guide</h1>
 <div class="sect1">
+<h2 id="tldr"><a class="anchor" href="#tldr"></a>tl;dr</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install <code>dtinth/docs</code> repository directly from GitHub. It installs a CLI tool <code>dtinth-docs</code>.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ npm i -g dtinth/docs</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the CLI, one can preview how the documentation would look like on the website without having to clone the documentation site repository. <a href="https://antora.org/">Antora</a> and the <a href="https://docs.antora.org/antora/2.3/playbook/set-up-playbook/#configure-your-sites-ui-bundle">UI bundle</a> are included with the package and the CLI automatically generates <a href="https://docs.antora.org/antora/2.3/playbook/">the Antora playbook</a> for the project.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This CLI tool is not tested on Windows at all. It probably won’t work.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Initialize a documentation for a project.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ dtinth-docs init my-project</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start the documentation preview server.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ dtinth-docs</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Go to <a href="http://localhost:9090/" class="bare">http://localhost:9090/</a>.</p>
+</li>
+<li>
+<p>Write documentation. The server will automatically rebuild the documentation on file change.</p>
+</li>
+<li>
+<p><a href="#publish">Update the Google Docs file to add the new repository.</a></p>
+</li>
+<li>
+<p>Deploy the documentation site.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ dtinth-docs deploy</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="write"><a class="anchor" href="#write"></a>Writing docs</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -160,6 +228,18 @@ title: 'Project name'</code></pre>
 </div>
 <div class="paragraph">
 <p>Then create <code>modules/ROOT/pages/index.adoc</code> with the contents.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Run <code>dtinth-docs init project-name</code> to automatically generate the initial documentation structure.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -179,7 +259,7 @@ title: 'Project name'</code></pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ dtinth-docs-server</pre>
+<pre>$ dtinth-docs</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -240,7 +320,7 @@ title: 'Project name'</code></pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ dtinth-docs-dev deploy</pre>
+<pre>$ dtinth-docs deploy</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -248,7 +328,7 @@ title: 'Project name'</code></pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ git push &amp;&amp; dtinth-docs-dev deploy</pre>
+<pre>$ git push &amp;&amp; dtinth-docs deploy</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -267,7 +347,7 @@ The <a href="https://cli.github.com/">GitHub CLI</a> must be installed.
 </div>
 <nav class="pagination">
   <span class="prev"><a href="index.html">docs.dt.in.th</a></span>
-  <span class="next"><a href="ui.html">UI development</a></span>
+  <span class="next"><a href="from-code.html">Generate content from code</a></span>
 </nav>
 </article>
   </div>
