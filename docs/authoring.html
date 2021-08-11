@@ -149,85 +149,64 @@
 <article class="doc">
 <h1 class="page">Authoring guide</h1>
 <div class="sect1">
-<h2 id="tldr"><a class="anchor" href="#tldr"></a>tl;dr</h2>
+<h2 id="_install_the_cli"><a class="anchor" href="#_install_the_cli"></a>Install the CLI</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
+<div class="paragraph">
 <p>Install <code>dtinth/docs</code> repository directly from GitHub. It installs a CLI tool <code>dtinth-docs</code>.</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>$ npm i -g dtinth/docs</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>With the CLI, one can preview how the documentation would look like on the website without having to clone the documentation site repository. <a href="https://antora.org/">Antora</a> and the <a href="https://docs.antora.org/antora/2.3/playbook/set-up-playbook/#configure-your-sites-ui-bundle">UI bundle</a> are included with the package and the CLI automatically generates <a href="https://docs.antora.org/antora/2.3/playbook/">the Antora playbook</a> for the project.</p>
+<p>With the CLI, one can preview how the documentation would look like on the website without having to clone the documentation site repository. The CLI package includes <a href="https://antora.org/">Antora</a> and the <a href="https://docs.antora.org/antora/2.3/playbook/set-up-playbook/#configure-your-sites-ui-bundle">UI bundle</a>, and automatically generates <a href="https://docs.antora.org/antora/2.3/playbook/">the Antora playbook</a> for editing a project documentation in isolation. This makes it ideal for documenting projects in cloud-based environments such as <a href="https://github.com/codespaces">GitHub Codespaces</a>.</p>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-This CLI tool is not tested on Windows at all. It probably won’t work.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>⚠️ This CLI tool is not tested on Windows at all. It probably won’t work.</p>
 </div>
-</li>
-<li>
-<p>Initialize a documentation for a project.</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_initialize_a_documentation_structure_for_a_project"><a class="anchor" href="#_initialize_a_documentation_structure_for_a_project"></a>Initialize a documentation structure for a project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run this from the repository root:</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>$ dtinth-docs init my-project</pre>
 </div>
 </div>
-</li>
-<li>
-<p>Start the documentation preview server.</p>
+<div class="paragraph">
+<p>This command generates the following structure:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>📒 &lt;repo&gt;
+  📂 docs
+    📄 antora.yml
+    📂 modules/ROOT
+      📄 nav.adoc
+      📂 pages
+        📄 index.adoc</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_start_the_documentation_preview_server"><a class="anchor" href="#_start_the_documentation_preview_server"></a>Start the documentation preview server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run this from the repository root:</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>$ dtinth-docs</pre>
 </div>
 </div>
-</li>
-<li>
-<p>Go to <a href="http://localhost:9090/" class="bare">http://localhost:9090/</a>.</p>
-</li>
-<li>
-<p>Write documentation. The server will automatically rebuild the documentation on file change.</p>
-</li>
-<li>
-<p><a href="#publish">Update the Google Docs file to add the new repository.</a></p>
-</li>
-<li>
-<p>Deploy the documentation site.</p>
-<div class="literalblock">
-<div class="content">
-<pre>$ dtinth-docs deploy</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="write"><a class="anchor" href="#write"></a>Writing docs</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>To develop a documentation in individual project, first create <code>docs/antora.yml</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: project-name
-version: main
-title: 'Project name'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then create <code>modules/ROOT/pages/index.adoc</code> with the contents.</p>
+<p>Then go to <a href="http://localhost:9090/" class="bare">http://localhost:9090/</a>. As you make changes to the documentation, the server will automatically rebuild the documentation.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -236,7 +215,7 @@ title: 'Project name'</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Run <code>dtinth-docs init project-name</code> to automatically generate the initial documentation structure.
+In VS Code, AsciiDoc files can also quickly be previewed using the <a href="https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode">AsciiDoc extension</a>. This gives faster feedback but has lower fidelity.
 </td>
 </tr>
 </table>
@@ -244,76 +223,22 @@ Run <code>dtinth-docs init project-name</code> to automatically generate the ini
 </div>
 </div>
 <div class="sect1">
-<h2 id="preview"><a class="anchor" href="#preview"></a>Previewing docs</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In VS Code, AsciiDoc files can be previewed using the <a href="https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode">AsciiDoc extension</a>. This gives faster feedback but has lower fidelity. For high fidelity preview, install the development server:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ npm install --global dtinth/docs</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then run this script from project root directory:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ dtinth-docs</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then open <a href="http://localhost:9090/" class="bare">http://localhost:9090/</a> in a web browser. The documentation site will automatically build when files are changed.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">How it works</div>
-<div class="paragraph">
-<p>The <code>dtinth/docs</code> package bundles Antora and the UI bundle used in <code>docs.dt.in.th</code>, and exposes a CLI that starts a preview server, watches for changes and rebuilds the preview site.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="nav"><a class="anchor" href="#nav"></a>Creating a navigation file</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Add this to <code>docs/antora.yml</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">nav:
-- modules/ROOT/nav.adoc</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then create <code>docs/modules/ROOT/nav.adoc</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* xref:index.adoc[]</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="publish"><a class="anchor" href="#publish"></a>Publishing</h2>
+<h2 id="publish"><a class="anchor" href="#publish"></a>Publishing new documentation</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a new entry to <a href="https://docs.google.com/spreadsheets/d/1kFc9bDizrANULuVSUuHYiZENdPzXZpXvuUWlbZbF_uU/edit#gid=0">the docs.dt.in.th spreadsheet on Google Sheets</a>.</p>
+<p>Add a new entry to <a href="https://docs.google.com/spreadsheets/d/1kFc9bDizrANULuVSUuHYiZENdPzXZpXvuUWlbZbF_uU/edit#gid=0">the <strong>docs.dt.in.th</strong> spreadsheet on Google Sheets</a>.</p>
 </li>
 <li>
-<p><a href="https://github.com/dtinth/docs/actions/workflows/pages.yml">Rebuild the site on GitHub Actions</a></p>
+<p><a href="https://github.com/dtinth/docs/actions/workflows/pages.yml">Rebuild the site on GitHub Actions</a>.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploying_the_documentation_site_from_cli"><a class="anchor" href="#_deploying_the_documentation_site_from_cli"></a>Deploying the documentation site from CLI</h2>
+<h2 id="_deploying_documentation_updates_using_the_cli"><a class="anchor" href="#_deploying_documentation_updates_using_the_cli"></a>Deploying documentation updates using the CLI</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For converience, the deployment workflow action can be triggered from the CLI:</p>
