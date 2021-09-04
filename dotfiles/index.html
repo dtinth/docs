@@ -38,53 +38,7 @@
 <div class="nav-container">
   <aside class="nav">
     <div class="panels">
-<div class="nav-panel-menu is-active is-loading" data-panel="menu">
-  <nav class="nav-menu">
-    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
-    <h3 class="title"><a href="index.html">dotfiles</a></h3>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item is-current-url" data-depth="1">
-    <a class="nav-link" href="index.html">dotfiles</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </nav>
-  <script>
-;(function () {
-  var panel = document.querySelector('.nav-panel-menu')
-  var page
-  var hash = window.location.hash
-  if (hash) {
-    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
-    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
-    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
-    if (link) page = link.parentNode
-    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
-  } else {
-    page = panel.querySelector('.is-current-url')
-  }
-  if (page) {
-    var ancestor = page
-    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
-      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
-    }
-    page.classList.add('is-current-page', 'is-active')
-    if (panel.scrollHeight > panel.clientHeight) {
-      var panelRect = panel.getBoundingClientRect()
-      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
-      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
-    }
-  } else {
-    panel.scrollTop = 0
-  }
-  panel.classList.remove('is-loading')
-})()
-  </script>
-</div>
-<div class="nav-panel-explore" data-panel="explore">
+<div class="nav-panel-explore is-active" data-panel="explore">
   <div class="context">
     <span class="title">dotfiles</span>
     <span class="version"></span>
@@ -130,9 +84,6 @@
 <button class="nav-toggle"></button>
   <a href="../home/index.html" class="home-link" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
-  <ul>
-    <li><a href="index.html">dotfiles</a></li>
-  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/dtinth/dotfiles/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
