@@ -54,6 +54,9 @@
       <a class="title" href="../docs/index.html">docs.dt.in.th</a>
     </li>
     <li class="component">
+      <a class="title" href="../dotfiles/index.html">dotfiles</a>
+    </li>
+    <li class="component">
       <a class="title" href="../chordbook/index.html">dtinth’s interactive chordbook</a>
     </li>
     <li class="component">
@@ -93,7 +96,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Docker container to broadcast Jamulus sound to an Icecast server.</p>
+<p>Docker container to broadcast Jamulus sound to an Icecast server OR broadcast video to an RTMP server (e.g. Facebook Live, YouTube Live).</p>
 </div>
 </div>
 </div>
@@ -110,6 +113,23 @@ JAMULUS_SERVER=&lt;host&gt;:&lt;port&gt;
 docker run -ti --rm --init --env-file=jamcaster.env ghcr.io/dtinth/jamcaster:main</code></pre>
 </div>
 </div>
+<div class="exampleblock result">
+<div class="title">Example 1. Docker compose</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">docker-compose.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">version: "2.4"
+services:
+  jamcaster:
+    image: ghcr.io/dtinth/jamcaster:main
+    environment:
+      - ICECAST_MOUNT_POINT=icecast://source:&lt;passworld&gt;@&lt;host&gt;:&lt;port&gt;/&lt;mountpoint&gt;
+      - JAMULUS_SERVER=&lt;host&gt;:&lt;port&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -119,9 +139,17 @@ docker run -ti --rm --init --env-file=jamcaster.env ghcr.io/dtinth/jamcaster:mai
 <dl>
 <dt class="hdlist1"><code>ICECAST_MOUNT_POINT</code></dt>
 <dd>
-<p>The mount point to use for the Icecast server.</p>
+<p><strong>(Icecast mode)</strong> The mount point to use for the Icecast server.</p>
 <div class="paragraph">
-<p>Example: <code>icecast://source:&lt;passworld&gt;@&lt;host&gt;:&lt;port&gt;/&lt;mountpoint&gt;</code></p>
+<p>Example: <code>icecast://source:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;mountpoint&gt;</code></p>
+</div>
+</dd>
+<dt class="hdlist1"><code>VIDEO_STREAM_TARGET</code></dt>
+<dd>
+<p><strong>(RTMP streaming mode)</strong> The URL to use for streaming the RTMP server.
+Setting this variable activates RTMP streaming mode and disables Icecast mode.</p>
+<div class="paragraph">
+<p>Example: <code>rtmp://a.rtmp.youtube.com/live2/&lt;streamKey&gt;</code></p>
 </div>
 </dd>
 <dt class="hdlist1"><code>JAMULUS_SERVER</code></dt>
@@ -141,7 +169,7 @@ instruments can be found <a href="https://github.com/jamulussoftware/jamulus/blo
 </dd>
 <dt class="hdlist1"><code>JAMULUS_CLIENT_NAME</code></dt>
 <dd>
-<p>The name to use for the Jamulus client.</p>
+<p>The name to use for the Jamulus client. The special token <code>%s</code> will be replaced by the current number of listeners.</p>
 </dd>
 </dl>
 </div>
