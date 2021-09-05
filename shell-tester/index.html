@@ -167,16 +167,36 @@ which can be used to create screenshots or videos of the test.</p>
 <div class="title">example.js</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const { ShellTester } = require('shell-tester')
-const tester = new ShellTester({ shellCommand: 'sh' })
+const tester = new ShellTester({ shellCommand: 'sh' }) <i class="conum" data-value="1"></i><b>(1)</b>
 
-tester.session('example', async (s) =&gt; {
-  await s.expect('$')
+tester.session('example', async (s) =&gt; { <i class="conum" data-value="2"></i><b>(2)</b>
+  await s.expect('$') <i class="conum" data-value="3"></i><b>(3)</b>
   await s.send('ls\r')
   await s.expect('package.json')
 })
 
-tester.run()</code></pre>
+tester.run() <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Create a <a href="https://github.com/dtinth/shell-tester/blob/main/api/docs/shell-tester.shelltester.md"><code>ShellTester</code></a> and specify the shell command to use.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Register a test session using the <a href="https://github.com/dtinth/shell-tester/blob/main/api/docs/shell-tester.shelltester.session.md"><code>session</code></a> method.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Automate the shell using the provided <a href="https://github.com/dtinth/shell-tester/blob/main/api/docs/shell-tester.shellsession.md"><code>ShellSession</code></a> object.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Run the registered sessions by calling the <a href="https://github.com/dtinth/shell-tester/blob/main/api/docs/shell-tester.shelltester.run.md"><code>run</code></a> method.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>For more detailed examples, see the <a href="https://github.com/dtinth/shell-tester/blob/main/test.js">test.js</a> file.</p>
@@ -187,12 +207,24 @@ tester.run()</code></pre>
 <h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This module is <strong>not published on npm</strong>. To install it directly from GitHub, run:</p>
+<p>This module is <strong>not versioned</strong> and is <strong>not published on npm</strong>. To install it directly from GitHub, run:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ yarn add dtinth/shell-tester</pre>
+<pre>$ yarn add "dtinth/shell-tester#main"</pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To pin the dependency in your <code>package.json</code> file and prevent breaking changes from affecting your project, replace <code>main</code> with the SHA of the <a href="https://github.com/dtinth/shell-tester/commit/main">latest commit</a>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
