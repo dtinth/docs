@@ -143,8 +143,13 @@
   <div class="edit-this-page"><a href="https://github.com/dtinth/shell-tester/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <h1 class="page">shell-tester</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>A little library to create automated tests for shell setups.
 When a test is run, it also generates a detailed output of the shell session,
@@ -152,6 +157,77 @@ which can be used to create screenshots or videos of the test.</p>
 </div>
 <div class="paragraph">
 <p>I use this library to <a href="../dotfiles/index.html" class="page">test my dotfiles and generate example screenshots for my shell setup</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">example.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const { ShellTester } = require('shell-tester')
+const tester = new ShellTester({ shellCommand: 'sh' })
+
+tester.session('example', async (s) =&gt; {
+  await s.expect('$')
+  await s.send('ls\r')
+  await s.expect('package.json')
+})
+
+tester.run()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more detailed examples, see the <a href="https://github.com/dtinth/shell-tester/blob/main/test.js">test.js</a> file.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This module is <strong>not published on npm</strong>. To install it directly from GitHub, run:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ yarn add dtinth/shell-tester</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running"><a class="anchor" href="#_running"></a>Running</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The test script can be run directly using Node.js:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ node example.js</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_output_file"><a class="anchor" href="#_output_file"></a>Output file</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This will generate a file called <code>tmp/output/example_end.js</code> in the current directory
+which contains the detailed output of the shell session.</p>
+</div>
+<div class="paragraph">
+<p>A simple HTML viewer can be used to view the output:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ echo "file://$PWD/node_modules/shell-tester/preview.html?data=../../tmp/output/example_end.js"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Open the URL in your browser to see the output.)</p>
+</div>
+</div>
 </div>
 </article>
   </div>
