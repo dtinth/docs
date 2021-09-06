@@ -38,53 +38,7 @@
 <div class="nav-container">
   <aside class="nav">
     <div class="panels">
-<div class="nav-panel-menu is-active is-loading" data-panel="menu">
-  <nav class="nav-menu">
-    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
-    <h3 class="title"><a href="index.html">api-documenter-yaml-to-antora-asciidoc</a></h3>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item is-current-url" data-depth="1">
-    <a class="nav-link" href="index.html">api-documenter-yaml-to-antora-asciidoc</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </nav>
-  <script>
-;(function () {
-  var panel = document.querySelector('.nav-panel-menu')
-  var page
-  var hash = window.location.hash
-  if (hash) {
-    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
-    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
-    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
-    if (link) page = link.parentNode
-    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
-  } else {
-    page = panel.querySelector('.is-current-url')
-  }
-  if (page) {
-    var ancestor = page
-    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
-      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
-    }
-    page.classList.add('is-current-page', 'is-active')
-    if (panel.scrollHeight > panel.clientHeight) {
-      var panelRect = panel.getBoundingClientRect()
-      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
-      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
-    }
-  } else {
-    panel.scrollTop = 0
-  }
-  panel.classList.remove('is-loading')
-})()
-  </script>
-</div>
-<div class="nav-panel-explore" data-panel="explore">
+<div class="nav-panel-explore is-active" data-panel="explore">
   <div class="context">
     <span class="title">api-documenter-yaml-to-antora-asciidoc</span>
     <span class="version"></span>
@@ -136,9 +90,6 @@
 <button class="nav-toggle"></button>
   <a href="../home/index.html" class="home-link" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
-  <ul>
-    <li><a href="index.html">api-documenter-yaml-to-antora-asciidoc</a></li>
-  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
@@ -158,6 +109,41 @@
 <img src="_images/how-it-works.drawio.svg" alt="A diagram showing how the workflow works">
 </div>
 <div class="title">Figure 1. <a href="#pipeline">The documentation pipeline</a></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example_of_generated_documentation"><a class="anchor" href="#_example_of_generated_documentation"></a>Example of generated documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My projects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#shell-tester:api:index.adoc" class="page unresolved">shell-tester</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_screenshots"><a class="anchor" href="#_screenshots"></a>Screenshots</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/raw/master/example/images/reactivity.png" alt="Example 1">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/raw/master/example/images/shallow_reactive.png" alt="Example 2">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/raw/master/example/images/patchflags.png" alt="Example 3">
+</div>
 </div>
 </div>
 </div>
@@ -256,6 +242,48 @@
 </div>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assuming that you have already <a href="https://api-extractor.com/pages/setup/generating_docs/">generated</a> the YAML files using <a href="https://api-extractor.com/pages/commands/api-documenter_yaml/"><code>api-documenter yaml</code></a> command, run the following command to generate the AsciiDoc files</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ npx api-documenter-yaml-to-antora-asciidoc asciidoc -i &lt;input-dir&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>…where <code>&lt;input-dir&gt;</code> is the directory that contains the <code>.yml</code> files.</p>
+</div>
+<div class="paragraph">
+<p>This will generate the AsciiDoc pages in <code>docs/modules/api/pages</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_navigation"><a class="anchor" href="#_navigation"></a>Navigation</h3>
+<div class="paragraph">
+<p>It will also generate a <a href="https://docs.antora.org/antora/2.3/navigation/files-and-lists/">navigation file</a> at <code>docs/modules/api/nav.adoc</code> file that lists the pages in the documentation.</p>
+</div>
+<div class="paragraph">
+<p>You can then add this navigation file to your Antora project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">nav:
+  - modules/api/nav.adoc <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Add this line</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
