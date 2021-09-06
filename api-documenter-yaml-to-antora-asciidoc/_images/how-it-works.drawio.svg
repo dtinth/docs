@@ -1,0 +1,285 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="402" height="492" viewBox="-0.5 -0.5 402 492" content="&lt;mxfile&gt;&lt;diagram id=&quot;cuam248qGM_0KH8mgi15&quot; name=&quot;Page-1&quot;&gt;7ZrLjpswFIafJlK7SAQYSLLMtV20UqVUamfpAQc8Y3BknEnSp+8xmAGP02mrMqQLNhH+fcH2f86HSTJCq+z8QeBD+pnHhI08Jz6P0HrkeaEbwqcSLpUQ+H4lJILGleQ2wo7+IFp0tHqkMSmMhpJzJunBFCOe5ySShoaF4Cez2Z4z864HnBBL2EWY2eo3Gsu0UmeB0+gfCU3S+s6uo2vucfSYCH7M9f1ynpOqJsP1MLppkeKYn1r3Q5sRWgnOZXWVnVeEqV2td6zqt/1F7fOUBcnlH3UIqh5PmB31svXE5KXeh3IlRHVwRmh5SqkkuwOOVO0JjActlRmDkguXmNEkh2tG9jCB5Z7ncoszylQMLATNuBZ3/CjKIVIpwU8vQAv4gHmqD9WgmCScJ4zgAy0mEc/Kiqgom2731ZBw2QxKGVtxxkU5aQStfQ+BXkjBH0mrJgxCP1Q19l7p7XsiQpLzS1MgzAnPiBRwX0fX1jZezOKpCRc011raChV/pkWsQzR5HrnxCi60Xdet8y2jSAzxq4tcyJQnPMds06hL08qmzSfOD9rAByLlRScjPkpu2kvOVH5X3SeBLt21atZnPXJZuNSFHFbW6qSKd+26pltZqvv1FztWjCyXm812+1qMFPUclO0aTlgkRLdClaQceTWOBGFY0ieTOP8SFZ6Vz18vB6CaoAfZTBtoSBmw1XPeTWTx/t9Svscchz4tl+LpPpo61/xbT7ersuYFFVCAfNRR7vtm7vt27j9rRu53kPrTIfX/k9RHduqHt0p99Hrqx2RPcyopz430jwcAdAMA98rT/80IYB/bZBFZLsJCpGmVuVHlwdTcIy29OMapTaFwMl5oOaNxXFLlWmSYsXOz4Li/J2S/78Zqd2p6PbetdoMrVnsdWF2/Dg20vzntQ5v281vRPrQIsOaResXUr+EN4WFzJg8FzwfKd0B5z+mR8jPLY9jCMUBd4EjCYgfe98T753IvwEcD8P8T4M9t4LverYg/t2iwW38B4W7x+ZMB/EvGBtZ3wfpZj6x3XcteBfuYR8cMVkQG2vdGey/ok/bzgfZdxohesnsVIn9H/xr1Bv5nt8J/PZsWIBZFRGl17G8d9wEZA/47wD8K+8S//xv8jy84Y2PJxziHoz8eY+V9zIcvfXp7LCB0JR7QWz0W7He/tY4FrL/DLcCFMuOV1UPGd5Dxfp8/4tRR0uZ5mdpDRveV0b77dhkNxeZvHGVd618yaPMT&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <filter id="dropShadow">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="1.7" result="blur"/>
+            <feOffset in="blur" dx="3" dy="3" result="offsetBlur"/>
+            <feFlood flood-color="#3D4574" flood-opacity="0.4" result="offsetColor"/>
+            <feComposite in="offsetColor" in2="offsetBlur" operator="in" result="offsetBlur"/>
+            <feBlend in="SourceGraphic" in2="offsetBlur"/>
+        </filter>
+        <style type="text/css">
+            /* cyrillic-ext */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcDRrHdwcoaaQwpBQ.woff") format('woff');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcBBrHdwcoaaQwpBQ.woff") format('woff');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcDBrHdwcoaaQwpBQ.woff") format('woff');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcAxrHdwcoaaQwpBQ.woff") format('woff');
+  unicode-range: U+0370-03FF;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcAhrHdwcoaaQwpBQ.woff") format('woff');
+  unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcDxrHdwcoaaQwpBQ.woff") format('woff');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcDhrHdwcoaaQwpBQ.woff") format('woff');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/s/arimo/v17/P5sfzZCDf9_T_3cV7NCUECyoxNk37cxcABrHdwcoaaQw.woff") format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+        </style>
+    </defs>
+    <g filter="url(#dropShadow)">
+        <rect x="0" y="0" width="390" height="480" fill="#252423" stroke="#656463" pointer-events="all"/>
+        <path d="M 140 60 L 140 93.63" fill="none" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 140 98.88 L 136.5 91.88 L 140 93.63 L 143.5 91.88 Z" fill="#bbeeff" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="20" y="20" width="240" height="40" fill="#353433" stroke="#d7fc70" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 238px; height: 1px; padding-top: 40px; margin-left: 21px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #d7fc70; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                TypeScript source files (.ts)
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="140" y="44" fill="#d7fc70" font-family="Arimo" font-size="12px" text-anchor="middle">
+                    TypeScript source files (.ts)
+                </text>
+            </switch>
+        </g>
+        <path d="M 140 140 L 140 173.63" fill="none" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 140 178.88 L 136.5 171.88 L 140 173.63 L 143.5 171.88 Z" fill="#bbeeff" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="20" y="100" width="240" height="40" fill="#353433" stroke="#d7fc70" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 238px; height: 1px; padding-top: 120px; margin-left: 21px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #d7fc70; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                TypeScript definition files (.d.ts)
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="140" y="124" fill="#d7fc70" font-family="Arimo" font-size="12px" text-anchor="middle">
+                    TypeScript definition files (.d.ts)
+                </text>
+            </switch>
+        </g>
+        <rect x="150" y="70" width="150" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 148px; height: 1px; padding-top: 80px; margin-left: 152px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #bbeeff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                tsc
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="152" y="84" fill="#bbeeff" font-family="Arimo" font-size="12px">
+                    tsc
+                </text>
+            </switch>
+        </g>
+        <path d="M 140 220 L 140 253.63" fill="none" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 140 258.88 L 136.5 251.88 L 140 253.63 L 143.5 251.88 Z" fill="#bbeeff" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="20" y="180" width="240" height="40" fill="#353433" stroke="#d7fc70" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 238px; height: 1px; padding-top: 200px; margin-left: 21px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #d7fc70; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                Doc model files (.api.json)
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="140" y="204" fill="#d7fc70" font-family="Arimo" font-size="12px" text-anchor="middle">
+                    Doc model files (.api.json)
+                </text>
+            </switch>
+        </g>
+        <rect x="150" y="150" width="150" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 148px; height: 1px; padding-top: 160px; margin-left: 152px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #bbeeff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                api-extractor
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="152" y="164" fill="#bbeeff" font-family="Arimo" font-size="12px">
+                    api-extractor
+                </text>
+            </switch>
+        </g>
+        <path d="M 140 300 L 140 333.63" fill="none" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 140 338.88 L 136.5 331.88 L 140 333.63 L 143.5 331.88 Z" fill="#bbeeff" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="20" y="260" width="240" height="40" fill="#353433" stroke="#d7fc70" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 238px; height: 1px; padding-top: 280px; margin-left: 21px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #d7fc70; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                SDP YAML files (.yml)
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="140" y="284" fill="#d7fc70" font-family="Arimo" font-size="12px" text-anchor="middle">
+                    SDP YAML files (.yml)
+                </text>
+            </switch>
+        </g>
+        <rect x="150" y="230" width="150" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 148px; height: 1px; padding-top: 240px; margin-left: 152px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #bbeeff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                api-documenter
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="152" y="244" fill="#bbeeff" font-family="Arimo" font-size="12px">
+                    api-documenter
+                </text>
+            </switch>
+        </g>
+        <path d="M 140 380 L 140 413.63" fill="none" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 140 418.88 L 136.5 411.88 L 140 413.63 L 143.5 411.88 Z" fill="#bbeeff" stroke="#bbeeff" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="20" y="340" width="240" height="40" fill="#353433" stroke="#d7fc70" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 238px; height: 1px; padding-top: 360px; margin-left: 21px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #d7fc70; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                AsciiDoc files (.adoc)
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="140" y="364" fill="#d7fc70" font-family="Arimo" font-size="12px" text-anchor="middle">
+                    AsciiDoc files (.adoc)
+                </text>
+            </switch>
+        </g>
+        <rect x="150" y="310" width="230" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 228px; height: 1px; padding-top: 320px; margin-left: 152px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #bbeeff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                api-documenter-yaml-to-antora-asciidoc
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="152" y="324" fill="#bbeeff" font-family="Arimo" font-size="12px">
+                    api-documenter-yaml-to-antora-asciidoc
+                </text>
+            </switch>
+        </g>
+        <rect x="20" y="420" width="240" height="40" fill="#353433" stroke="#d7fc70" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 238px; height: 1px; padding-top: 440px; margin-left: 21px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #d7fc70; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                Documentation site (.html)
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="140" y="444" fill="#d7fc70" font-family="Arimo" font-size="12px" text-anchor="middle">
+                    Documentation site (.html)
+                </text>
+            </switch>
+        </g>
+        <rect x="150" y="390" width="230" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 228px; height: 1px; padding-top: 400px; margin-left: 152px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Arimo; color: #bbeeff; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                Antora
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="152" y="404" fill="#bbeeff" font-family="Arimo" font-size="12px">
+                    Antora
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>
