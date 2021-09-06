@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>class ShellSession :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/shell-tester/api/shell-tester_ShellSession_class.html">
+    <meta name="page-spec" content="shell-tester:api:shell-tester_ShellSession_class.adoc">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="prev" href="shell-tester.html">
+    <link rel="next" href="shell-tester_ShellSessionCapturedData_interface.html">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-shell-tester__api__shell-tester_ShellSession_class.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item title" href="https://docs.dt.in.th/home/index.html">docs.dt.in.th</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+
+        <a class="navbar-item" href="https://github.com/dtinth/shell-tester" target="_blank" rel="noopener">
+          <span class="icon"><img src="../../_/img/octicons-16.svg#view-mark-github"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active is-loading" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
+    <h3 class="title"><a href="../index.html">shell-tester</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">shell-tester</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">API documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="shell-tester.html">shell-tester</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-url" data-depth="2">
+    <a class="nav-link" href="shell-tester_ShellSession_class.html">ShellSession</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shell-tester_ShellSessionCapturedData_interface.html">ShellSessionCapturedData</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shell-tester_ShellSessionEvent_interface.html">ShellSessionEvent</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shell-tester_ShellTester_class.html">ShellTester</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shell-tester_ShellTesterOptions_interface.html">ShellTesterOptions</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+  <script>
+;(function () {
+  var panel = document.querySelector('.nav-panel-menu')
+  var page
+  var hash = window.location.hash
+  if (hash) {
+    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
+    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
+    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
+    if (link) page = link.parentNode
+    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
+  } else {
+    page = panel.querySelector('.is-current-url')
+  }
+  if (page) {
+    var ancestor = page
+    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
+      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
+    }
+    page.classList.add('is-current-page', 'is-active')
+    if (panel.scrollHeight > panel.clientHeight) {
+      var panelRect = panel.getBoundingClientRect()
+      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
+      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
+    }
+  } else {
+    panel.scrollTop = 0
+  }
+  panel.classList.remove('is-loading')
+})()
+  </script>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">shell-tester</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../encrypted/index.html">@dtinth/encrypted</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../../osa/index.html">@dtinth/osa</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../../docs/index.html">docs.dt.in.th</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../../dotfiles/index.html">dotfiles</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../../chordbook/index.html">dtinth’s interactive chordbook</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../../dtinth.tools-android/index.html">dtinth’s Tools (Android App)</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../../fresh-app-factory/index.html">Fresh App Factory</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../../home/index.html">Home</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../../jamcaster/index.html">jamcaster</a>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">shell-tester</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../../webmidicon/index.html">WebMIDICon</a>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../home/index.html" class="home-link" title="Home"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">shell-tester</a></li>
+    <li>API documentation</li>
+    <li><a href="shell-tester.html">shell-tester</a></li>
+    <li><a href="shell-tester_ShellSession_class.html">ShellSession</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/shell-tester/edit/main/docs/modules/api/pages/shell-tester_ShellSession_class.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">class ShellSession</h1>
+<div class="sect1">
+<h2 id="_methods"><a class="anchor" href="#_methods"></a>Methods</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="shell-tester_ShellSession_capture_member_1"><a class="anchor" href="#shell-tester_ShellSession_capture_member_1"></a>capture(name, extra)</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Captures the current terminal state into a file. It also prints the terminal state to the console.</p>
+</div>
+<div class="paragraph">
+<p>It will be written to <code>tmp/output/${name}.js</code> and will begin with <code>SESSION_DATA=</code>, followed by the JSON-encoded <a href="shell-tester_ShellSessionCapturedData_interface.html" class="page">ShellSessionCapturedData</a>.</p>
+</div>
+<div class="paragraph">
+<p>Extra properties may be added to the session by passing the <code>extra</code> argument.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Parameters</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>extra</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Record&lt;string, any&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Promise&lt;void&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">capture(name: string, extra?: Record&lt;string, any&gt;): Promise&lt;void&gt;;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shell-tester_ShellSession_expect_member_1"><a class="anchor" href="#shell-tester_ShellSession_expect_member_1"></a>expect(str, timeoutMs)</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Waits for the given string to be printed on the terminal. Gives up once <code>timeoutMs</code> has elapsed.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Parameters</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>str</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeoutMs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Promise&lt;void&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">expect(str: string, timeoutMs?: number): Promise&lt;void&gt;;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shell-tester_ShellSession_resize_member_1"><a class="anchor" href="#shell-tester_ShellSession_resize_member_1"></a>resize(cols, rows)</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Resizes the terminal.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Parameters</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cols</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rows</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Promise&lt;void&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">resize(cols?: number, rows?: number): Promise&lt;void&gt;;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shell-tester_ShellSession_retry_member_1"><a class="anchor" href="#shell-tester_ShellSession_retry_member_1"></a>retry(callback, timeoutMs)</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Calls the given <code>callback()</code> function repeatedly until it no longer throws an error. Gives up once <code>timeoutMs</code> has elapsed.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Parameters</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>callback</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>() =&gt; Promise&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeoutMs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>number</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Promise&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">retry&lt;T&gt;(callback: () =&gt; Promise&lt;T&gt;, timeoutMs?: number): Promise&lt;T&gt;;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shell-tester_ShellSession_send_member_1"><a class="anchor" href="#shell-tester_ShellSession_send_member_1"></a>send(data)</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Send a string to the terminal.</p>
+</div>
+<div class="paragraph">
+<p>Note that newline characters will *\*not\*\* be added automatically. To send a newline, use <code>\r</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can also send control characters such as <code>\x03</code> (^C).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Parameters</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Promise&lt;void&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">send(data: string): Promise&lt;void&gt;;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="shell-tester.html">shell-tester</a></span>
+  <span class="next"><a href="shell-tester_ShellSessionCapturedData_interface.html">ShellSessionCapturedData</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+  </div>
+  <div class="footer-legal">
+  </div>
+  <div class="footer-thanks">
+    <p>Authored in AsciiDoc.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
