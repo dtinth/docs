@@ -7,6 +7,7 @@
     <link rel="canonical" href="https://docs.dt.in.th/api-documenter-yaml-to-antora-asciidoc/index.html">
     <meta name="page-spec" content="api-documenter-yaml-to-antora-asciidoc::index.adoc">
     <meta name="generator" content="Antora 2.3.4">
+    <link rel="next" href="usage.html">
     <link rel="stylesheet" href="../_/css/site.css">
     <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-api-documenter-yaml-to-antora-asciidoc__index.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
@@ -38,7 +39,56 @@
 <div class="nav-container">
   <aside class="nav">
     <div class="panels">
-<div class="nav-panel-explore is-active" data-panel="explore">
+<div class="nav-panel-menu is-active is-loading" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
+    <h3 class="title"><a href="index.html">api-documenter-yaml-to-antora-asciidoc</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-url" data-depth="1">
+    <a class="nav-link" href="index.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="usage.html">Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+  <script>
+;(function () {
+  var panel = document.querySelector('.nav-panel-menu')
+  var page
+  var hash = window.location.hash
+  if (hash) {
+    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
+    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
+    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
+    if (link) page = link.parentNode
+    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
+  } else {
+    page = panel.querySelector('.is-current-url')
+  }
+  if (page) {
+    var ancestor = page
+    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
+      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
+    }
+    page.classList.add('is-current-page', 'is-active')
+    if (panel.scrollHeight > panel.clientHeight) {
+      var panelRect = panel.getBoundingClientRect()
+      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
+      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
+    }
+  } else {
+    panel.scrollTop = 0
+  }
+  panel.classList.remove('is-loading')
+})()
+  </script>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">api-documenter-yaml-to-antora-asciidoc</span>
     <span class="version"></span>
@@ -90,6 +140,10 @@
 <button class="nav-toggle"></button>
   <a href="../home/index.html" class="home-link" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">api-documenter-yaml-to-antora-asciidoc</a></li>
+    <li><a href="index.html">About</a></li>
+  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
@@ -121,7 +175,17 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../shell-tester/api/shell-tester.html" class="page">shell-tester</a></p>
+<p><a href="../shell-tester/api/shell-tester.html" class="page"><strong>shell-tester</strong></a> — An automated test tool for shell setups.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Demo:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://dtinth.github.io/api-documenter-yaml-to-antora-asciidoc/vue3-apidocs-example/index.html">Example documentation site generated from Vue 3’s codebase</a></p>
 </li>
 </ul>
 </div>
@@ -150,27 +214,40 @@
 <div class="sect1">
 <h2 id="pipeline"><a class="anchor" href="#pipeline"></a>The documentation pipeline</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>TypeScript Compiler</strong> is used to generate <code>.d.ts</code> files.</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 8.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 58.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Step</th>
+<th class="tableblock halign-left valign-top">Tool</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>TypeScript Compiler</strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Generates TypeScript declaration (.d.ts) files.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
 <p>TypeScript source code should contain the <a href="https://api-extractor.com/pages/tsdoc/doc_comment_syntax/">TSDoc comments</a>.</p>
 </li>
 </ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://api-extractor.com/"><strong>@microsoft/api-extractor</strong></a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Generates <a href="https://api-extractor.com/pages/setup/generating_docs/">“doc model”</a> (.api.json) files.</p>
 </div>
-</li>
-<li>
-<p><a href="https://api-extractor.com/"><strong>@microsoft/api-extractor</strong></a> is used to generate <code>.api.json</code> files.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>It is maintained by Microsoft and used in many projects.</p>
-</li>
-<li>
-<p>It <a href="https://api-extractor.com/pages/setup/generating_docs/">generates a “doc model” file</a>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -182,111 +259,70 @@
 <li>
 <p>It does not specify how the documentation should be organized. i.e. it has no notion of pages and sections.</p>
 </li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
 <li>
-<p><a href="https://www.npmjs.com/package/@microsoft/api-documenter"><strong>@microsoft/api-documenter</strong></a> is used to generate <code>.yml</code> files.</p>
+<p>Maintained by Microsoft as part of the <a href="https://rushstack.io/">Rush Stack</a>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@microsoft/api-documenter"><strong>@microsoft/api-documenter</strong></a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Generates SDP YAML (.yml) files.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>It is also maintained by Microsoft.</p>
+<p>SDP stands for <a href="https://github.com/microsoft/rushstack/pull/2382#issuecomment-741327478">Schema-driven Document Processor</a>, a documentation YAML format for use in Microsoft’s documentation pipeline.</p>
 </li>
 <li>
-<p>It <a href="https://api-extractor.com/pages/commands/api-documenter_yaml/">generates YAML files</a> conforming to the “universal reference YAML format.”</p>
-<div class="ulist">
-<ul>
-<li>
-<p>This format is mainly used by <a href="https://docs.microsoft.com/">docs.microsoft.com</a> pipeline.</p>
+<p>It can also be <a href="https://api-extractor.com/pages/setup/generating_docs/#using-api-documenter-with-docfx">used</a> with the <a href="https://github.com/microsoft/rushstack/pull/2382#issuecomment-741327478">DocFX v3</a>.</p>
 </li>
 <li>
-<p>It can also be <a href="https://api-extractor.com/pages/setup/generating_docs/#using-api-documenter-with-docfx">used</a> with the <a href="https://dotnet.github.io/docfx/">DocFX</a> tool.</p>
+<p>Unfortunately not much documentation is available for this format, but there is a <a href="https://github.com/microsoft/rushstack/blob/%40microsoft/api-documenter_v7.13.44/apps/api-documenter/src/yaml/ISDPYamlFile.ts">TypeScript definition file</a> and the examples are easy to parse.</p>
 </li>
 <li>
 <p>It <a href="https://dotnet.github.io/docfx/spec/metadata_format_spec.html">specifies</a> the structure of the documentation — each metadata file would correspond to a page in the generated documentation.</p>
 </li>
 </ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>api-documenter-yaml-to-antora-asciidoc</strong> (this project!)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Generates AsciiDoc (.adoc) files.</p>
 </div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>api-documenter-yaml-to-antora-asciidoc</strong> (this project!) is used to generate <code>.adoc</code> files.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>It reads the YAML files in step 3 and generates a bunch of <code>.adoc</code> files.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>It follows <a href="https://docs.antora.org/antora/2.3/">Antora</a>’s folder and file structures, so that it can be easily used with Antora.</p>
 </li>
 </ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-right valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://antora.org/"><strong>Antora</strong></a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Generates a documentation site.</p>
 </div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="https://antora.org/"><strong>Antora</strong></a> is used to generate <code>.html</code> files.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>It is a multi-repository documentation generator. It can be used to generate a single documentation site for multiple projects.</p>
+<p>It is a multi-repository documentation generator — it can be used to generate a single documentation site for multiple projects.</p>
 </li>
 </ul>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Assuming that you have already <a href="https://api-extractor.com/pages/setup/generating_docs/">generated</a> the YAML files using <a href="https://api-extractor.com/pages/commands/api-documenter_yaml/"><code>api-documenter yaml</code></a> command, run the following command to generate the AsciiDoc files</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ npx api-documenter-yaml-to-antora-asciidoc asciidoc -i &lt;input-dir&gt;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>…where <code>&lt;input-dir&gt;</code> is the directory that contains the <code>.yml</code> files.</p>
-</div>
-<div class="paragraph">
-<p>This will generate the AsciiDoc pages in <code>docs/modules/api/pages</code>.</p>
-</div>
-<div class="sect2">
-<h3 id="_navigation"><a class="anchor" href="#_navigation"></a>Navigation</h3>
-<div class="paragraph">
-<p>It will also generate a <a href="https://docs.antora.org/antora/2.3/navigation/files-and-lists/">navigation file</a> at <code>docs/modules/api/nav.adoc</code> file that lists the pages in the documentation.</p>
-</div>
-<div class="paragraph">
-<p>You can then add this navigation file to your Antora project:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">nav:
-  - modules/api/nav.adoc <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Add this line</td>
+</div></div></td>
 </tr>
+</tbody>
 </table>
 </div>
 </div>
-</div>
-</div>
+<nav class="pagination">
+  <span class="next"><a href="usage.html">Usage</a></span>
+</nav>
 </article>
   </div>
 </main>
