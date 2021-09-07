@@ -8,6 +8,7 @@
     <meta name="page-spec" content="api-documenter-yaml-to-antora-asciidoc::usage.adoc">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="prev" href="index.html">
+    <link rel="next" href="constraints.html">
     <link rel="stylesheet" href="../_/css/site.css">
     <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-api-documenter-yaml-to-antora-asciidoc__usage.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
@@ -51,6 +52,9 @@
   </li>
   <li class="nav-item is-current-url" data-depth="1">
     <a class="nav-link" href="usage.html">Usage</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="constraints.html">API design constraints and known issues</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc">Source code on GitHub</a>
@@ -159,11 +163,118 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
+<p>If you have already set up <code>api-extractor</code> and <code>api-documenter</code>, skip to the <a href="#asciidoc">Generate AsciiDoc files</a> section.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Before continuing, make sure you understand the <a href="constraints.html" class="page">API design constraints and known issues</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deps"><a class="anchor" href="#deps"></a>Install dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, install these dependencies:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ yarn add --dev \
+   @microsoft/api-extractor \
+   @microsoft/api-documenter \
+   api-documenter-yaml-to-antora-asciidoc</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="api-extractor-settings"><a class="anchor" href="#api-extractor-settings"></a>Set up api-extractor</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">api-extractor.json</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+  "mainEntryPointFilePath": "&lt;projectFolder&gt;/lib/index.d.ts", <i class="conum" data-value="1"></i><b>(1)</b>
+  "docModel": {
+    "enabled": true,
+    "apiJsonFilePath": "&lt;projectFolder&gt;/tmp/api/&lt;unscopedPackageName&gt;.api.json"
+  },
+  "apiReport": {
+    "enabled": false, <i class="conum" data-value="2"></i><b>(2)</b>
+    "reportFolder": "&lt;projectFolder&gt;/api",
+    "reportTempFolder": "&lt;projectFolder&gt;/tmp/api"
+  },
+  "dtsRollup": {
+    "enabled": false, <i class="conum" data-value="3"></i><b>(3)</b>
+    "untrimmedFilePath": "",
+    "publicTrimmedFilePath": "&lt;projectFolder&gt;/api/&lt;unscopedPackageName&gt;.d.ts"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Change this to the path of your main entry point file.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>If you want to generate an API report, set this to true.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>If you want to generate a .d.ts rollup file, set this to true.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">.gitignore</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>/api/
+/tmp/</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="api-extractor"><a class="anchor" href="#api-extractor"></a>Generate doc model files</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>$ yarn api-extractor run</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="api-documenter"><a class="anchor" href="#api-documenter"></a>Generate YAML files</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>$ yarn api-documenter yaml -i tmp/api -o tmp/api-yaml</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="asciidoc"><a class="anchor" href="#asciidoc"></a>Generate AsciiDoc files</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>Assuming that you have already <a href="https://api-extractor.com/pages/setup/generating_docs/">generated</a> the YAML files using <a href="https://api-extractor.com/pages/commands/api-documenter_yaml/"><code>api-documenter yaml</code></a> command… To generate generate the AsciiDoc files, run the following command where <code>&lt;input-dir&gt;</code> is the directory that contains the <code>.yml</code> files:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ npx api-documenter-yaml-to-antora-asciidoc asciidoc -i &lt;input-dir&gt;</pre>
+<pre>$ yarn api-documenter-yaml-to-antora-asciidoc asciidoc -i tmp/api-yaml</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -172,7 +283,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_navigation"><a class="anchor" href="#_navigation"></a>Navigation</h2>
+<h2 id="nav"><a class="anchor" href="#nav"></a>Set up navigation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It will also generate a <a href="https://docs.antora.org/antora/2.3/navigation/files-and-lists/">navigation file</a> at <code>docs/modules/api/nav.adoc</code> file that lists the pages in the documentation. You can then add this navigation file to your Antora project:</p>
@@ -193,8 +304,69 @@
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="package-script"><a class="anchor" href="#package-script"></a>Set up package.json</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To generate the documentation easily, you can add the following to your <code>package.json</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "scripts": {
+    "api": "api-extractor run &amp;&amp; api-documenter yaml -i tmp/api -o tmp/api-yaml &amp;&amp; api-documenter-yaml-to-antora-asciidoc asciidoc -i tmp/api-yaml" <i class="conum" data-value="1"></i><b>(1)</b>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Add this line</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now, you can run <code>yarn api</code> to regenerate the documentation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ci"><a class="anchor" href="#ci"></a>Use GitHub Actions to keep the documentation up-to-date</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use GitHub Actions to automatically regenerate the documentation files when you push to the repository.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: Update API documentation
+on:
+  workflow_dispatch:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Install dependencies
+        run: yarn
+      - name: Update API
+        run: yarn api
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update generated files as of ${{ github.sha }}
+          file_pattern: api docs</code></pre>
+</div>
+</div>
+</div>
+</div>
 <nav class="pagination">
   <span class="prev"><a href="index.html">About</a></span>
+  <span class="next"><a href="constraints.html">API design constraints and known issues</a></span>
 </nav>
 </article>
   </div>

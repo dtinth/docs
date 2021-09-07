@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>api-documenter-yaml-to-antora-asciidoc :: docs.dt.in.th</title>
-    <link rel="canonical" href="https://docs.dt.in.th/api-documenter-yaml-to-antora-asciidoc/index.html">
-    <meta name="page-spec" content="api-documenter-yaml-to-antora-asciidoc::index.adoc">
+    <title>API design constraints and known issues :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/api-documenter-yaml-to-antora-asciidoc/constraints.html">
+    <meta name="page-spec" content="api-documenter-yaml-to-antora-asciidoc::constraints.adoc">
     <meta name="generator" content="Antora 2.3.4">
-    <link rel="next" href="usage.html">
+    <link rel="prev" href="usage.html">
     <link rel="stylesheet" href="../_/css/site.css">
-    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-api-documenter-yaml-to-antora-asciidoc__index.png">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-api-documenter-yaml-to-antora-asciidoc__constraints.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
@@ -46,13 +46,13 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-url" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="index.html">About</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="usage.html">Usage</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-url" data-depth="1">
     <a class="nav-link" href="constraints.html">API design constraints and known issues</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -148,200 +148,67 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">api-documenter-yaml-to-antora-asciidoc</a></li>
-    <li><a href="index.html">About</a></li>
+    <li><a href="constraints.html">API design constraints and known issues</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/edit/master/docs/modules/ROOT/pages/constraints.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
 <article class="doc">
-<h1 class="page">api-documenter-yaml-to-antora-asciidoc</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">API design constraints and known issues</h1>
 <div class="paragraph">
-<p>Finally, I found it. A documentation pipeline to generate API documentation for my TypeScript projects that works for me.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/how-it-works.drawio.svg" alt="A diagram showing how the workflow works">
-</div>
-<div class="title">Figure 1. <a href="#pipeline">The documentation pipeline</a></div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_example_of_generated_documentation"><a class="anchor" href="#_example_of_generated_documentation"></a>Example of generated documentation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>My projects:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="../shell-tester/api/shell-tester.html" class="page"><strong>shell-tester</strong></a> — An automated test tool for shell setups.</p>
-</li>
-</ul>
+<p>This tool puts several constraints on your API design.
+Some of them are imposed by <code>api-extractor</code> and <code>api-documenter</code>, and some are imposed by this tool.</p>
 </div>
 <div class="paragraph">
-<p>Demo:</p>
+<p>Basically, if you use this tool, <strong>you will be creating <a href="http://boringtechnology.club/">boring</a>, object-oriented APIs</strong> with classes, interfaces and functions. You will not be using all the fancy TypeScript constructs.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://dtinth.github.io/api-documenter-yaml-to-antora-asciidoc/vue3-apidocs-example/index.html">Example documentation site generated from Vue 3’s codebase</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_screenshots"><a class="anchor" href="#_screenshots"></a>Screenshots</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/raw/master/example/images/reactivity.png" alt="Example 1">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/raw/master/example/images/shallow_reactive.png" alt="Example 2">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/raw/master/example/images/patchflags.png" alt="Example 3">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="pipeline"><a class="anchor" href="#pipeline"></a>The documentation pipeline</h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 8.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 58.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Step</th>
-<th class="tableblock halign-left valign-top">Tool</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Limitation</th>
+<th class="tableblock halign-left valign-top">Workaround</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>TypeScript Compiler</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default export is not supported.</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Generates TypeScript declaration (.d.ts) files.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>TypeScript source code should contain the <a href="https://api-extractor.com/pages/tsdoc/doc_comment_syntax/">TSDoc comments</a>.</p>
-</li>
-</ul>
+<p>Use only named exports instead.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://api-extractor.com/"><strong>@microsoft/api-extractor</strong></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CommonJS <code>export =</code> is not supported.</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Generates <a href="https://api-extractor.com/pages/setup/generating_docs/">“doc model”</a> (.api.json) files (<a href="https://api-extractor.com/pages/overview/intro/">among other features</a>).</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The doc model describes the API surface of a TypeScript package.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Its <a href="https://www.npmjs.com/package/@microsoft/api-extractor-model">data format</a> is <a href="https://rushstack.io/pages/api/api-extractor-model/">defined by the api-extractor tool</a>.</p>
-</li>
-<li>
-<p>It does not specify how the documentation should be organized. i.e. it has no notion of pages and sections.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>It also validates the JSDoc comments and provides useful suggestions.</p>
-</li>
-<li>
-<p>Maintained by Microsoft as part of the <a href="https://rushstack.io/">Rush Stack</a>.</p>
-</li>
-</ul>
+<p>Use only module export syntax only.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@microsoft/api-documenter"><strong>@microsoft/api-documenter</strong></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type aliases are not documented.</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Generates SDP YAML (.yml) files.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>SDP stands for <a href="https://github.com/microsoft/rushstack/pull/2382#issuecomment-741327478">Schema-driven Document Processor</a>, a documentation YAML format for use in Microsoft’s documentation pipeline.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>It can also be <a href="https://api-extractor.com/pages/setup/generating_docs/#using-api-documenter-with-docfx">used</a> with the <a href="https://github.com/microsoft/rushstack/pull/2382#issuecomment-741327478">DocFX v3</a>.</p>
-</li>
-<li>
-<p>Unfortunately not much documentation is available for this format, but there is a <a href="https://github.com/microsoft/rushstack/blob/%40microsoft/api-documenter_v7.13.44/apps/api-documenter/src/yaml/ISDPYamlFile.ts">TypeScript definition file</a> and the examples are easy to parse.</p>
-</li>
-<li>
-<p>It <a href="https://dotnet.github.io/docfx/spec/metadata_format_spec.html">specifies</a> the structure of the documentation — each metadata file would correspond to a page in the generated documentation.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Maintained by Microsoft as part of the <a href="https://rushstack.io/">Rush Stack</a>.</p>
-</li>
-</ul>
+<p>Use interfaces instead.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>api-documenter-yaml-to-antora-asciidoc</strong> (this project!)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Call signatures are not documented.</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Generates AsciiDoc (.adoc) files.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>It follows <a href="https://docs.antora.org/antora/2.3/">Antora</a>’s folder and file structures, so that it can be easily used with Antora.</p>
-</li>
-</ul>
+<p>Use methods instead.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://antora.org/"><strong>Antora</strong></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Namespaces are not supported.</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Generates a documentation site.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>It is a multi-repository documentation generator — it can be used to generate a single documentation site for multiple projects.</p>
-</li>
-</ul>
+<p>Use classes with static methods instead.</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 <nav class="pagination">
-  <span class="next"><a href="usage.html">Usage</a></span>
+  <span class="prev"><a href="usage.html">Usage</a></span>
 </nav>
 </article>
   </div>
