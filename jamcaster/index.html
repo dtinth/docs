@@ -116,30 +116,37 @@
 <div class="sect1">
 <h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>After creating the configuration file <code>jamcaster.env</code>, you can run the following command to invoke Jamcaster:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">echo '
-ICECAST_MOUNT_POINT=icecast://source:&lt;passworld&gt;@&lt;host&gt;:&lt;port&gt;/&lt;mountpoint&gt;
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -ti --rm --init --env-file=jamcaster.env ghcr.io/dtinth/jamcaster:main</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_configuration"><a class="anchor" href="#_example_configuration"></a>Example configuration</h3>
+<div class="listingblock">
+<div class="title">Example jamcaster.env configuration to stream to Icecast server</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>ICECAST_MOUNT_POINT=icecast://source:&lt;passworld&gt;@&lt;host&gt;:&lt;port&gt;/&lt;mountpoint&gt;
+JAMULUS_SERVER=&lt;host&gt;:&lt;port&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example jamcaster.env configuration to stream to YouTube</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>VIDEO_STREAM_TARGET=rtmp://a.rtmp.youtube.com/live2/&lt;streamkey&gt;
 JAMULUS_SERVER=&lt;host&gt;:&lt;port&gt;
-' &gt; jamcaster.env
-
-docker run -ti --rm --init --env-file=jamcaster.env ghcr.io/dtinth/jamcaster:main</code></pre>
+JAMULUS_CLIENT_NAME=YouTube</code></pre>
 </div>
 </div>
-<div class="exampleblock result">
-<div class="title">Example 1. Docker compose</div>
-<div class="content">
 <div class="listingblock">
-<div class="title">docker-compose.yml</div>
+<div class="title">Example jamcaster.env configuration to stream to Facebook</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">version: "2.4"
-services:
-  jamcaster:
-    image: ghcr.io/dtinth/jamcaster:main
-    environment:
-      - ICECAST_MOUNT_POINT=icecast://source:&lt;passworld&gt;@&lt;host&gt;:&lt;port&gt;/&lt;mountpoint&gt;
-      - JAMULUS_SERVER=&lt;host&gt;:&lt;port&gt;</code></pre>
-</div>
+<pre class="highlightjs highlight"><code>VIDEO_STREAM_TARGET=rtmps://live-api-s.facebook.com:443/rtmp/&lt;streamkey&gt;
+JAMULUS_SERVER=&lt;host&gt;:&lt;port&gt;
+JAMULUS_CLIENT_NAME=FBLive</code></pre>
 </div>
 </div>
 </div>
@@ -182,7 +189,7 @@ instruments can be found <a href="https://github.com/jamulussoftware/jamulus/blo
 </dd>
 <dt class="hdlist1"><code>JAMULUS_CLIENT_NAME</code></dt>
 <dd>
-<p>The name to use for the Jamulus client. The special token <code>%s</code> will be replaced by the current number of listeners.</p>
+<p>The name to use for the Jamulus client. In Icecast mode, the special token <code>%s</code> will be replaced by the current number of listeners.</p>
 </dd>
 </dl>
 </div>
