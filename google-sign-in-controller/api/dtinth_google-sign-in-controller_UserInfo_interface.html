@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>interface ShellTesterOptions :: docs.dt.in.th</title>
-    <link rel="canonical" href="https://docs.dt.in.th/shell-tester/api/shell-tester_ShellTesterOptions_interface.html">
-    <meta name="page-spec" content="shell-tester:api:shell-tester_ShellTesterOptions_interface.adoc">
+    <title>interface UserInfo :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/google-sign-in-controller/api/dtinth_google-sign-in-controller_UserInfo_interface.html">
+    <meta name="page-spec" content="google-sign-in-controller:api:dtinth_google-sign-in-controller_UserInfo_interface.adoc">
     <meta name="generator" content="Antora 2.3.4">
-    <link rel="prev" href="shell-tester_ShellTester_class.html">
+    <link rel="prev" href="dtinth_google-sign-in-controller_GoogleSignInController_class.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-shell-tester__api__shell-tester_ShellTesterOptions_interface.png">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-google-sign-in-controller__api__dtinth_google-sign-in-controller_UserInfo_interface.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
@@ -28,7 +28,7 @@
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
 
-        <a class="navbar-item" href="https://github.com/dtinth/shell-tester" target="_blank" rel="noopener">
+        <a class="navbar-item" href="https://github.com/dtinth/google-sign-in-controller" target="_blank" rel="noopener">
           <span class="icon"><img src="../../_/img/octicons-16.svg#view-mark-github"></span>
         </a>
       </div>
@@ -42,12 +42,15 @@
 <div class="nav-panel-menu is-active is-loading" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
-    <h3 class="title"><a href="../index.html">shell-tester</a></h3>
+    <h3 class="title"><a href="../index.html">@dtinth/google-sign-in-controller</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">shell-tester</a>
+    <a class="nav-link" href="../index.html">@dtinth/google-sign-in-controller</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../svelte.html">Client-side: Svelte</a>
   </li>
 </ul>
   </li>
@@ -57,22 +60,13 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="shell-tester.html">shell-tester</a>
+    <a class="nav-link" href="dtinth_google-sign-in-controller.html">@dtinth/google-sign-in-controller</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellSession_class.html">ShellSession</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellSessionCapturedData_interface.html">ShellSessionCapturedData</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellSessionEvent_interface.html">ShellSessionEvent</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellTester_class.html">ShellTester</a>
+    <a class="nav-link" href="dtinth_google-sign-in-controller_GoogleSignInController_class.html">GoogleSignInController</a>
   </li>
   <li class="nav-item is-current-url" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellTesterOptions_interface.html">ShellTesterOptions</a>
+    <a class="nav-link" href="dtinth_google-sign-in-controller_UserInfo_interface.html">UserInfo</a>
   </li>
 </ul>
   </li>
@@ -114,15 +108,15 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">shell-tester</span>
+    <span class="title">@dtinth/google-sign-in-controller</span>
     <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component">
       <a class="title" href="../../encrypted/index.html">@dtinth/encrypted</a>
     </li>
-    <li class="component">
-      <a class="title" href="../../google-sign-in-controller/index.html">@dtinth/google-sign-in-controller</a>
+    <li class="component is-current">
+      <a class="title" href="../index.html">@dtinth/google-sign-in-controller</a>
     </li>
     <li class="component">
       <a class="title" href="../../osa/index.html">@dtinth/osa</a>
@@ -151,8 +145,8 @@
     <li class="component">
       <a class="title" href="../../jamcaster/index.html">jamcaster</a>
     </li>
-    <li class="component is-current">
-      <a class="title" href="../index.html">shell-tester</a>
+    <li class="component">
+      <a class="title" href="../../shell-tester/index.html">shell-tester</a>
     </li>
     <li class="component">
       <a class="title" href="../../twindtinth/index.html">twindtinth</a>
@@ -171,34 +165,73 @@
   <a href="../../home/index.html" class="home-link" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">shell-tester</a></li>
+    <li><a href="../index.html">@dtinth/google-sign-in-controller</a></li>
     <li>API documentation</li>
-    <li><a href="shell-tester.html">shell-tester</a></li>
-    <li><a href="shell-tester_ShellTesterOptions_interface.html">ShellTesterOptions</a></li>
+    <li><a href="dtinth_google-sign-in-controller.html">@dtinth/google-sign-in-controller</a></li>
+    <li><a href="dtinth_google-sign-in-controller_UserInfo_interface.html">UserInfo</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dtinth/shell-tester/edit/main/docs/modules/api/pages/shell-tester_ShellTesterOptions_interface.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/google-sign-in-controller/edit/main/docs/modules/api/pages/dtinth_google-sign-in-controller_UserInfo_interface.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">interface ShellTesterOptions</h1>
+<h1 class="page">interface UserInfo</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The user information.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="shell-tester_ShellTesterOptions_shellCommand_member"><a class="anchor" href="#shell-tester_ShellTesterOptions_shellCommand_member"></a>shellCommand</h3>
+<h3 id="dtinth_google-sign-in-controller_UserInfo_email_member"><a class="anchor" href="#dtinth_google-sign-in-controller_UserInfo_email_member"></a>email</h3>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p>The command to use for launching the shell. Defaults to the <code>SHELL</code> environment variable, or <code>sh</code> if not set.</p>
+<p>Email address of the user.</p>
 </div>
 <div class="listingblock">
 <div class="title">Signature</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">shellCommand?: string;</code></pre>
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">email: string;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dtinth_google-sign-in-controller_UserInfo_idToken_member"><a class="anchor" href="#dtinth_google-sign-in-controller_UserInfo_idToken_member"></a>idToken</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>The ID token of the user.</p>
+</div>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">idToken: string;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dtinth_google-sign-in-controller_UserInfo_name_member"><a class="anchor" href="#dtinth_google-sign-in-controller_UserInfo_name_member"></a>name</h3>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Full name of the user.</p>
+</div>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">name: string;</code></pre>
 </div>
 </div>
 </div>
@@ -207,7 +240,7 @@
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="shell-tester_ShellTester_class.html">ShellTester</a></span>
+  <span class="prev"><a href="dtinth_google-sign-in-controller_GoogleSignInController_class.html">GoogleSignInController</a></span>
 </nav>
 </article>
   </div>

@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>API design constraints and known issues :: docs.dt.in.th</title>
-    <link rel="canonical" href="https://docs.dt.in.th/api-documenter-yaml-to-antora-asciidoc/constraints.html">
-    <meta name="page-spec" content="api-documenter-yaml-to-antora-asciidoc::constraints.adoc">
+    <title>Usage with Svelte :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/google-sign-in-controller/svelte.html">
+    <meta name="page-spec" content="google-sign-in-controller::svelte.adoc">
     <meta name="generator" content="Antora 2.3.4">
-    <link rel="prev" href="usage.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="api/dtinth_google-sign-in-controller.html">
     <link rel="stylesheet" href="../_/css/site.css">
-    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-api-documenter-yaml-to-antora-asciidoc__constraints.png">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-google-sign-in-controller__svelte.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
@@ -28,7 +29,7 @@
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
 
-        <a class="navbar-item" href="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc" target="_blank" rel="noopener">
+        <a class="navbar-item" href="https://github.com/dtinth/google-sign-in-controller" target="_blank" rel="noopener">
           <span class="icon"><img src="../_/img/octicons-16.svg#view-mark-github"></span>
         </a>
       </div>
@@ -42,21 +43,33 @@
 <div class="nav-panel-menu is-active is-loading" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
-    <h3 class="title"><a href="index.html">api-documenter-yaml-to-antora-asciidoc</a></h3>
+    <h3 class="title"><a href="index.html">@dtinth/google-sign-in-controller</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">About</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="usage.html">Usage</a>
+    <a class="nav-link" href="index.html">@dtinth/google-sign-in-controller</a>
   </li>
   <li class="nav-item is-current-url" data-depth="1">
-    <a class="nav-link" href="constraints.html">API design constraints and known issues</a>
+    <a class="nav-link" href="svelte.html">Client-side: Svelte</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">API documentation</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc">Source code on GitHub</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="api/dtinth_google-sign-in-controller.html">@dtinth/google-sign-in-controller</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="api/dtinth_google-sign-in-controller_GoogleSignInController_class.html">GoogleSignInController</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="api/dtinth_google-sign-in-controller_UserInfo_interface.html">UserInfo</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -96,21 +109,21 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">api-documenter-yaml-to-antora-asciidoc</span>
+    <span class="title">@dtinth/google-sign-in-controller</span>
     <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component">
       <a class="title" href="../encrypted/index.html">@dtinth/encrypted</a>
     </li>
-    <li class="component">
-      <a class="title" href="../google-sign-in-controller/index.html">@dtinth/google-sign-in-controller</a>
+    <li class="component is-current">
+      <a class="title" href="index.html">@dtinth/google-sign-in-controller</a>
     </li>
     <li class="component">
       <a class="title" href="../osa/index.html">@dtinth/osa</a>
     </li>
-    <li class="component is-current">
-      <a class="title" href="index.html">api-documenter-yaml-to-antora-asciidoc</a>
+    <li class="component">
+      <a class="title" href="../api-documenter-yaml-to-antora-asciidoc/index.html">api-documenter-yaml-to-antora-asciidoc</a>
     </li>
     <li class="component">
       <a class="title" href="../docs/index.html">docs.dt.in.th</a>
@@ -153,68 +166,67 @@
   <a href="../home/index.html" class="home-link" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">api-documenter-yaml-to-antora-asciidoc</a></li>
-    <li><a href="constraints.html">API design constraints and known issues</a></li>
+    <li><a href="index.html">@dtinth/google-sign-in-controller</a></li>
+    <li><a href="svelte.html">Client-side: Svelte</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dtinth/api-documenter-yaml-to-antora-asciidoc/edit/master/docs/modules/ROOT/pages/constraints.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/google-sign-in-controller/edit/main/docs/modules/ROOT/pages/svelte.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">API design constraints and known issues</h1>
+<h1 class="page">Usage with Svelte</h1>
 <div class="paragraph">
-<p>This tool puts several constraints on your API design.
-Some of them are imposed by <code>api-extractor</code> and <code>api-documenter</code>, and some are imposed by this tool.</p>
+<p>In a Svelte store:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">import { GoogleSignInController } from '@dtinth/google-sign-in-controller'
+import type { UserInfo } from '@dtinth/google-sign-in-controller'
+
+import { readable } from 'svelte/store'
+
+export const signInController = new GoogleSignInController(
+  '347735770628-l928d9ddaf33p8bvsr90aos4mmmacrgq.apps.googleusercontent.com',
+)
+
+export const currentUserInfo = readable&lt;UserInfo | null&gt;(
+  signInController.getUserInfo(),
+  (set) =&gt; {
+    set(signInController.getUserInfo())
+    return signInController.onCurrentUserChanged(() =&gt; {
+      set(signInController.getUserInfo())
+    })
+  },
+)
+
+Object.assign(window, { signInController })</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Basically, if you use this tool, <strong>you will be creating <a href="http://boringtechnology.club/">boring</a>, object-oriented APIs</strong> with classes, interfaces and functions. You will not be using all the fancy TypeScript constructs.</p>
+<p>In a Svelte component:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Limitation</th>
-<th class="tableblock halign-left valign-top">Workaround</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default export is not supported.</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Use only named exports instead.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CommonJS <code>export =</code> is not supported.</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Use only module export syntax only.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Type aliases are not documented.</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Use interfaces instead.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Call signatures are not documented.</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Use methods instead.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Namespaces are not supported.</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Use classes with static methods instead.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;script lang="ts"&gt;
+  import { signInController, currentUserInfo } from './GoogleSignIn'
+&lt;/script&gt;
+
+&lt;main class="p-6"&gt;
+  {#if $currentUserInfo}
+    &lt;button on:click={() =&gt; confirm('Sign out?') &amp;&amp; signInController.signOut()}&gt;
+      {$currentUserInfo.name}
+    &lt;/button&gt;
+  {:else}
+    &lt;button on:click={() =&gt; signInController.signIn()}&gt;
+      Sign in with Google
+    &lt;/button&gt;
+  {/if}
+&lt;/main&gt;</code></pre>
+</div>
+</div>
 <nav class="pagination">
-  <span class="prev"><a href="usage.html">Usage</a></span>
+  <span class="prev"><a href="index.html">@dtinth/google-sign-in-controller</a></span>
+  <span class="next"><a href="api/dtinth_google-sign-in-controller.html">@dtinth/google-sign-in-controller</a></span>
 </nav>
 </article>
   </div>
