@@ -182,10 +182,107 @@
   <div class="edit-this-page"><a href="https://github.com/dtinth/tkt/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <h1 class="page">tkt</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>tkt</code>, pronounced <strong>toolkit</strong>, is an opinionated toolkit for building Node.js applications. Comes with good IntelliSense support thanks to TypeScript.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cli"><a class="anchor" href="#_cli"></a>CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most Node.js applications have a CLI entry point. The CLI API allows you to quickly create a CLI application.</p>
+</div>
+<div class="paragraph">
+<p>Behind the scenes, it is powered by <code>yargs</code> with a reduced API surface and sensible defaults.</p>
+</div>
+<div class="paragraph">
+<p>Features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Strict by default. Unknown commands and arguments are rejected.</p>
+</li>
+<li>
+<p>Supports <code>--help</code> generation.</p>
+</li>
+<li>
+<p>Async errors result in failure exit code by default.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">require('tkt')
+  .cli()
+  .command(
+    '$0',
+    'Default command',
+    {
+      x: { type: 'number', desc: 'X coordinate', demand: true },
+      y: { type: 'number', desc: 'Y coordinate', demand: true },
+    },
+    async args =&gt; {
+      console.log([args.x, args.y])
+    },
+  )
+  .command(
+    'greet &lt;name&gt;',
+    'Displays a greeting',
+    {
+      name: { type: 'string' },
+    },
+    async args =&gt; {
+      console.log(`Hello, ${args.name}`)
+    },
+  )
+  .parse()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To learn more, see the <a href="api/tkt.html#tkt_cli_function_1" class="page">cli()</a> function documentation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_structured_logging"><a class="anchor" href="#_structured_logging"></a>Structured logging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Powered by Pino.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Structured logging (JSON log output).</p>
+</li>
+<li>
+<p>When connected to TTY, log output is prettified.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To learn more, see the <a href="api/tkt.html#tkt_logger_function_1" class="page">logger()</a> function documentation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_invariant"><a class="anchor" href="#_invariant"></a>Invariant</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See <a href="https://github.com/zertosh/invariant">invariant</a> npm package.</p>
+</div>
+<div class="paragraph">
+<p>To learn more, see the <a href="api/tkt.html#tkt_invariant_function_1" class="page">invariant()</a> function documentation.</p>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="next"><a href="api/tkt.html">tkt</a></span>

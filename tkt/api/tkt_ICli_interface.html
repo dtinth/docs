@@ -226,29 +226,29 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>command</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string | ReadonlyArray&lt;string&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The command name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The command string. Use <code>$0</code> for default command. Add <code>&lt;arg&gt;</code> for required positional parameter. Add <code>[arg]</code> for optional positional parameter. See <a href="https://github.com/yargs/yargs/blob/master/docs/advanced.md#commands">yargs Command API documentation</a> for details.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The command description.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The command description, the text to show in <code>--help</code> menu.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>options</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>LocalOptions</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The options accepted by the command.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The options accepted by the command. See <a href="https://github.com/yargs/yargs/blob/master/docs/api.md#optionskey-opt">yargs API documentation</a> for details.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>handler</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>(args: CliArguments&lt;LocalOptions&gt;) =&gt; void</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The command handler. It may return a promise. If the promise is rejected, the CLI will exit with an non-zero code.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The command handler. It may return a promise. If the promise is rejected, the CLI will exit with the help text and a non-zero code.</p></td>
 </tr>
 </tbody>
 <tfoot>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="#">ICli</a>&lt;GlobalOptions&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An instance of <a href="#">ICli</a> for chaining.</p></td>
 </tr>
 </tfoot>
 </table>
