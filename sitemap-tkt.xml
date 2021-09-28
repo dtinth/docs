@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://docs.dt.in.th/docs/authoring.html</loc>
+<loc>https://docs.dt.in.th/tkt/api/tkt_ICli_interface.html</loc>
 <lastmod>2021-09-28T17:04:14.655Z</lastmod>
 </url>
 <url>
-<loc>https://docs.dt.in.th/docs/from-code.html</loc>
+<loc>https://docs.dt.in.th/tkt/api/tkt_ILogger_interface.html</loc>
 <lastmod>2021-09-28T17:04:14.655Z</lastmod>
 </url>
 <url>
-<loc>https://docs.dt.in.th/docs/index.html</loc>
+<loc>https://docs.dt.in.th/tkt/api/tkt.html</loc>
 <lastmod>2021-09-28T17:04:14.655Z</lastmod>
 </url>
 <url>
-<loc>https://docs.dt.in.th/docs/ui.html</loc>
+<loc>https://docs.dt.in.th/tkt/index.html</loc>
 <lastmod>2021-09-28T17:04:14.655Z</lastmod>
 </url>
 </urlset>

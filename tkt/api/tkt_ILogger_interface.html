@@ -3,14 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>class ShellTester :: docs.dt.in.th</title>
-    <link rel="canonical" href="https://docs.dt.in.th/shell-tester/api/shell-tester_ShellTester_class.html">
-    <meta name="page-spec" content="shell-tester:api:shell-tester_ShellTester_class.adoc">
+    <title>interface ILogger :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/tkt/api/tkt_ILogger_interface.html">
+    <meta name="page-spec" content="tkt:api:tkt_ILogger_interface.adoc">
     <meta name="generator" content="Antora 2.3.4">
-    <link rel="prev" href="shell-tester_ShellSessionEvent_interface.html">
-    <link rel="next" href="shell-tester_ShellTesterOptions_interface.html">
+    <link rel="prev" href="tkt_ICli_interface.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-shell-tester__api__shell-tester_ShellTester_class.png">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-tkt__api__tkt_ILogger_interface.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
@@ -32,12 +31,12 @@
           <div id="search" class="field has-filter">
             <input class="query" type="text" placeholder="Search the docs">
             <label class="filter checkbox">
-              <input type="checkbox" data-facet-filter="component:shell-tester"> In this project
+              <input type="checkbox" data-facet-filter="component:tkt"> In this project
             </label>
           </div>
         </div>
 
-        <a class="navbar-item" href="https://github.com/dtinth/shell-tester" target="_blank" rel="noopener">
+        <a class="navbar-item" href="https://github.com/dtinth/tkt" target="_blank" rel="noopener">
           <span class="icon"><img src="../../_/img/octicons-16.svg#view-mark-github"></span>
         </a>
       </div>
@@ -51,12 +50,12 @@
 <div class="nav-panel-menu is-active is-loading" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
-    <h3 class="title"><a href="../index.html">shell-tester</a></h3>
+    <h3 class="title"><a href="../index.html">tkt</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">shell-tester</a>
+    <a class="nav-link" href="../index.html">tkt</a>
   </li>
 </ul>
   </li>
@@ -66,22 +65,13 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="shell-tester.html">shell-tester</a>
+    <a class="nav-link" href="tkt.html">tkt</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellSession_class.html">ShellSession</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellSessionCapturedData_interface.html">ShellSessionCapturedData</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellSessionEvent_interface.html">ShellSessionEvent</a>
+    <a class="nav-link" href="tkt_ICli_interface.html">ICli</a>
   </li>
   <li class="nav-item is-current-url" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellTester_class.html">ShellTester</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="shell-tester_ShellTesterOptions_interface.html">ShellTesterOptions</a>
+    <a class="nav-link" href="tkt_ILogger_interface.html">ILogger</a>
   </li>
 </ul>
   </li>
@@ -123,7 +113,7 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">shell-tester</span>
+    <span class="title">tkt</span>
     <span class="version"></span>
   </div>
   <ul class="components">
@@ -163,11 +153,11 @@
     <li class="component">
       <a class="title" href="../../jamcaster/index.html">jamcaster</a>
     </li>
-    <li class="component is-current">
-      <a class="title" href="../index.html">shell-tester</a>
-    </li>
     <li class="component">
-      <a class="title" href="../../tkt/index.html">tkt</a>
+      <a class="title" href="../../shell-tester/index.html">shell-tester</a>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">tkt</a>
     </li>
     <li class="component">
       <a class="title" href="../../twindtinth/index.html">twindtinth</a>
@@ -186,67 +176,24 @@
   <a href="../../home/index.html" class="home-link" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">shell-tester</a></li>
+    <li><a href="../index.html">tkt</a></li>
     <li>API documentation</li>
-    <li><a href="shell-tester.html">shell-tester</a></li>
-    <li><a href="shell-tester_ShellTester_class.html">ShellTester</a></li>
+    <li><a href="tkt.html">tkt</a></li>
+    <li><a href="tkt_ILogger_interface.html">ILogger</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dtinth/shell-tester/edit/main/docs/modules/api/pages/shell-tester_ShellTester_class.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/tkt/edit/master/docs/modules/api/pages/tkt_ILogger_interface.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">class ShellTester</h1>
+<h1 class="page">interface ILogger</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>API for the <code>shell-tester</code> library. Create a <code>ShellTester</code> instance to test your shell setup.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_constructors"><a class="anchor" href="#_constructors"></a>Constructors</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="shell-tester_ShellTester_constructor_1"><a class="anchor" href="#shell-tester_ShellTester_constructor_1"></a>(constructor)(options)</h3>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>Constructs a new instance of the <code>ShellTester</code> class</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Parameters</caption>
-<colgroup>
-<col style="width: 22.2222%;">
-<col style="width: 33.3333%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>options</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="shell-tester_ShellTesterOptions_interface.html" class="page">ShellTesterOptions</a></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The options to create the <code>ShellTester</code>.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">Signature</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">constructor(options?: ShellTesterOptions);</code></pre>
-</div>
-</div>
-</div>
-</div>
+<p>A logger instance created by the <a href="tkt.html#tkt_logger_function_1" class="page">logger</a> function or the <a href="#tkt_ILogger_child_member_1">ILogger#child</a> method.</p>
 </div>
 </div>
 </div>
@@ -254,57 +201,9 @@
 <h2 id="_methods"><a class="anchor" href="#_methods"></a>Methods</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="shell-tester_ShellTester_run_member_1"><a class="anchor" href="#shell-tester_ShellTester_run_member_1"></a>run(argv)</h3>
+<h3 id="tkt_ILogger_child_member_1"><a class="anchor" href="#tkt_ILogger_child_member_1"></a>child(name)</h3>
 <div class="exampleblock">
 <div class="content">
-<div class="paragraph">
-<p>Runs the registered sessions.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Parameters</caption>
-<colgroup>
-<col style="width: 22.2222%;">
-<col style="width: 33.3333%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>argv</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string[]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The command line arguments. If no argument is passed, it will run all the registered sessions. If an argument is passed, it will run only the session with the matching name.</p></td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Promise&lt;void&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tfoot>
-</table>
-<div class="listingblock">
-<div class="title">Signature</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">run(argv?: string[]): Promise&lt;void&gt;;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="shell-tester_ShellTester_session_member_1"><a class="anchor" href="#shell-tester_ShellTester_session_member_1"></a>session(name, callback)</h3>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>Register a new session to be tested. The session will not be run until <code>run()</code> is called.</p>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Parameters</caption>
 <colgroup>
@@ -323,12 +222,49 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The session name. This can be used to filter the session to be run from the command line.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
+</tbody>
+<tfoot>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>callback</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(session: <a href="shell-tester_ShellSession_class.html" class="page">ShellSession</a>) =&gt; Promise&lt;void&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An async function that automates this shell session. The function will be called with a <a href="shell-tester_ShellSession_class.html" class="page">ShellSession</a> instance.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="#">ILogger</a></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">child(name: string): ILogger;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tkt_ILogger_debug_member_1"><a class="anchor" href="#tkt_ILogger_debug_member_1"></a>debug(args)</h3>
+<div class="exampleblock">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Parameters</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>args</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>any[]</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 <tfoot>
@@ -342,7 +278,133 @@
 <div class="listingblock">
 <div class="title">Signature</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">session(name: string, callback: (session: ShellSession) =&gt; Promise&lt;void&gt;): void;</code></pre>
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">debug(...args: any[]): void;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tkt_ILogger_error_member_1"><a class="anchor" href="#tkt_ILogger_error_member_1"></a>error(args)</h3>
+<div class="exampleblock">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Parameters</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>args</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>any[]</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">error(...args: any[]): void;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tkt_ILogger_info_member_1"><a class="anchor" href="#tkt_ILogger_info_member_1"></a>info(args)</h3>
+<div class="exampleblock">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Parameters</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>args</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>any[]</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">info(...args: any[]): void;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tkt_ILogger_warn_member_1"><a class="anchor" href="#tkt_ILogger_warn_member_1"></a>warn(args)</h3>
+<div class="exampleblock">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Parameters</caption>
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>args</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>any[]</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Returns</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock">
+<div class="title">Signature</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">warn(...args: any[]): void;</code></pre>
 </div>
 </div>
 </div>
@@ -351,8 +413,7 @@
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="shell-tester_ShellSessionEvent_interface.html">ShellSessionEvent</a></span>
-  <span class="next"><a href="shell-tester_ShellTesterOptions_interface.html">ShellTesterOptions</a></span>
+  <span class="prev"><a href="tkt_ICli_interface.html">ICli</a></span>
 </nav>
 </article>
   </div>
