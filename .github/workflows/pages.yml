@@ -15,6 +15,9 @@ jobs:
       - uses: actions/checkout@v2
       - run: yarn
       - run: node src/cli.mjs build
+        env:
+          ALGOLIA_API_KEY: 278c4ad88267bfd2215c78b29c281c92
+          ALGOLIA_IDX_NAME: dt
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
