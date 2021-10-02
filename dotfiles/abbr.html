@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Shell Abbreviations :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/dotfiles/abbr.html">
+    <meta name="page-spec" content="dotfiles::abbr.adoc">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="testing.html">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-dotfiles__abbr.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item title" href="https://docs.dt.in.th/home/index.html">docs.dt.in.th</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search" class="field has-filter">
+            <input class="query" type="text" placeholder="Search the docs">
+            <label class="filter checkbox">
+              <input type="checkbox" data-facet-filter="component:dotfiles"> In this project
+            </label>
+          </div>
+        </div>
+
+        <a class="navbar-item" href="https://github.com/dtinth/dotfiles" target="_blank" rel="noopener">
+          <span class="icon"><img src="../_/img/octicons-16.svg#view-mark-github"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active is-loading" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
+    <h3 class="title"><a href="index.html">dotfiles</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">dotfiles</a>
+  </li>
+  <li class="nav-item is-current-url" data-depth="1">
+    <a class="nav-link" href="abbr.html">Shell Abbreviations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing.html">Testing</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+  <script>
+;(function () {
+  var panel = document.querySelector('.nav-panel-menu')
+  var page
+  var hash = window.location.hash
+  if (hash) {
+    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
+    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
+    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
+    if (link) page = link.parentNode
+    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
+  } else {
+    page = panel.querySelector('.is-current-url')
+  }
+  if (page) {
+    var ancestor = page
+    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
+      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
+    }
+    page.classList.add('is-current-page', 'is-active')
+    if (panel.scrollHeight > panel.clientHeight) {
+      var panelRect = panel.getBoundingClientRect()
+      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
+      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
+    }
+  } else {
+    panel.scrollTop = 0
+  }
+  panel.classList.remove('is-loading')
+})()
+  </script>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">dotfiles</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../encrypted/index.html">@dtinth/encrypted</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../google-sign-in-controller/index.html">@dtinth/google-sign-in-controller</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../osa/index.html">@dtinth/osa</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../api-documenter-yaml-to-antora-asciidoc/index.html">api-documenter-yaml-to-antora-asciidoc</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../docs/index.html">docs.dt.in.th</a>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">dotfiles</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../chordbook/index.html">dtinth’s interactive chordbook</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../dtinth.tools-android/index.html">dtinth’s Tools (Android App)</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../fresh-app-factory/index.html">Fresh App Factory</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../gh-invite/index.html">gh invite</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../home/index.html">Home</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../jamcaster/index.html">jamcaster</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../midi-monitor/index.html">midi-monitor</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../obtain-github-app-installation-access-token/index.html">obtain-github-app-installation-access-token</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../shell-tester/index.html">shell-tester</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../tkt/index.html">tkt</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../twindtinth/index.html">twindtinth</a>
+    </li>
+    <li class="component">
+      <a class="title" href="../webmidicon/index.html">WebMIDICon</a>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../home/index.html" class="home-link" title="Home"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">dotfiles</a></li>
+    <li><a href="abbr.html">Shell Abbreviations</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/dotfiles/edit/master/docs/modules/ROOT/pages/abbr.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Shell Abbreviations</h1>
+<div class="paragraph">
+<p>Shell abbreviations come from these sources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/jhillyerd/plugin-git">jhillyerd/plugin-git</a></p>
+</li>
+<li>
+<p><a href="https://github.com/dtinth/dotfiles/blob/master/fish/conf.d/abbreviations.fish">abbreviations.fish</a></p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 75%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expansion</th>
+<th class="tableblock halign-left valign-top">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker-compose exec</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dcx</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker-compose logs --tail=100 --follow --timestamps</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dcl</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker-compose up --detach</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dcu</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>g</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git add</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ga</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git add --all</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gaa</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git add --patch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gapa</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git apply</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gap</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git bisect</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gbs</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git bisect bad</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gbsb</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git bisect good</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gbsg</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git bisect reset</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gbsr</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git bisect start</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gbss</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git blame -b -w</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gbl</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git branch -a -v</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gba</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git branch -a -v --no-merged</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gban</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git branch -d</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gbd</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git branch -D</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gbD</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git branch -vv</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gb</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git checkout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gco</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git checkout -b</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcb</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git checkout (__git.default_branch)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcom</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git checkout develop</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcod</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git cherry-pick</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcp</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git cherry-pick --abort</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcpa</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git cherry-pick --continue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcpc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git clean -dfx</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gclean!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git clean -di</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gclean</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git clone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcl</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit --fixup</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcfx</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -a -m</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcam</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -a -v --no-verify</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcav</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -a -v --no-verify --amend</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcav!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -m</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -S -a -m</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gscam</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -v</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -v --amend</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gc!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -v --no-edit --amend</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcn!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -v --no-verify</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcv</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -v -a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gca</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -v -a --amend</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gca!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git commit -v -a --no-edit --amend</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcan!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git config --list</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcf</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git diff</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gd</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git diff --cached</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gdca</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git diff --stat</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gds</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git diff --stat --cached</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gdsc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git diff --word-diff</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gdw</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git diff --word-diff --cached</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gdwc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git difftool</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gdto</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git fetch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gf</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git fetch --all --prune</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gfa</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git fetch origin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gfo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git fetch origin (__git.default_branch) --prune; and git merge FETCH_HEAD</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gfm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git log --graph --decorate --all</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glgga</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git log --graph --max-count=10</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glgg</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git log --oneline --decorate --color</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git log --oneline --decorate --color --graph</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glog</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git log --oneline --decorate --color (__git.default_branch)..</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glom</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git log --oneline --decorate --color develop..</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glod</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gloo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git log --stat --max-count=10</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glg</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git merge</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git mergetool --no-prompt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gmt</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git pull</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gl</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git pull --rebase</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>glr</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git pull --rebase</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gup</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git pull --rebase --autostash</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gupa</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git pull --rebase --autostash -v</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gupav</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git pull --rebase -v</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gupv</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git pull origin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gll</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git push</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gp</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git push --force-with-lease</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gp!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git push --force-with-lease origin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gpo!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git push --no-verify</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gpv</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git push --no-verify --force-with-lease</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gpv!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git push origin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gpo</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git push origin (__git.current_branch) --force-with-lease</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ggp!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git push origin (__git.current_branch) --set-upstream</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gpu</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rebase</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grb</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rebase --abort</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grba</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rebase --continue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grbc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rebase --interactive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grbi</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rebase --skip</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grbs</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rebase (__git.default_branch)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grbm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rebase (__git.default_branch) --interactive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grbmi</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rebase (__git.default_branch) --interactive --autosquash</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grbmia</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git remote -v</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grv</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git remote -vv</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gr</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git remote add</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gra</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git remote remove</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grrm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git remote rename</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grmv</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git remote set-url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grset</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git remote update</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grup</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git reset</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grh</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git reset --hard</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grhh</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git reset --hard; and git clean -dfx</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gclean!!</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git reset --patch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grhpa</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git restore</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grs</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git restore --source</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grss</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git revert</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grev</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rm</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git rm --cached</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grmc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git shortlog -sn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gcount</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git show</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gsh</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git stash</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gsta</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git stash drop</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gstd</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git stash pop</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gstp</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git stash show --text</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gsts</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gst</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git status -s</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gss</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git submodule update</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gsu</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git submodule update --recursive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gsur</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git submodule update --recursive --init</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gsuri</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git svn dcommit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gsd</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git svn rebase</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gsr</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git switch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gsw</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git switch --create</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gswc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git tag -s</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gts</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git tag | sort -V</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gtv</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git update-index --assume-unchanged</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gignore</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git update-index --no-assume-unchanged</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gunignore</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>git whatchanged -p --abbrev-commit --pretty=medium</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gwch</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sudo journalctl --unit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>journalctl --user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jcu</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>npm run</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>r</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sudo systemctl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>systemctl --user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>scu</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>yarn add</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ya</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>yarn add --dev</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>yad</code></p></td>
+</tr>
+</tbody>
+</table>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">dotfiles</a></span>
+  <span class="next"><a href="testing.html">Testing</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+  </div>
+  <div class="footer-legal">
+  </div>
+  <div class="footer-thanks">
+    <p>Authored in AsciiDoc.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script async id="search-script" src="../_/js/vendor/docsearch.js" data-api-key="278c4ad88267bfd2215c78b29c281c92" data-index-name="dt" data-stylesheet="../_/css/vendor/docsearch.css"></script>
+  </body>
+</html>
