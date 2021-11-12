@@ -186,8 +186,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Waits for a GitHub Actions Workflow Run to finish and then <strong>speaks out loud</strong> whether it was successful or not.
-Useful when the CI can take some time and you are easily distracted.</p>
+<p>Waits for a GitHub Actions Workflow Run to finish and then <strong>speaks out loud</strong> whether it was successful (<em>“Build succeeded.”</em>) or not (<em>“Build failed! Attention, build failed!”</em>).</p>
+</div>
+<div class="paragraph">
+<p>Useful when the CI can take some time and you are easily distracted.</p>
 </div>
 </div>
 </div>
@@ -213,6 +215,17 @@ Useful when the CI can take some time and you are easily distracted.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">gh run-watch https://github.com/user/repo/actions/runs/123456789</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The above command will run <code>gh run watch --repo user/repo 123456789</code>, and you will see live updates in the terminal.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/term.png" alt="Screenshot of a terminal">
+</div>
+</div>
+<div class="paragraph">
+<p>Once the command is finished, it will say out loud whether the build succeeded or failed.</p>
 </div>
 </div>
 </div>
