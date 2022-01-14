@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import generateSite from '@antora/site-generator-default'
+import generateSite from '@antora/site-generator'
 import chokidar from 'chokidar'
 import execa from 'execa'
 import express from 'express'
