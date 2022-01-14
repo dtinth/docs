@@ -6,7 +6,7 @@
     <title>jamcaster :: docs.dt.in.th</title>
     <link rel="canonical" href="https://docs.dt.in.th/jamcaster/index.html">
     <meta name="page-spec" content="jamcaster::index.adoc">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="next" href="gke.html">
     <link rel="stylesheet" href="../_/css/site.css">
     <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-jamcaster__index.png">
@@ -217,14 +217,14 @@
 <div class="listingblock">
 <div class="title">Example jamcaster.env configuration to stream to Icecast server</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>ICECAST_MOUNT_POINT=icecast://source:&lt;passworld&gt;@&lt;host&gt;:&lt;port&gt;/&lt;mountpoint&gt;
+<pre class="highlightjs highlight"><code class="language-none hljs">ICECAST_MOUNT_POINT=icecast://source:&lt;passworld&gt;@&lt;host&gt;:&lt;port&gt;/&lt;mountpoint&gt;
 JAMULUS_SERVER=&lt;host&gt;:&lt;port&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example jamcaster.env configuration to stream to YouTube</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>VIDEO_STREAM_TARGET=rtmp://a.rtmp.youtube.com/live2/&lt;streamkey&gt;
+<pre class="highlightjs highlight"><code class="language-none hljs">VIDEO_STREAM_TARGET=rtmp://a.rtmp.youtube.com/live2/&lt;streamkey&gt;
 JAMULUS_SERVER=&lt;host&gt;:&lt;port&gt;
 JAMULUS_CLIENT_NAME=YouTube</code></pre>
 </div>
@@ -232,7 +232,7 @@ JAMULUS_CLIENT_NAME=YouTube</code></pre>
 <div class="listingblock">
 <div class="title">Example jamcaster.env configuration to stream to Facebook</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>VIDEO_STREAM_TARGET=rtmps://live-api-s.facebook.com:443/rtmp/&lt;streamkey&gt;
+<pre class="highlightjs highlight"><code class="language-none hljs">VIDEO_STREAM_TARGET=rtmps://live-api-s.facebook.com:443/rtmp/&lt;streamkey&gt;
 JAMULUS_SERVER=&lt;host&gt;:&lt;port&gt;
 JAMULUS_CLIENT_NAME=FBLive</code></pre>
 </div>

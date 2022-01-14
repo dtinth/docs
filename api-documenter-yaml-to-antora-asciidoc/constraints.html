@@ -6,7 +6,7 @@
     <title>API design constraints and known issues :: docs.dt.in.th</title>
     <link rel="canonical" href="https://docs.dt.in.th/api-documenter-yaml-to-antora-asciidoc/constraints.html">
     <meta name="page-spec" content="api-documenter-yaml-to-antora-asciidoc::constraints.adoc">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="prev" href="usage.html">
     <link rel="stylesheet" href="../_/css/site.css">
     <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-api-documenter-yaml-to-antora-asciidoc__constraints.png">
@@ -197,6 +197,14 @@ Some of them are imposed by <code>api-extractor</code> and <code>api-documenter<
 </div>
 <div class="paragraph">
 <p>Basically, if you use this tool, <strong>you will be creating <a href="http://boringtechnology.club/">boring</a>, object-oriented APIs</strong> with classes, interfaces and functions. You will not be using all the fancy TypeScript constructs.</p>
+</div>
+<div class="paragraph">
+<p>Quoting <a href="https://github.com/microsoft/rushstack/issues/3002#issuecomment-1007063608">a comment from a GitHub Issue</a>:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+For the large corporate code bases that inspired API Extractor, historically we have tended to prefer standard coding stereotypes over flexible free-form expressions. For example, "a function" is a friendlier concept than "a constant variable whose data type is a lambda." And "an interface" is a friendlier concept than "a type signature describing a non-nested object without any alternatives." Building your API from standardized bricks makes it easier for beginners to learn, easier to organize the docs, and easier to talk about when providing support.
+</blockquote>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
