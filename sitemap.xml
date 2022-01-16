@@ -4,6 +4,9 @@
 <loc>https://docs.dt.in.th/sitemap-api-documenter-yaml-to-antora-asciidoc.xml</loc>
 </sitemap>
 <sitemap>
+<loc>https://docs.dt.in.th/sitemap-apiref.xml</loc>
+</sitemap>
+<sitemap>
 <loc>https://docs.dt.in.th/sitemap-chain.xml</loc>
 </sitemap>
 <sitemap>

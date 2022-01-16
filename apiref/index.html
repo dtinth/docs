@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Fresh App Factory :: docs.dt.in.th</title>
-    <link rel="canonical" href="https://docs.dt.in.th/fresh-app-factory/index.html">
-    <meta name="page-spec" content="fresh-app-factory::index.adoc">
+    <title>apiref :: docs.dt.in.th</title>
+    <link rel="canonical" href="https://docs.dt.in.th/apiref/index.html">
+    <meta name="page-spec" content="apiref::index.adoc">
     <meta name="generator" content="Antora 3.0.1">
+    <link rel="next" href="publishing.html">
     <link rel="stylesheet" href="../_/css/site.css">
-    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-fresh-app-factory__index.png">
+    <meta property="og:image" content="https://ss.dt.in.th/api/screenshots/docs-apiref__index.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4343503-11"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-4343503-11')</script>
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEUAAADd/3XZ/3LY/XHY/XDX/XDX/HDX/HBGVehjAAAAB3RSTlMAFThdhLvo4ZXzLQAAArdJREFUeAHs18Fu00AQxnHHCeGaA9DrSgi4Wgjo1YhSrgWwfI1L5b3S1t7v9TnshZWIs/buXygovwfw1DPzTdwi2urlVdP3Ut83V293RWblu8bqD675ZHI+/rP+4ocBHk+UeG91kPue/udfa9Jd4ks8szrCfUxqjyIktOmDovwsllldK9Ldjn2+r8A931cA+p82h1ea6dvM/ddss/KwtprNVTMG3GqBMX7Qr7XIbRFpo4VqskG+SVyDvFu0QbFNapVgLI56riRfYyeMzfmFEnXFpNIqkTPUikataqkMDPUCEa+wssrA7bgV8jomAxFZeKJMboArFBiBMxpzVN8omwdsRyc21Y+YHPMXZTQQZyhggBQHOiYEE1FYK7OK7ZDUcTvkDeAOeQZI2UTWLpXd4+E7BNyjjQA1t6Rexy2pN4QjQIewkdghbIXYkykIk2CFcMCpDlXcIQrP0YUg92DMgqhZCZ1yKYzBchxkeSvMHstxkOVWmJFdIsnBSyQZdomkGrpEwTV6KtAv/78f5wE6dcG5ayU2CEKhMfBBWAtVsTmTajZn0g1fYCvUvrgQ6p68FP5WXAr1yJ4iaeALtEKNfAErlDte4FxAsP+ggBXr32/RucDpX9PT/0Xjf/Txzxb8wwv/dDz9r+vftdyBAAAAAMIwf+tRDKP66wGkR6geAnuM/UG8Vwm9DOl1Ti+keqXWS8Fea/5idlbLvRzv9X4fKPbE8keiP3P9oe5PjX8s/XPvH6z/5N6hgY49fHCjoycdnun4zweYOoLVIbKPwXWQr6OIH6bsOGgHWj+S26HijkV/sLuj6R+u73pAFxy+otElk6/JdNHnq0pXtgq6WBDetrLXpcOtTXbx86urX779+vAXoL/C/SX0r9H/I4B/ZfDPGP6dxD/E+Jce/5Tk36r8Y5h/bfPPefq9EI9VRTu5xbU5AAAAAElFTkSuQmCC">
@@ -30,12 +31,12 @@
           <div id="search" class="field has-filter">
             <input class="query" type="text" placeholder="Search the docs">
             <label class="filter checkbox">
-              <input type="checkbox" data-facet-filter="component:fresh-app-factory"> In this project
+              <input type="checkbox" data-facet-filter="component:apiref"> In this project
             </label>
           </div>
         </div>
 
-        <a class="navbar-item" href="https://github.com/fresh-app/factory" target="_blank" rel="noopener">
+        <a class="navbar-item" href="https://github.com/dtinth/apiref" target="_blank" rel="noopener">
           <span class="icon"><img src="../_/img/octicons-16.svg#view-mark-github"></span>
         </a>
       </div>
@@ -46,9 +47,61 @@
 <div class="nav-container">
   <aside class="nav">
     <div class="panels">
-<div class="nav-panel-explore is-active" data-panel="explore">
+<div class="nav-panel-menu is-active is-loading" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
+    <h3 class="title"><a href="index.html">apiref</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-url" data-depth="1">
+    <a class="nav-link" href="index.html">About apiref</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="publishing.html">How to publish an API reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://apiref.page/">apiref.page</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+  <script>
+;(function () {
+  var panel = document.querySelector('.nav-panel-menu')
+  var page
+  var hash = window.location.hash
+  if (hash) {
+    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
+    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
+    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
+    if (link) page = link.parentNode
+    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
+  } else {
+    page = panel.querySelector('.is-current-url')
+  }
+  if (page) {
+    var ancestor = page
+    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
+      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
+    }
+    page.classList.add('is-current-page', 'is-active')
+    if (panel.scrollHeight > panel.clientHeight) {
+      var panelRect = panel.getBoundingClientRect()
+      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
+      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
+    }
+  } else {
+    panel.scrollTop = 0
+  }
+  panel.classList.remove('is-loading')
+})()
+  </script>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Fresh App Factory</span>
+    <span class="title">apiref</span>
     <span class="version"></span>
   </div>
   <ul class="components">
@@ -67,8 +120,8 @@
     <li class="component">
       <a class="title" href="../api-documenter-yaml-to-antora-asciidoc/index.html">api-documenter-yaml-to-antora-asciidoc</a>
     </li>
-    <li class="component">
-      <a class="title" href="../apiref/index.html">apiref</a>
+    <li class="component is-current">
+      <a class="title" href="index.html">apiref</a>
     </li>
     <li class="component">
       <a class="title" href="../cmdpal/index.html">cmdpal</a>
@@ -88,8 +141,8 @@
     <li class="component">
       <a class="title" href="../dtinth.tools-android/index.html">dtinth’s Tools (Android App)</a>
     </li>
-    <li class="component is-current">
-      <a class="title" href="index.html">Fresh App Factory</a>
+    <li class="component">
+      <a class="title" href="../fresh-app-factory/index.html">Fresh App Factory</a>
     </li>
     <li class="component">
       <a class="title" href="../gh-invite/index.html">gh invite</a>
@@ -131,112 +184,32 @@
 <button class="nav-toggle"></button>
   <a href="../home/index.html" class="home-link" title="Home"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">apiref</a></li>
+    <li><a href="index.html">About apiref</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/fresh-app/factory/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dtinth/apiref/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
 <article class="doc">
-<h1 class="page">Fresh App Factory</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">apiref</h1>
 <div class="paragraph">
-<p><a href="https://github.com/fresh-app/factory">Fresh App Factory</a> is a project that generates <a href="https://github.com/fresh-app">template repositories</a> for popular project boilerplate generators.</p>
+<p>apiref is a service that generates API reference sites for JS and TS libraries that use <a href="https://api-extractor.com/">API Extractor</a>.</p>
 </div>
-<div class="paragraph">
-<p><a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-template-repository">Template repositories</a> provides an easy way to start a new project. Rather than having to install extra npm packages just to create a new project, you just click <b class="button">Use this template</b> and clone the repository to your development environment (or launch a cloud-based development environments, e.g. <a href="https://github.com/codespaces">GitHub Codespaces</a>, <a href="https://gitpod.io/">GitPod</a>, or <a href="https://codesandbox.io/">CodeSandbox</a>).</p>
-</div>
-<div class="paragraph">
-<p>However, if left unmaintained, template repositories may become out-of-date over time. For example, the template may depend on an older version of a repository.</p>
-</div>
-<div class="paragraph">
-<p>For example, it may contain outdated dependencies. Fresh App Factory solves this by re-generating every template repository everyday using well-known project generators. This ensures that the template repositories here are up-to-date, hence the name “Fresh.”</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_available_templates"><a class="anchor" href="#_available_templates"></a>Available templates</h2>
-<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><strong><a href="https://github.com/fresh-app/fresh-cypress-project">fresh-cypress-project</a></strong></p>
+<p>You can visit apiref at <a href="https://apiref.page/" class="bare">https://apiref.page/</a></p>
 </li>
 <li>
-<p><strong><a href="https://github.com/fresh-app/fresh-next-app-typescript">fresh-next-app-typescript</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-next-app">fresh-next-app</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-react-app-typescript">fresh-react-app-typescript</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-react-app">fresh-react-app</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-remix-app-vercel">fresh-remix-app-vercel</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-remix-app">fresh-remix-app</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-rush-monorepo">fresh-rush-monorepo</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-tsdx-lib">fresh-tsdx-lib</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-tsdx-react-component-with-storybook">fresh-tsdx-react-component-with-storybook</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-tsdx-react-component">fresh-tsdx-react-component</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-lit-element-ts">fresh-vite-app-lit-element-ts</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-lit-element">fresh-vite-app-lit-element</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-preact-ts">fresh-vite-app-preact-ts</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-preact">fresh-vite-app-preact</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-react-ts">fresh-vite-app-react-ts</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-react">fresh-vite-app-react</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-svelte-ts">fresh-vite-app-svelte-ts</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-svelte">fresh-vite-app-svelte</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-ts">fresh-vite-app-ts</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-vue-ts">fresh-vite-app-vue-ts</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app-vue">fresh-vite-app-vue</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vite-app">fresh-vite-app</a></strong></p>
-</li>
-<li>
-<p><strong><a href="https://github.com/fresh-app/fresh-vscode-extension">fresh-vscode-extension</a></strong></p>
+<p>You can find the source code at <a href="https://github.com/dtinth/apiref" class="bare">https://github.com/dtinth/apiref</a></p>
 </li>
 </ul>
 </div>
-</div>
-</div>
+<nav class="pagination">
+  <span class="next"><a href="publishing.html">How to publish an API reference</a></span>
+</nav>
 </article>
   </div>
 </main>

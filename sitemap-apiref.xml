@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://docs.dt.in.th/encrypted/index.html</loc>
+<loc>https://docs.dt.in.th/apiref/index.html</loc>
+<lastmod>2022-01-16T17:27:05.689Z</lastmod>
+</url>
+<url>
+<loc>https://docs.dt.in.th/apiref/publishing.html</loc>
 <lastmod>2022-01-16T17:27:05.689Z</lastmod>
 </url>
 </urlset>
