@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Publishing an API reference :: docs.dt.in.th</title>
+    <title>Publisher’s guide :: docs.dt.in.th</title>
     <link rel="canonical" href="https://docs.dt.in.th/apiref/publishing.html">
     <meta name="page-spec" content="apiref::publishing.adoc">
     <meta name="generator" content="Antora 3.0.1">
@@ -58,7 +58,7 @@
     <a class="nav-link" href="index.html">About apiref</a>
   </li>
   <li class="nav-item is-current-url" data-depth="1">
-    <a class="nav-link" href="publishing.html">How to publish an API reference</a>
+    <a class="nav-link" href="publishing.html">Publisher’s guide</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="https://apiref.page/">apiref.page</a>
@@ -186,27 +186,171 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">apiref</a></li>
-    <li><a href="publishing.html">How to publish an API reference</a></li>
+    <li><a href="publishing.html">Publisher’s guide</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/dtinth/apiref/edit/main/docs/modules/ROOT/pages/publishing.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
-<h1 class="page">Publishing an API reference</h1>
+<h1 class="page">Publisher’s guide</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide is intended for library others who want to publish their API reference on <a href="https://apiref.page/">apiref.page</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://apiref.page/">apiref.page</a> generates an API reference site from <a href="https://api-extractor.com/pages/overview/demo_docs/">API Extractor’s “doc model” file</a>.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>See the <em><a href="#generate">Generate a doc model file</a></em> section.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The doc model file should be published in your package to the <a href="https://npmjs.com/">npm</a> registry.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>See the <em><a href="#publish">Publishing the API reference</a></em> section.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generate"><a class="anchor" href="#generate"></a>Generate a doc model file</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Use the <a href="https://api-extractor.com/">API Extractor</a> tool to <a href="https://api-extractor.com/pages/setup/generating_docs/">generate</a> a <a href="https://api-extractor.com/pages/overview/demo_docs/">doc model</a> file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>API Extractor works by processing <code>.d.ts</code> files.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For TypeScript libraries, just set <code>declaration</code> to <code>true</code> in your <code>tsconfig.json</code> file.</p>
+</li>
+<li>
+<p>For JavaScript libraries, you can write a <code>.d.ts</code> file by hand (easier) or use <a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#--declaration-and---allowjs:"><code>tsc --allowJs --declaration --emitDeclarationOnly</code></a> to generate <code>.d.ts</code> file from your JavaScript source.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Your library’s API surface must be “documentable” <a href="https://api-extractor.com/pages/tsdoc/doc_comment_syntax/">by API Extractor</a> and <a href="https://api-extractor.com/pages/setup/generating_docs/">API Documenter</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>apiref.page is based on API Extractor and API Documenter’s documentation model, which only encompasses a limited subset of TypeScript constructs.</p>
+</li>
+<li>
+<p>Any construct that cannot be modeled by API Extractor or API Documenter will not work with apiref.page either.</p>
+</li>
+<li>
+<p>It is not a goal to suppport all kinds of possible constructs. Rather, we <a href="https://github.com/microsoft/rushstack/issues/3002#issuecomment-1007063608">prefer standard coding stereotypes over flexible free-form expressions</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If done correctly, you will get an <code>.api.json</code> file.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Using apiref in an existing project may require changing your API, so that it uses only the constructs supported by API Extractor and API Documenter. It may result in breaking changes.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="preview"><a class="anchor" href="#preview"></a>Previewing the documentation locally</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To iterate more quickly, you can preview the API reference locally.</p>
+</div>
+<div class="paragraph">
+<p>Make sure you have your <code>.api.json</code> file ready.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use <a href="https://api-extractor.com/">@microsoft/api-extractor</a> to generate a <a href="https://api-extractor.com/pages/setup/generating_docs/">doc model file</a>. If done correctly, you should have an <code>.api.json</code> file in your project. (You don&#8217;t need to commit this file to your repository.)</p>
+<p>Install or upgrade the apiref CLI: <code>npm install --global apiref</code></p>
 </li>
+<li>
+<p>Run <code>apiref -i &lt;path/to/your&gt;.api.json</code> to start a local preview server.</p>
+</li>
+<li>
+<p>Go to <code>http://localhost:3000/</code></p>
+</li>
+<li>
+<p>When you make change to the <code>.api.json</code> file, just hit Refresh to see the changes.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>apiref</code> npm package is updated quite often (whenever a new version of the website is deployed). Install the latest version to make sure that the local preview looks consistent with the live website.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="publish"><a class="anchor" href="#publish"></a>Publishing the API reference</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Add a <code>docModel</code> field to your <code>package.json</code> file, pointing to the <code>.api.json</code> file.</p>
 </li>
 <li>
-<p>Publish your package to npm. Make sure the package includes the <code>.api.json</code> file along with the other built files.</p>
+<p>Make sure the package includes the <code>.api.json</code> file along with the other built files.</p>
 </li>
 <li>
-<p>You can access the API reference of your package at these URLs:</p>
+<p>Publish your package to npm.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="access"><a class="anchor" href="#access"></a>Viewing the API reference on apiref.page</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once published, you can access the API reference of your package at these URLs:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -217,8 +361,7 @@
 </li>
 </ul>
 </div>
-</li>
-</ol>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="index.html">About apiref</a></span>
