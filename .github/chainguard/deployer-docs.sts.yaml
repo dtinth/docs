@@ -1,0 +1,4 @@
+issuer: https://token.actions.githubusercontent.com
+subject_pattern: "repo:dtinth/deployer-docs:ref:refs/heads/main"
+permissions:
+  contents: write
