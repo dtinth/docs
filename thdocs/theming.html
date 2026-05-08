@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Theming &#8212; thdocs 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=f88bf656" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="index.html" class="thdocs-header-logo">
+    thdocs 0.1.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="index.html">thdocs 0.1.0 documentation</a></li>
+    <li aria-current="page">Theming</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="theming">
+<h1>Theming<a class="headerlink" href="#theming" title="Link to this heading">¶</a></h1>
+<p>The thdocs theme renders documentation in a dark, CHM-inspired layout with a three-tab sidebar.</p>
+<section id="layout">
+<h2>Layout<a class="headerlink" href="#layout" title="Link to this heading">¶</a></h2>
+<p>Pages use a two-column grid:</p>
+<ul class="simple">
+<li><p><strong>Left sidebar</strong> (230px) — navigation and search</p></li>
+<li><p><strong>Main content</strong> (flexible) — rendered Markdown</p></li>
+</ul>
+<p>The sidebar has three tabs, each with a distinct purpose:</p>
+<ol class="arabic simple">
+<li><p><strong>Contents</strong> — tree-style table of contents (toctree)</p></li>
+<li><p><strong>Index</strong> — alphabetical index of terms (from <code class="docutils literal notranslate"><span class="pre">{index}</span></code> directives)</p></li>
+<li><p><strong>Search</strong> — full-text search (Pagefind)</p></li>
+</ol>
+<p>Tabs are rendered server-side; JavaScript toggles visibility based on <code class="docutils literal notranslate"><span class="pre">data-tab</span></code> and <code class="docutils literal notranslate"><span class="pre">data-panel</span></code> attributes.</p>
+</section>
+<section id="colors-and-fonts">
+<h2>Colors and Fonts<a class="headerlink" href="#colors-and-fonts" title="Link to this heading">¶</a></h2>
+<p>The theme uses a dark color scheme and custom fonts:</p>
+<section id="color-tokens">
+<h3>Color Tokens<a class="headerlink" href="#color-tokens" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-thdocs-bg</span></code> — body background (#353433)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-thdocs-text</span></code> — body text (#e9e8e7, light cream)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-thdocs-sidebar</span></code> — sidebar background (#252423, darker)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-thdocs-header</span></code> — chrome header (#090807, darkest)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-thdocs-border</span></code> — UI borders (#454443)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-thdocs-accent</span></code> — general accent (#bbeeff, cyan)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-thdocs-accent-yellow</span></code> — links, highlights (#ffffbb)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-thdocs-accent-green</span></code> — secondary accent (#d7fc70)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-thdocs-muted</span></code> — secondary text (#8b8685)</p></li>
+</ul>
+</section>
+<section id="fonts">
+<h3>Fonts<a class="headerlink" href="#fonts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Sans-serif:</strong> Arimo (via Google Fonts) with system fallbacks</p></li>
+<li><p><strong>Monospace:</strong> Comic Mono (via CDN) with system fallbacks</p></li>
+</ul>
+</section>
+</section>
+<section id="prose-rendering">
+<h2>Prose Rendering<a class="headerlink" href="#prose-rendering" title="Link to this heading">¶</a></h2>
+<p>Content inside <code class="docutils literal notranslate"><span class="pre">&lt;main</span> <span class="pre">class=&quot;prose&quot;&gt;</span></code> uses Tailwind Typography with dark theme CSS variables. All prose elements—headings, paragraphs, code blocks, tables, blockquotes—are styled consistently for readability on dark backgrounds.</p>
+</section>
+<section id="responsive-behavior">
+<h2>Responsive Behavior<a class="headerlink" href="#responsive-behavior" title="Link to this heading">¶</a></h2>
+<p>The layout is optimized for desktop viewing. At narrow widths, the grid may stack or adjust; exact breakpoints depend on CSS media queries in the compiled stylesheet.</p>
+</section>
+<section id="theme-source">
+<h2>Theme Source<a class="headerlink" href="#theme-source" title="Link to this heading">¶</a></h2>
+<p>The theme is implemented in:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">src/thdocs/theme/thdocs/layout.html</span></code> — Jinja template extending Sphinx’s basic layout</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/thdocs/sphinx/conf.py</span></code> — Sphinx configuration (internal)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theme-src/src/main.css</span></code> — Tailwind CSS input (compiled to <code class="docutils literal notranslate"><span class="pre">thdocs.css</span></code>)</p></li>
+</ul>
+<p>End users do not edit theme files—the theme is bundled with thdocs and applied automatically.</p>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Theming</a><ul>
+<li><a class="reference internal" href="#layout">Layout</a></li>
+<li><a class="reference internal" href="#colors-and-fonts">Colors and Fonts</a><ul>
+<li><a class="reference internal" href="#color-tokens">Color Tokens</a></li>
+<li><a class="reference internal" href="#fonts">Fonts</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#prose-rendering">Prose Rendering</a></li>
+<li><a class="reference internal" href="#responsive-behavior">Responsive Behavior</a></li>
+<li><a class="reference internal" href="#theme-source">Theme Source</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="index" aria-selected="false">Index</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kitchen-sink.html">Kitchen Sink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style-guide.html">Style Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adr/index.html">Architecture Decision Records</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/thdocs.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="index" role="tabpanel" hidden>
+    <div class="thdocs-index-content"></div>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

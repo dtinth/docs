@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Contents sidebar uses Lit component with JSON tree data, not Sphinx’s native toctree markup &#8212; thdocs 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=f88bf656" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Use Sphinx’s built-in client-side search instead of Pagefind" href="0005-built-in-search.html" />
+    <link rel="prev" title="Sphinx is invoked with a conf.py shipped inside the thdocs package" href="0003-sphinx-conf-in-package.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="../_static/toctree.js"></script>
+  <script src="../_static/searchtools.js"></script>
+  <script src="../_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="../index.html" class="thdocs-header-logo">
+    thdocs 0.1.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="../index.html">thdocs 0.1.0 documentation</a></li>
+    <li><a href="index.html">Architecture Decision Records</a></li>
+    <li aria-current="page">Contents sidebar uses Lit component with JSON tree data, not Sphinx’s native toctree markup</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="contents-sidebar-uses-lit-component-with-json-tree-data-not-sphinx-s-native-toctree-markup">
+<h1>Contents sidebar uses Lit component with JSON tree data, not Sphinx’s native toctree markup<a class="headerlink" href="#contents-sidebar-uses-lit-component-with-json-tree-data-not-sphinx-s-native-toctree-markup" title="Link to this heading">¶</a></h1>
+<p><strong>Context.</strong> The Contents tab must render a full, interactive tree of all pages and sections (for CHM-style navigation) while keeping the initial HTML lean and avoiding duplication. Sphinx’s <code class="docutils literal notranslate"><span class="pre">{toctree}</span></code> directive generates the tree as part of the HTML sidebar — nested <code class="docutils literal notranslate"><span class="pre">&lt;ul&gt;/&lt;li&gt;</span></code> with <code class="docutils literal notranslate"><span class="pre">&lt;p</span> <span class="pre">class=&quot;caption&quot;&gt;</span></code> section headers interspersed. This creates two problems: (a) embedding the full tree in every page’s HTML bloats initial markup, especially in large docs with API references, and (b) the mixed HTML structure (captions as <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code> elements, pages as <code class="docutils literal notranslate"><span class="pre">&lt;li&gt;</span></code> elements) requires two code paths in JavaScript to handle uniformly.</p>
+<p><strong>Decision.</strong> The build process generates a separate <code class="docutils literal notranslate"><span class="pre">toctree.json</span></code> file (via a Sphinx extension) containing the full tree structure. The sidebar HTML is minimal — just the current-page nav context, like normal Sphinx docs. A Lit-based <code class="docutils literal notranslate"><span class="pre">&lt;tdhocs-tree&gt;</span></code> web component fetches <code class="docutils literal notranslate"><span class="pre">toctree.json</span></code> at runtime and renders the full interactive tree. Tree state (expanded/collapsed sections, scroll position, focused link) is persisted in <code class="docutils literal notranslate"><span class="pre">sessionStorage</span></code>.</p>
+<p><strong>Why.</strong> This approach decouples data (the tree) from markup (the sidebar HTML), giving us:</p>
+<ul class="simple">
+<li><p><strong>Lean initial HTML.</strong> Only the current page’s nav context is embedded; the full tree is fetched on demand.</p></li>
+<li><p><strong>No duplication.</strong> The tree is defined once (in <code class="docutils literal notranslate"><span class="pre">toctree.json</span></code>) and consumed by JavaScript, not duplicated in every page’s HTML.</p></li>
+<li><p><strong>Unified structure.</strong> Captions and pages become uniform tree nodes in JSON, with one JavaScript code path instead of two.</p></li>
+<li><p><strong>Full control.</strong> A Lit component lets us implement exactly the UX we want (collapse/expand, scrolling, focus restoration, keyboard nav) without fighting Sphinx’s rendered HTML.</p></li>
+<li><p><strong>Graceful degradation.</strong> If JavaScript is unavailable, the minimal Sphinx nav is still present and functional.</p></li>
+<li><p><strong>Reusable component.</strong> <code class="docutils literal notranslate"><span class="pre">&lt;tdhocs-tree&gt;</span></code> is a web component that could be reused or shared with other projects (e.g., apiref/shell).</p></li>
+</ul>
+<p><strong>Rejected.</strong> (a) Parse Sphinx’s HTML tree in JavaScript — fragile if Sphinx’s output changes, and the mixed <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">&lt;li&gt;</span></code> structure requires two code paths. (b) Embed the full tree in HTML and let JavaScript enhance it — bloats every page’s initial HTML by duplicating the tree. (c) Use vanilla JavaScript instead of Lit — would work but loses the component model and reusability. (d) Fetch HTML instead of JSON — JSON is smaller and more structured; HTML would require parsing and reconstruction.</p>
+<p><strong>Consequence.</strong> The build process must generate <code class="docutils literal notranslate"><span class="pre">toctree.json</span></code> from Sphinx’s internal toctree state. This requires a Sphinx extension hook (e.g., <code class="docutils literal notranslate"><span class="pre">config-inited</span></code> or <code class="docutils literal notranslate"><span class="pre">build-finished</span></code>). The tree JSON schema is owned by thdocs, not Sphinx, so the contract is explicit and stable.</p>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="0003-sphinx-conf-in-package.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Sphinx is invoked with a conf.py shipped inside the thdocs package</div>
+  </a>
+  <a href="0005-built-in-search.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Use Sphinx’s built-in client-side search instead of Pagefind</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Contents sidebar uses Lit component with JSON tree data, not Sphinx’s native toctree markup</a></li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="index" aria-selected="false">Index</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kitchen-sink.html">Kitchen Sink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../style-guide.html">Style Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Architecture Decision Records</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="0001-cli-wrapper-exposing-myst.html">thdocs is a CLI wrapper that exposes MyST/Sphinx authoring directly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0002-shell-as-visual-reference.html">thdocs’s theme CSS is independent; &#64;apiref/shell is a visual reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0003-sphinx-conf-in-package.html">Sphinx is invoked with a <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> shipped inside the thdocs package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Contents sidebar uses Lit component with JSON tree data, not Sphinx’s native toctree markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0005-built-in-search.html">Use Sphinx’s built-in client-side search instead of Pagefind</a></li>
+</ul>
+</li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="../_static/thdocs.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="index" role="tabpanel" hidden>
+    <div class="thdocs-index-content"></div>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

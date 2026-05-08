@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Style Guide &#8212; thdocs 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=f88bf656" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Architecture Decision Records" href="adr/index.html" />
+    <link rel="prev" title="Kitchen Sink" href="kitchen-sink.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="index.html" class="thdocs-header-logo">
+    thdocs 0.1.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="index.html">thdocs 0.1.0 documentation</a></li>
+    <li aria-current="page">Style Guide</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="style-guide">
+<h1>Style Guide<a class="headerlink" href="#style-guide" title="Link to this heading">¶</a></h1>
+<p>This guide defines how to write documentation for thdocs projects. It is written for human authors and coding agents.</p>
+<section id="philosophy">
+<h2>Philosophy<a class="headerlink" href="#philosophy" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>One idea per page.</strong> Pages are navigation targets. If a page covers too much, split it.</p></li>
+<li><p><strong>Self-contained pages.</strong> Any page might be the entry point (via search or index). It should make sense in isolation.</p></li>
+<li><p><strong>Flat hierarchy.</strong> Use <code class="docutils literal notranslate"><span class="pre">{toctree}</span></code> to group pages by topic. Prefer two levels of depth; nest deeper only when it truly helps.</p></li>
+</ul>
+</section>
+<section id="page-structure">
+<h2>Page Structure<a class="headerlink" href="#page-structure" title="Link to this heading">¶</a></h2>
+<p>Every page starts with an <code class="docutils literal notranslate"><span class="pre">h1</span></code> title. Use <code class="docutils literal notranslate"><span class="pre">h2</span></code> for sections and <code class="docutils literal notranslate"><span class="pre">h3</span></code> for subsections. Do not go deeper than <code class="docutils literal notranslate"><span class="pre">h3</span></code>. A short page may have no <code class="docutils literal notranslate"><span class="pre">h2</span></code> at all if the content is focused enough.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Page Title</span>
+
+Introductory paragraph that stands on its own.
+
+<span class="gu">## A Section</span>
+
+Content here.
+
+<span class="gu">### A Subsection</span>
+
+More content.
+</pre></div>
+</div>
+</section>
+<section id="navigation">
+<h2>Navigation<a class="headerlink" href="#navigation" title="Link to this heading">¶</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">{toctree}</span></code> directives in section <code class="docutils literal notranslate"><span class="pre">index.md</span></code> files to define the page hierarchy. Keep <code class="docutils literal notranslate"><span class="pre">:maxdepth:</span></code> at <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{toctree}
+:caption: User Guide
+:maxdepth: 2
+
+getting-started
+configuration
+cli
+```
+</pre></div>
+</div>
+<p>Do not create orphan pages. Every page must be reachable from a <code class="docutils literal notranslate"><span class="pre">{toctree}</span></code>.</p>
+</section>
+<section id="index-entries">
+<h2>Index Entries<a class="headerlink" href="#index-entries" title="Link to this heading">¶</a></h2>
+<p>Use the inline <code class="docutils literal notranslate"><span class="pre">{index}</span></code> role to mark key concepts <strong>at the point where they appear in the text</strong>. The role anchors the index entry to that exact location, so the Index tab jumps the reader to the right paragraph.</p>
+<p>Only index <strong>nouns, commands, features, and domain concepts</strong>. Do not index structural headings like “Summary” or “See Also”.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">## Installation</span>
+
+Install thdocs with {index}`uv`:
+
+```bash
+uv tool install thdocs
+</pre></div>
+</div>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<p>Edit <span class="target" id="index-0"></span>thdocs.toml to set the site title.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+## Cross-References
+
+Prefer Markdown link syntax when you want custom link text:
+
+```markdown
+Please [configure](configuration.md) it before continuing.
+</pre></div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">{doc}</span></code> role when you want the target page title to appear as the link text:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>For more information, see {doc}`configuration`.
+</pre></div>
+</div>
+<section id="linking-to-headings">
+<h3>Linking to Headings<a class="headerlink" href="#linking-to-headings" title="Link to this heading">¶</a></h3>
+<p>Before referencing a heading from another page, give it an explicit target with <code class="docutils literal notranslate"><span class="pre">(target)=</span></code>:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>(installation-steps)=
+<span class="gu">## Installation Steps</span>
+
+<span class="k">1.</span> Run the installer.
+</pre></div>
+</div>
+<p>Then reference it with <code class="docutils literal notranslate"><span class="pre">{ref}</span></code>:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>See {ref}`installation-steps` for details.
+</pre></div>
+</div>
+<p>Explicit targets are stable. Implicit heading anchors are available as a fallback, but prefer explicit ones.</p>
+</section>
+</section>
+<section id="glossary">
+<h2>Glossary<a class="headerlink" href="#glossary" title="Link to this heading">¶</a></h2>
+<p>Create a glossary page only when the project has enough domain-specific terms to justify one.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{glossary}
+toctree
+    A Sphinx directive that generates a table of contents tree.
+```
+</pre></div>
+</div>
+<p>Reference glossary terms with <code class="docutils literal notranslate"><span class="pre">{term}</span></code>:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>The {term}`toctree` directive controls navigation.
+</pre></div>
+</div>
+</section>
+<section id="admonitions-and-callouts">
+<h2>Admonitions and Callouts<a class="headerlink" href="#admonitions-and-callouts" title="Link to this heading">¶</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">{note}</span></code> for extra context and <code class="docutils literal notranslate"><span class="pre">{warning}</span></code> for cautions:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{note}
+This is supplementary information.
+<span class="sb">```</span>
+
+<span class="sb">```{warning}</span>
+<span class="sb">This is a caution.</span>
+<span class="sb">```</span>
+</pre></div>
+</div>
+<section id="custom-titles">
+<h3>Custom Titles<a class="headerlink" href="#custom-titles" title="Link to this heading">¶</a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">{admonition}</span></code> directive when you need a custom title:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{admonition} Pro tip
+:class: tip
+You can customize the title of any admonition.
+```
+</pre></div>
+</div>
+</section>
+<section id="collapsible-admonitions">
+<h3>Collapsible Admonitions<a class="headerlink" href="#collapsible-admonitions" title="Link to this heading">¶</a></h3>
+<p>Add <code class="docutils literal notranslate"><span class="pre">:collapsible:</span></code> to let readers expand or collapse the block. Use <code class="docutils literal notranslate"><span class="pre">closed</span></code> to hide the content by default, or <code class="docutils literal notranslate"><span class="pre">open</span></code> to show it:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{admonition} Advanced configuration
+:class: note
+:collapsible: closed
+
+This section is hidden until the reader expands it. Use collapsible admonitions for optional or advanced details that should not clutter the main flow.
+```
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">{seealso}</span></code> directive for all related reading sections:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{seealso}
+<span class="k">-</span><span class="w"> </span>{doc}`configuration`
+<span class="k">-</span><span class="w"> </span>{doc}`cli`
+```
+</pre></div>
+</div>
+</section>
+<section id="definition-lists">
+<h2>Definition Lists<a class="headerlink" href="#definition-lists" title="Link to this heading">¶</a></h2>
+<p>Use definition lists for options, parameters, or term explanations. The <code class="docutils literal notranslate"><span class="pre">deflist</span></code> extension is enabled.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>term
+: The definition of the term.
+
+another-term
+: Another definition.
+</pre></div>
+</div>
+</section>
+<section id="anti-patterns">
+<h2>Anti-Patterns<a class="headerlink" href="#anti-patterns" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Do not skip heading levels (e.g., <code class="docutils literal notranslate"><span class="pre">h1</span></code> directly to <code class="docutils literal notranslate"><span class="pre">h3</span></code>).</p></li>
+<li><p>Do not write walls of text without structural breaks. Use headings, lists, and code blocks.</p></li>
+<li><p>Do not use bare Markdown links to internal pages when <code class="docutils literal notranslate"><span class="pre">{doc}</span></code> or explicit anchors are more robust.</p></li>
+<li><p>Do not index every heading. The index is a curated keyword list, not a mechanical dump.</p></li>
+</ul>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="kitchen-sink.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Kitchen Sink</div>
+  </a>
+  <a href="adr/index.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Architecture Decision Records</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Style Guide</a><ul>
+<li><a class="reference internal" href="#philosophy">Philosophy</a></li>
+<li><a class="reference internal" href="#page-structure">Page Structure</a></li>
+<li><a class="reference internal" href="#navigation">Navigation</a></li>
+<li><a class="reference internal" href="#index-entries">Index Entries</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#linking-to-headings">Linking to Headings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#glossary">Glossary</a></li>
+<li><a class="reference internal" href="#admonitions-and-callouts">Admonitions and Callouts</a><ul>
+<li><a class="reference internal" href="#custom-titles">Custom Titles</a></li>
+<li><a class="reference internal" href="#collapsible-admonitions">Collapsible Admonitions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+<li><a class="reference internal" href="#definition-lists">Definition Lists</a></li>
+<li><a class="reference internal" href="#anti-patterns">Anti-Patterns</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="index" aria-selected="false">Index</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kitchen-sink.html">Kitchen Sink</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Style Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#philosophy">Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#page-structure">Page Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navigation">Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#index-entries">Index Entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#glossary">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#admonitions-and-callouts">Admonitions and Callouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#definition-lists">Definition Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#anti-patterns">Anti-Patterns</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adr/index.html">Architecture Decision Records</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/thdocs.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="index" role="tabpanel" hidden>
+    <div class="thdocs-index-content"></div>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

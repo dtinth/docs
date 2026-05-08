@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting Started &#8212; thdocs 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=f88bf656" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="thdocs Documentation" href="index.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="index.html" class="thdocs-header-logo">
+    thdocs 0.1.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="index.html">thdocs 0.1.0 documentation</a></li>
+    <li aria-current="page">Getting Started</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
+<p>Welcome to thdocs. This guide covers installation, basic project setup, and your first build.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<p>Install thdocs from source using <span class="target" id="index-0"></span>uv:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span>--reinstall
+</pre></div>
+</div>
+<p>This installs the <code class="docutils literal notranslate"><span class="pre">thdocs</span></code> command globally.</p>
+</section>
+<section id="creating-a-new-project">
+<h2>Creating a New Project<a class="headerlink" href="#creating-a-new-project" title="Link to this heading">¶</a></h2>
+<p>To scaffold a new documentation project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>my-docs
+<span class="nb">cd</span><span class="w"> </span>my-docs
+thdocs<span class="w"> </span>init
+</pre></div>
+</div>
+<p>This creates:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">thdocs.toml</span></code> — project metadata (title, author, version)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/index.md</span></code> — root page with a <code class="docutils literal notranslate"><span class="pre">{toctree}</span></code> directive</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> entry for the <code class="docutils literal notranslate"><span class="pre">_build/</span></code> output directory</p></li>
+</ul>
+</section>
+<section id="project-layout">
+<h2>Project Layout<a class="headerlink" href="#project-layout" title="Link to this heading">¶</a></h2>
+<p>A typical thdocs project looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my</span><span class="o">-</span><span class="n">project</span><span class="o">/</span>
+  <span class="n">thdocs</span><span class="o">.</span><span class="n">toml</span>
+  <span class="n">docs</span><span class="o">/</span>
+    <span class="n">index</span><span class="o">.</span><span class="n">md</span>
+    <span class="n">getting</span><span class="o">-</span><span class="n">started</span><span class="o">.</span><span class="n">md</span>
+    <span class="n">cli</span><span class="o">.</span><span class="n">md</span>
+    <span class="n">adr</span><span class="o">/</span>
+      <span class="n">index</span><span class="o">.</span><span class="n">md</span>
+      <span class="mi">0001</span><span class="o">-</span><span class="n">something</span><span class="o">.</span><span class="n">md</span>
+  <span class="n">_build</span><span class="o">/</span>
+    <span class="n">html</span><span class="o">/</span>
+      <span class="n">index</span><span class="o">.</span><span class="n">html</span>
+      <span class="o">...</span>
+</pre></div>
+</div>
+<p>The source is pure Markdown (MyST format). Use <code class="docutils literal notranslate"><span class="pre">{toctree}</span></code> directives in <code class="docutils literal notranslate"><span class="pre">index.md</span></code> files to structure your navigation.</p>
+</section>
+<section id="authoring">
+<h2>Authoring<a class="headerlink" href="#authoring" title="Link to this heading">¶</a></h2>
+<p>Write Markdown files in <code class="docutils literal notranslate"><span class="pre">docs/</span></code> using <span class="target" id="index-1"></span>MyST syntax:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># My Page</span>
+
+This is a paragraph with <span class="gs">**bold**</span> and <span class="ge">*italic*</span>.
+
+[<span class="nt">Link to another page</span>](<span class="na">other-page.md</span>)
+</pre></div>
+</div>
+<p>Use Sphinx directives directly for structure:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Contents</span>
+
+```{toctree}
+subpage-1
+subpage-2
+```
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="cli.html"><span class="std std-doc">CLI Reference</span></a> for build and dev commands.</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Read the <a class="reference internal" href="cli.html"><span class="std std-doc">CLI Reference</span></a> to learn <code class="docutils literal notranslate"><span class="pre">thdocs</span> <span class="pre">build</span></code> and <code class="docutils literal notranslate"><span class="pre">thdocs</span> <span class="pre">dev</span></code></p></li>
+<li><p>Check the <a class="reference internal" href="kitchen-sink.html"><span class="std std-doc">Kitchen Sink</span></a> to see all supported Markdown constructs</p></li>
+</ul>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="index.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">thdocs Documentation</div>
+  </a>
+  <a href="configuration.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Configuration</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#creating-a-new-project">Creating a New Project</a></li>
+<li><a class="reference internal" href="#project-layout">Project Layout</a></li>
+<li><a class="reference internal" href="#authoring">Authoring</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="index" aria-selected="false">Index</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-new-project">Creating a New Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-layout">Project Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authoring">Authoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kitchen-sink.html">Kitchen Sink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style-guide.html">Style Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adr/index.html">Architecture Decision Records</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/thdocs.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="index" role="tabpanel" hidden>
+    <div class="thdocs-index-content"></div>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>
