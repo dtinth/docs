@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ปรับแต่ง CSS &#8212; bizdocgen 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=f88bf656" />
+    <script src="_static/documentation_options.js?v=7026087e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="โฮสต์ Widget เอง" href="self-hosting.html" />
+    <link rel="prev" title="การปรับแต่งขั้นสูง" href="advanced.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="index.html" class="thdocs-header-logo">
+    bizdocgen 0.0.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="index.html">bizdocgen 0.0.0 documentation</a></li>
+    <li><a href="advanced.html">การปรับแต่งขั้นสูง</a></li>
+    <li aria-current="page">ปรับแต่ง CSS</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="css">
+<h1>ปรับแต่ง CSS<a class="headerlink" href="#css" title="Link to this heading">¶</a></h1>
+<p>bizdocgen รองรับการปรับแต่งหน้าตาเอกสารผ่าน CSS ซึ่งสามารถใส่ได้จากแผง Settings ใน Widget</p>
+<section id="custom-css">
+<h2>วิธีใส่ Custom CSS<a class="headerlink" href="#custom-css" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>ไปที่กล่อง <strong>Preview &amp; Print</strong></p></li>
+<li><p>คลิกปุ่ม <strong>Settings</strong> (หรือไอคอนฟันเฟือง)</p></li>
+<li><p>วาง CSS ของคุณลงในช่อง <strong>Custom CSS</strong></p></li>
+</ol>
+<p>การเปลี่ยนแปลงจะแสดงผลทันทีในหน้าตัวอย่าง</p>
+</section>
+<section id="id1">
+<h2>ตัวอย่าง: ใส่โลโก้ที่ส่วนหัวเอกสาร<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">document-header__provider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">padding-left</span><span class="p">:</span><span class="w"> </span><span class="mf">3.25</span><span class="kt">cm</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">url</span><span class="p">(</span><span class="sx">https://im.dt.in.th/ipfs/bafybeig2tl774aishvpngxdchfottijqjybrzlzhphybtez6lppbrrfzem/image.webp</span><span class="p">)</span><span class="w"> </span><span class="kc">top</span><span class="w"> </span><span class="kc">left</span><span class="w"> </span><span class="kc">no-repeat</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background-size</span><span class="p">:</span><span class="w"> </span><span class="kc">contain</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>CSS ชุดนี้ทำให้ส่วนที่แสดงชื่อผู้ให้บริการมีโลโก้แสดงอยู่ทางซ้ายมือ โดยใช้ <code class="docutils literal notranslate"><span class="pre">background-image</span></code> กับ URL ของรูปโลโก้ และเพิ่ม <code class="docutils literal notranslate"><span class="pre">padding-left</span></code> ให้ข้อความไม่ทับกับโลโก้</p>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="advanced.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">การปรับแต่งขั้นสูง</div>
+  </a>
+  <a href="self-hosting.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">โฮสต์ Widget เอง</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">ปรับแต่ง CSS</a><ul>
+<li><a class="reference internal" href="#custom-css">วิธีใส่ Custom CSS</a></li>
+<li><a class="reference internal" href="#id1">ตัวอย่าง: ใส่โลโก้ที่ส่วนหัวเอกสาร</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">เริ่มต้นใช้งาน</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="advanced.html">การปรับแต่งขั้นสูง</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ปรับแต่ง CSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="self-hosting.html">โฮสต์ Widget เอง</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">ข้อจำกัดความรับผิดชอบ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/dtinth/bizdocgen/blob/main/LICENSE">MIT License</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/bizdocgen.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

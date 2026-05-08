@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>เริ่มต้นใช้งาน &#8212; bizdocgen 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=f88bf656" />
+    <script src="_static/documentation_options.js?v=7026087e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="การปรับแต่งขั้นสูง" href="advanced.html" />
+    <link rel="prev" title="bizdocgen" href="index.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="index.html" class="thdocs-header-logo">
+    bizdocgen 0.0.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="index.html">bizdocgen 0.0.0 documentation</a></li>
+    <li aria-current="page">เริ่มต้นใช้งาน</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="id1">
+<h1>เริ่มต้นใช้งาน<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<section id="grist">
+<h2>Grist คืออะไร?<a class="headerlink" href="#grist" title="Link to this heading">¶</a></h2>
+<p><span class="target" id="index-0"></span>Grist เป็นโปรแกรมจัดการข้อมูล ที่มีหน้าตาและวิธีใช้งานที่คุ้นเคยคล้ายกับ Spreadsheet (คล้าย Excel หรือ Google Sheets) แต่มีความสามารถที่เหนือกว่า เช่น:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://support.getgrist.com/col-refs/">การเชื่อมโยงข้อมูลระหว่างตาราง</a></p></li>
+<li><p><a class="reference external" href="https://support.getgrist.com/formulas/">การเขียนสูตรคำนวณด้วยภาษา Python</a></p></li>
+<li><p><a class="reference external" href="https://support.getgrist.com/widget-custom/">การนำ Custom Widgets เข้ามาเชื่อมต่อ</a> เพื่อแสดงผลข้อมูลในรูปแบบต่างๆ ได้อย่างอิสระ</p></li>
+</ul>
+<p>ซึ่ง bizdocgen ใช้ความสามารถเหล่านี้ เพื่อสร้างเอกสารจากข้อมูลใน Grist ได้ทันที</p>
+<details class="note admonition">
+<summary class="admonition-title">Grist มีค่าใช้จ่ายไหม?</summary>
+<p><a class="reference external" href="https://www.getgrist.com/pricing/">คุณสามารถใช้งาน Grist ได้ฟรี</a> บนคลาวด์ของ Grist โดยในแพ็กเกจฟรี แต่ละเอกสารจะสามารถเก็บข้อมูลได้สูงสุด 5,000 แถว ซึ่งถือว่าเพียงพออย่างมาก แต่มีข้อควรพิจารณา คือข้อมูลจะถูกเก็บอยู่บนเซิร์ฟเวอร์ที่สหรัฐอเมริกา ทำให้การใช้งานหน้าเว็บจากไทยอาจมีอาการหน่วงบ้างเล็กน้อย แต่โดยรวมยังทำงานได้เสถียรและราบรื่นมาก จึงเป็นรูปแบบที่แนะนำที่สุดสำหรับคนที่เพิ่งเริ่มใช้</p>
+<p>นอกจากนี้ <a class="reference external" href="https://support.getgrist.com/self-managed/">คุณสามารถนำ Grist ไปติดตั้งบนเซิร์ฟเวอร์ของคุณเองได้ด้วย</a> โดยไม่มีค่าใช้จ่ายเพิ่มเติมนอกจากค่าเช่าเซิร์ฟเวอร์ การใช้งาน Grist บนเซิร์ฟเวอร์ของคุณเอง จะทำให้ข้อมูลทั้งหมดอยู่บนเซิร์ฟเวอร์ของคุณ 100% ไม่มีการจำกัดจำนวนแถว แต่จะต้องอาศัยความรู้เชิงเทคนิคในการติดตั้ง ดูแลระบบ และสำรองข้อมูลด้วยตัวเอง</p>
+<p>คุณสามารถเริ่มใช้งาน Grist บนคลาวด์ไปก่อนได้ และหากต้องการย้ายไปใช้บนเซิร์ฟเวอร์ของคุณเองในภายหลัง ก็สามารถทำได้โดยการดาวน์โหลดข้อมูลจากคลาวด์ แล้วนำไปอัปโหลดในระบบของคุณเองได้เลย</p>
+</details>
+</section>
+<section id="id2">
+<h2>เปิดเทมเพลต<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://bizdocgen.getgrist.com/cq6sb6WHRMre/bizdocgen-template"><strong>คลิกที่นี่เพื่อเปิด Template</strong></a> (ไม่จำเป็นต้องล็อกอิน)</p></li>
+<li><p>คุณสามารถลองแก้ไขข้อมูลในเอกสารได้เลย (ระบบจะ<a class="reference external" href="https://support.getgrist.com/glossary/#fiddle-mode">สร้างสำเนาชั่วคราว</a> ให้คุณทดลองใช้งาน)</p></li>
+<li><p>หากต้องการบันทึกเก็บไว้ใน Workspace ของคุณเอง ให้คลิกที่ <strong>Use This Template</strong> หรือ <strong>Save Copy</strong> (ในขั้นตอนนี้คุณจะต้องสมัครสมาชิกหรือเข้าสู่ระบบ Grist)</p></li>
+</ol>
+<details class="note admonition">
+<summary class="admonition-title">สำหรับผู้ใช้งาน Self-Hosted Grist</summary>
+<p>หากคุณได้ติดตั้ง Grist ไว้บนเซิร์ฟเวอร์ของคุณเอง คุณสามารถดาวน์โหลดไฟล์เทมเพลต <a class="reference external" href="https://raw.githubusercontent.com/dtinth/bizdocgen/main/template.grist"><code class="docutils literal notranslate"><span class="pre">template.grist</span></code></a> แล้วนำไป Import เข้าไปในระบบของคุณได้เลย</p>
+</details>
+</section>
+<section id="documents">
+<h2>โครงสร้างของหน้า Documents<a class="headerlink" href="#documents" title="Link to this heading">¶</a></h2>
+<p>ในหน้า <strong>Documents</strong> (หน้าแรก) หน้าจอจะถูกแบ่งออกเป็น 3 ส่วนหลักๆ</p>
+<p><img alt="หน้า Documents แบ่งออกเป็น 3 ส่วน" src="https://im.dt.in.th/ipfs/bafybeiemcrzuqg36xb6t64aritxw3s3n7aeis35upeuwnbjjvdpwb5n3gu/image.webp" /></p>
+<ol class="arabic simple">
+<li><p><strong>Documents (ซ้ายบน):</strong> แสดงตารางรายการเอกสารต่างๆ</p></li>
+<li><p><strong>Items (ซ้ายล่าง):</strong> แสดงรายการสินค้าหรือบริการต่างๆ ภายในเอกสารนั้น เมื่อคุณเลือกคลิกเอกสารใดๆ ในส่วน Documents ด้านบนแล้ว ตารางส่วน Items ด้านล่างก็จะเปลี่ยนตาม เพื่อแสดงเฉพาะรายการภายในเอกสารที่คุณกำลังเลือกอยู่</p></li>
+<li><p><strong>Preview &amp; Print (ขวา):</strong> แสดงตัวอย่างหน้าตาเอกสารแบบเรียลไทม์ และมีปุ่มสำหรับสั่งพิมพ์เอกสารออกมา</p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>ขั้นตอนการสร้างเอกสาร<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<section id="id4">
+<h3>1. สร้างเอกสารใบใหม่<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>เข้าไปที่ตารางในส่วน <strong>Documents</strong> ด้านซ้ายบน</p></li>
+<li><p>ไปที่แถวล่างสุด ซึ่งเป็นพื้นที่ว่างสำหรับเพิ่มแถวใหม่</p></li>
+</ul>
+</section>
+<section id="document-type">
+<h3>2. กำหนดประเภทเอกสาร (Document Type)<a class="headerlink" href="#document-type" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>ในแถวใหม่ คอลัมน์แรกสุดจะชื่อ <strong>Document Type</strong> สำหรับเลือกประเภทเอกสาร</p></li>
+<li><p>ให้ดับเบิลคลิกแล้วเลือกประเภทเอกสารตามที่ต้องการ</p></li>
+</ul>
+<p><img alt="Dropdown สำหรับเลือกประเภทเอกสาร" src="https://im.dt.in.th/ipfs/bafybeid3px24h2jxm72ftc2a4kx3yfcbrd3zzrmehse5yjsdfxo5b2nstq/image.webp" /></p>
+<ul class="simple">
+<li><p>เมื่อเลือกเสร็จ คอลัมน์ <strong>Date</strong> (วันที่) และ <strong>Number</strong> (เลขที่เอกสาร) จะถูกเติมให้โดยอัตโนมัติ</p></li>
+</ul>
+<p><img alt="Date และ Number ถูกเติมให้อัตโนมัติ" src="https://im.dt.in.th/ipfs/bafybeiachoepzhivmjgeadjpsk2pvltwwjp5jueuj4xaqn2fgaj6visk4i/image.webp" /></p>
+</section>
+<section id="id5">
+<h3>3. กรอกข้อมูลที่เกี่ยวข้อง<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Credit Term:</strong> กำหนดระยะเวลาการชำระเงิน (เช่น 7 วัน, 15 วัน, 30 วัน)</p></li>
+<li><p><strong>Provider</strong> และ <strong>Client:</strong> ดับเบิลคลิกเซลล์ว่างๆ แล้วเลือกชื่อผู้ให้บริการและลูกค้า จากข้อมูลที่ได้กรอกไว้ในหน้า Providers และ Clients</p></li>
+<li><p><strong>Tax:</strong> ค่าเริ่มต้นจะอยู่ที่ <code class="docutils literal notranslate"><span class="pre">0%</span></code> สามารถปรับเปลี่ยนเป็น <code class="docutils literal notranslate"><span class="pre">-3%</span></code> หากต้องการหักภาษี ณ ที่จ่าย</p></li>
+<li><p><strong>Payment Method:</strong> เลือกช่องทางการรับเงิน ข้อมูลส่วนนี้จะถูกแทรกเข้าไปในส่วนท้ายใบแจ้งหนี้ พร้อมๆ กับการแนบ PromptPay QR Code มาให้ด้วย ถ้ากำหนดไว้</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>4. เพิ่มรายการสินค้าและบริการ<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>คลิกเลือกแถวเอกสารที่คุณเพิ่งสร้างอยู่</p></li>
+<li><p>มองไปที่ตาราง <strong>Items</strong> ฝั่งซ้ายล่าง</p></li>
+<li><p>กรอกข้อมูลลงในคอลัมน์ <strong>Description</strong> (รายละเอียด), <strong>Quantity</strong> (จำนวน), และ <strong>Unit Price</strong> (ราคาต่อหน่วย)</p></li>
+<li><p>เมื่อกรอกเสร็จ ยอด <strong>Total</strong> จะถูกคำนวณโดยอัตโนมัติ และผลลัพธ์ทั้งหมดจะแสดงที่ส่วนด้านขวาทันที</p></li>
+</ul>
+</section>
+<section id="pdf">
+<h3>5. สั่งพิมพ์เอกสาร / บันทึก PDF<a class="headerlink" href="#pdf" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>ไปที่กล่อง <strong>Preview &amp; Print</strong> ด้านขวา</p></li>
+<li><p>คลิกที่ปุ่ม <strong>“🖨️ พิมพ์เอกสาร”</strong></p></li>
+<li><p>เลือกว่าจะพิมพ์ออกมาเลย หรือบันทึกเป็นไฟล์ PDF</p></li>
+<li><p>ในไฟล์เอกสารจะมีพื้นที่ว่างสำหรับใส่ลายเซ็น ให้ใช้โปรแกรมแก้ไข PDF ใส่ลายเซ็นเข้าไปในเอกสารด้วยตัวเองอีกที</p></li>
+</ul>
+</section>
+</section>
+<section id="keyboard-shortcuts">
+<h2>Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Link to this heading">¶</a></h2>
+<p>คุณสามารถศึกษา <a class="reference external" href="https://support.getgrist.com/keyboard-shortcuts/">Keyboard Shortcuts ของ Grist</a> เพื่อเพิ่มข้อมูลได้อย่างรวดเร็ว</p>
+<p>ตัวอย่างการใช้งานคีย์บอร์ดในหน้า Documents:</p>
+<ol class="arabic simple">
+<li><p>คลิกที่กล่อง <strong>Documents</strong> ตรงไหนก็ได้ เพื่อให้โฟกัสอยู่ในตารางเอกสาร</p></li>
+<li><p>กด <strong>⌘↓</strong> (Mac) หรือ <strong>Ctrl+↓</strong> (Windows) เพื่อเลื่อนเคอร์เซอร์ไปที่แถวล่างสุด (แถวว่างสำหรับเพิ่มเอกสารใหม่)</p></li>
+<li><p>กด <strong>Home</strong> เพื่อเลื่อนเคอร์เซอร์ไปที่คอลัมน์แรกสุด (Document Type)</p></li>
+<li><p>กด <strong>Enter</strong> เพื่อเริ่มแก้ไขเซลล์ (Grist จะแสดงเมนูให้เลือกประเภทเอกสาร)</p></li>
+<li><p>กด <strong>q</strong> เพื่อเลือกประเภทเอกสาร Quotation (หรือกด <strong>i</strong> สำหรับ Invoice, <strong>r</strong> สำหรับ Receipt)</p></li>
+<li><p>กด <strong>Tab</strong> เพื่อยืนยันการเลือกประเภทเอกสาร และเลื่อนไปยังคอลัมน์ถัดไป (Date) โดยอัตโนมัติ</p></li>
+</ol>
+<p>หลังจากกรอกข้อมูลในแต่ละเซล แนะนำให้กดปุ่ม <strong>Tab</strong> เพื่อไปยังคอลัมน์ถัดไป (หากกดปุ่ม <strong>Enter</strong> โปรแกรมจะเลื่อนไปยังแถวถัดไปแทน)</p>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="index.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">bizdocgen</div>
+  </a>
+  <a href="advanced.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">การปรับแต่งขั้นสูง</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">เริ่มต้นใช้งาน</a><ul>
+<li><a class="reference internal" href="#grist">Grist คืออะไร?</a></li>
+<li><a class="reference internal" href="#id2">เปิดเทมเพลต</a></li>
+<li><a class="reference internal" href="#documents">โครงสร้างของหน้า Documents</a></li>
+<li><a class="reference internal" href="#id3">ขั้นตอนการสร้างเอกสาร</a><ul>
+<li><a class="reference internal" href="#id4">1. สร้างเอกสารใบใหม่</a></li>
+<li><a class="reference internal" href="#document-type">2. กำหนดประเภทเอกสาร (Document Type)</a></li>
+<li><a class="reference internal" href="#id5">3. กรอกข้อมูลที่เกี่ยวข้อง</a></li>
+<li><a class="reference internal" href="#id6">4. เพิ่มรายการสินค้าและบริการ</a></li>
+<li><a class="reference internal" href="#pdf">5. สั่งพิมพ์เอกสาร / บันทึก PDF</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">เริ่มต้นใช้งาน</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#grist">Grist คืออะไร?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">เปิดเทมเพลต</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documents">โครงสร้างของหน้า Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">ขั้นตอนการสร้างเอกสาร</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">การปรับแต่งขั้นสูง</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">ข้อจำกัดความรับผิดชอบ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/dtinth/bizdocgen/blob/main/LICENSE">MIT License</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/bizdocgen.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>
