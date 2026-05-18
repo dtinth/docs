@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Working with Attachments &#8212; grist-kit 0.1.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=db70e5da" />
+    <script src="../_static/documentation_options.js?v=92734c54"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Full Example" href="../example.html" />
+    <link rel="prev" title="Working with Records" href="records.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="../_static/toctree.js"></script>
+  <script src="../_static/searchtools.js"></script>
+  <script src="../_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="../index.html" class="thdocs-header-logo">
+    grist-kit 0.1.2 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="../index.html">grist-kit 0.1.2 documentation</a></li>
+    <li><a href="../library.html">Type-Safe Client Library</a></li>
+    <li aria-current="page">Working with Attachments</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="working-with-attachments">
+<h1>Working with Attachments<a class="headerlink" href="#working-with-attachments" title="Link to this heading">¶</a></h1>
+<p>Attachment operations are available via <code class="docutils literal notranslate"><span class="pre">doc.attachments</span></code>.</p>
+<section id="upload">
+<h2>upload<a class="headerlink" href="#upload" title="Link to this heading">¶</a></h2>
+<p>Uploads one or more files and returns their attachment IDs. These IDs can be stored in <code class="docutils literal notranslate"><span class="pre">Attachments</span></code>-typed columns.</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">id</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">attachments</span><span class="p">.</span><span class="nx">upload</span><span class="p">([</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">filename</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;report.pdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">pdfBuffer</span><span class="p">,</span><span class="w"> </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/pdf&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>Accepts <code class="docutils literal notranslate"><span class="pre">File</span></code>, <code class="docutils literal notranslate"><span class="pre">Blob</span></code>, or an object with <code class="docutils literal notranslate"><span class="pre">filename</span></code>, <code class="docutils literal notranslate"><span class="pre">data</span></code> (a <code class="docutils literal notranslate"><span class="pre">Blob</span></code>, <code class="docutils literal notranslate"><span class="pre">Uint8Array</span></code>, or <code class="docutils literal notranslate"><span class="pre">ArrayBuffer</span></code>), and an optional <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p>
+</section>
+<section id="get">
+<h2>get<a class="headerlink" href="#get" title="Link to this heading">¶</a></h2>
+<p>Retrieves metadata for an attachment by ID.</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">attachments</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">meta</span><span class="p">.</span><span class="nx">fileName</span><span class="p">,</span><span class="w"> </span><span class="nx">meta</span><span class="p">.</span><span class="nx">fileSize</span><span class="p">,</span><span class="w"> </span><span class="nx">meta</span><span class="p">.</span><span class="nx">timeUploaded</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="download">
+<h2>download<a class="headerlink" href="#download" title="Link to this heading">¶</a></h2>
+<p>Downloads an attachment as a <code class="docutils literal notranslate"><span class="pre">Blob</span></code>.</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">blob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">attachments</span><span class="p">.</span><span class="nx">download</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="downloadstream">
+<h2>downloadStream<a class="headerlink" href="#downloadstream" title="Link to this heading">¶</a></h2>
+<p>Downloads an attachment as a readable byte stream.</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">attachments</span><span class="p">.</span><span class="nx">downloadStream</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="api-reference">
+<h2>API reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://apiref-site.vercel.app/package/grist-kit/GristAttachments">GristAttachments</a> — attachment client</p></li>
+</ul>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="records.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Working with Records</div>
+  </a>
+  <a href="../example.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Full Example</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Working with Attachments</a><ul>
+<li><a class="reference internal" href="#upload">upload</a></li>
+<li><a class="reference internal" href="#get">get</a></li>
+<li><a class="reference internal" href="#download">download</a></li>
+<li><a class="reference internal" href="#downloadstream">downloadStream</a></li>
+<li><a class="reference internal" href="#api-reference">API reference</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">CLI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Type-Safe Client Library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generate.html">Generating a Type Definition File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">Creating a Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="records.html">Working with Records</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Working with Attachments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../example.html">Full Example</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="../_static/grist-kit.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

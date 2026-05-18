@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fetching Records &#8212; grist-kit 0.1.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=db70e5da" />
+    <script src="../_static/documentation_options.js?v=92734c54"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Type-Safe Client Library" href="../library.html" />
+    <link rel="prev" title="Listing Tables" href="tables.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="../_static/toctree.js"></script>
+  <script src="../_static/searchtools.js"></script>
+  <script src="../_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="../index.html" class="thdocs-header-logo">
+    grist-kit 0.1.2 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="../index.html">grist-kit 0.1.2 documentation</a></li>
+    <li><a href="../cli.html">CLI</a></li>
+    <li aria-current="page">Fetching Records</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="fetching-records">
+<h1>Fetching Records<a class="headerlink" href="#fetching-records" title="Link to this heading">¶</a></h1>
+<section id="records">
+<h2>records<a class="headerlink" href="#records" title="Link to this heading">¶</a></h2>
+<p>Fetches rows from a table and prints them as JSON.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>-y<span class="w"> </span>grist-kit<span class="w"> </span>records<span class="w"> </span>&lt;table&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</div>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">--filter</span> <span class="pre">&lt;key=value&gt;</span></code></dt><dd><p>Filter rows by column value. Repeatable for multiple filters.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--limit</span> <span class="pre">&lt;n&gt;</span></code></dt><dd><p>Maximum number of rows to return.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">&lt;json|csv&gt;</span></code></dt><dd><p>Output format. Defaults to <code class="docutils literal notranslate"><span class="pre">json</span></code>.</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>-y<span class="w"> </span>grist-kit<span class="w"> </span>records<span class="w"> </span>All_Products<span class="w"> </span>--limit<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;SKU&quot;</span><span class="p">:</span> <span class="s2">&quot;VEG-BLCK-28&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Product&quot;</span><span class="p">:</span> <span class="s2">&quot;Men&#39;s Stretch Five-Pocket Pants&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;In_Stock&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;Stock_Alert&quot;</span><span class="p">:</span> <span class="s2">&quot;In Stock&quot;</span>
+  <span class="p">},</span>
+  <span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>-y<span class="w"> </span>grist-kit<span class="w"> </span>records<span class="w"> </span>All_Products<span class="w"> </span>--filter<span class="w"> </span><span class="nv">Stock_Alert</span><span class="o">=</span>Low<span class="w"> </span>Stock<span class="w"> </span>--format<span class="w"> </span>csv
+</pre></div>
+</div>
+</section>
+<section id="sql">
+<h2>sql<a class="headerlink" href="#sql" title="Link to this heading">¶</a></h2>
+<p>Runs a SQL query against the document and prints results.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>-y<span class="w"> </span>grist-kit<span class="w"> </span>sql<span class="w"> </span><span class="s2">&quot;&lt;query&gt;&quot;</span><span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</div>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">&lt;json|csv&gt;</span></code></dt><dd><p>Output format. Defaults to <code class="docutils literal notranslate"><span class="pre">json</span></code>.</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>-y<span class="w"> </span>grist-kit<span class="w"> </span>sql<span class="w"> </span><span class="s2">&quot;SELECT SKU, In_Stock FROM All_Products ORDER BY In_Stock LIMIT 3&quot;</span><span class="w"> </span>--format<span class="w"> </span>csv
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SKU</span><span class="p">,</span><span class="n">In_Stock</span>
+<span class="n">VEG</span><span class="o">-</span><span class="n">BLCK</span><span class="o">-</span><span class="mi">34</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">SEW</span><span class="o">-</span><span class="n">LTBL</span><span class="o">-</span><span class="mi">36</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">SEW</span><span class="o">-</span><span class="n">LTBL</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span><span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="tables.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Listing Tables</div>
+  </a>
+  <a href="../library.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Type-Safe Client Library</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Fetching Records</a><ul>
+<li><a class="reference internal" href="#records">records</a></li>
+<li><a class="reference internal" href="#sql">sql</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../cli.html">CLI</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tables.html">Listing Tables</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fetching Records</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Type-Safe Client Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example.html">Full Example</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="../_static/grist-kit.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

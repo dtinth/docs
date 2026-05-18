@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Generating a Type Definition File &#8212; grist-kit 0.1.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=db70e5da" />
+    <script src="../_static/documentation_options.js?v=92734c54"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Creating a Client" href="client.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="../_static/toctree.js"></script>
+  <script src="../_static/searchtools.js"></script>
+  <script src="../_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="../index.html" class="thdocs-header-logo">
+    grist-kit 0.1.2 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="../index.html">grist-kit 0.1.2 documentation</a></li>
+    <li><a href="../library.html">Type-Safe Client Library</a></li>
+    <li aria-current="page">Generating a Type Definition File</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="generating-a-type-definition-file">
+<h1>Generating a Type Definition File<a class="headerlink" href="#generating-a-type-definition-file" title="Link to this heading">¶</a></h1>
+<p>Before using the type-safe client, you need to generate a TypeScript type definition file from your live Grist document. This file describes your tables and columns, and is passed as a type parameter to <code class="docutils literal notranslate"><span class="pre">gristDoc</span></code> to enable typesafe column access, filters, and inserts.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">generate</span></code> command reads the document schema via the Grist API and writes the type definition file. See <a class="reference internal" href="../cli/configuration.html"><span class="doc">Configuration</span></a> for how to configure the document URL and API key.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>grist-kit<span class="w"> </span>generate<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</div>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">--out</span> <span class="pre">&lt;path&gt;</span></code></dt><dd><p>Output file path. Defaults to <code class="docutils literal notranslate"><span class="pre">./grist-schema.ts</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--type-name</span> <span class="pre">&lt;name&gt;</span></code></dt><dd><p>Name of the exported TypeScript type. Defaults to <code class="docutils literal notranslate"><span class="pre">GristSchema</span></code>.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>grist-kit<span class="w"> </span>generate<span class="w"> </span>--out<span class="w"> </span>grist-schema.ts
+</pre></div>
+</div>
+<p>Re-run this command whenever the document’s columns change.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Save it as a <code class="docutils literal notranslate"><span class="pre">package.json</span></code> script so it’s easy to remember:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pnpm<span class="w"> </span>pkg<span class="w"> </span><span class="nb">set</span><span class="w"> </span>scripts.update-schema<span class="o">=</span><span class="s2">&quot;grist-kit generate --out grist-schema.ts&quot;</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="installation.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Installation</div>
+  </a>
+  <a href="client.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Creating a Client</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Generating a Type Definition File</a></li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">CLI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Type-Safe Client Library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Generating a Type Definition File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">Creating a Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="records.html">Working with Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attachments.html">Working with Attachments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../example.html">Full Example</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="../_static/grist-kit.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

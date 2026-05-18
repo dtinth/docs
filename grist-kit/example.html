@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Full Example &#8212; grist-kit 0.1.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=db70e5da" />
+    <script src="_static/documentation_options.js?v=92734c54"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Working with Attachments" href="library/attachments.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="index.html" class="thdocs-header-logo">
+    grist-kit 0.1.2 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="index.html">grist-kit 0.1.2 documentation</a></li>
+    <li aria-current="page">Full Example</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="full-example">
+<h1>Full Example<a class="headerlink" href="#full-example" title="Link to this heading">¶</a></h1>
+<p>This example shows a complete script that connects to a Grist doc, reads low-stock products, and places a refill order. It uses the <a class="reference external" href="https://www.getgrist.com/templates/inventory-manager/">Inventory Manager</a> template and covers the full workflow: setup, type generation, and a typesafe read/write script.</p>
+<p>Prerequisites: <a class="reference external" href="https://nodejs.org/docs/latest/api/typescript.html">Node.js 24+</a> and <a class="reference external" href="https://pnpm.io/">pnpm</a>.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h2>
+<p>Create a project and install grist-kit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>grist-inventory<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>grist-inventory
+pnpm<span class="w"> </span>init<span class="w"> </span>--init-type<span class="w"> </span>module
+pnpm<span class="w"> </span>add<span class="w"> </span>grist-kit
+pnpm<span class="w"> </span>add<span class="w"> </span>-D<span class="w"> </span>typescript<span class="w"> </span>@types/node<span class="w"> </span>@tsconfig/node24
+</pre></div>
+</div>
+<p>Create <code class="docutils literal notranslate"><span class="pre">tsconfig.json</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extends&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@tsconfig/node24/tsconfig.json&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Open the <a class="reference external" href="https://templates.getgrist.com/sXsBGDTKau1F/Inventory-Manager">Inventory Manager template doc</a>. In the left sidebar, click <strong>Settings</strong> → <strong>API</strong> → expand <strong>Document ID</strong> → copy the <strong>Base doc URL</strong>.</p>
+<p>Create <code class="docutils literal notranslate"><span class="pre">.env</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GRIST_DOC_URL</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">templates</span><span class="o">.</span><span class="n">getgrist</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">sXsBGDTKau1F3fvxkCyoaJ</span>
+</pre></div>
+</div>
+<p>Generate types from the live doc:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pnpm<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>grist-kit<span class="w"> </span>generate<span class="w"> </span>--out<span class="w"> </span>grist-schema.ts
+</pre></div>
+</div>
+</section>
+<section id="the-script">
+<h2>The script<a class="headerlink" href="#the-script" title="Link to this heading">¶</a></h2>
+<p>Create <code class="docutils literal notranslate"><span class="pre">refill.ts</span></code>:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">parseArgs</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;node:util&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">gristDoc</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;grist-kit&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">GristSchema</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./grist-schema.ts&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">values</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parseArgs</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;dry-run&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">default</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gristDoc</span><span class="o">&lt;</span><span class="nx">GristSchema</span><span class="o">&gt;</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">baseDocUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.GRIST_DOC_URL</span><span class="o">!</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">apiKey</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.GRIST_API_KEY</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">needsRefill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="s2">&quot;All_Products&quot;</span><span class="p">).</span><span class="nx">list</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">filter</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Stock_Alert</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Low Stock&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;OUT OF STOCK&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">needsRefill</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> products need a refill:\n`</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">p</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">needsRefill</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`  [</span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">Stock_Alert</span><span class="si">}</span><span class="sb">] </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">SKU</span><span class="si">}</span><span class="sb"> — </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">Product</span><span class="si">}</span><span class="sb"> (in stock: </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">In_Stock</span><span class="si">}</span><span class="sb">)`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">needsRefill</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">values</span><span class="p">[</span><span class="s2">&quot;dry-run&quot;</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="s2">&quot;dry-run&quot;</span><span class="p">])</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;\n(dry run — no order created)&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">orderId</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">doc</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="s2">&quot;Incoming_Orders&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">insert</span><span class="p">([{</span><span class="w"> </span><span class="nx">Order_Date</span><span class="o">:</span><span class="w"> </span><span class="kt">Math.floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000</span><span class="p">),</span><span class="w"> </span><span class="nx">Status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Order Placed&quot;</span><span class="w"> </span><span class="p">}]);</span>
+
+<span class="k">await</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="s2">&quot;Incoming_Order_Line_Items&quot;</span><span class="p">).</span><span class="nx">insert</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">needsRefill</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">    </span><span class="nx">Order_Number</span><span class="o">:</span><span class="w"> </span><span class="kt">orderId</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">SKU</span><span class="o">:</span><span class="w"> </span><span class="kt">p.id</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Qty</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="p">,</span>
+<span class="w">  </span><span class="p">})),</span>
+<span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`\nCreated order </span><span class="si">${</span><span class="nx">orderId</span><span class="si">}</span><span class="sb"> with </span><span class="si">${</span><span class="nx">needsRefill</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> line items.`</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A few things worth noticing:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">filter</span></code> argument is fully typed against the schema. Try misspelling <code class="docutils literal notranslate"><span class="pre">&quot;OUT</span> <span class="pre">OF</span> <span class="pre">STOCK&quot;</span></code> — TypeScript will reject it, because <code class="docutils literal notranslate"><span class="pre">Stock_Alert</span></code>’s allowed values are baked into the generated schema.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">In_Stock</span></code> and <code class="docutils literal notranslate"><span class="pre">Stock_Alert</span></code> are formula columns. The schema marks them as such, so they don’t appear in the <code class="docutils literal notranslate"><span class="pre">insert()</span></code> payload type — you can’t accidentally try to write them.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Order_Date</span></code> is a Grist <code class="docutils literal notranslate"><span class="pre">Date</span></code>, encoded as epoch seconds.</p></li>
+<li><p>Every Grist row has a numeric <code class="docutils literal notranslate"><span class="pre">id</span></code>. <code class="docutils literal notranslate"><span class="pre">Order_Number</span></code> is a <code class="docutils literal notranslate"><span class="pre">Ref</span></code> to <code class="docutils literal notranslate"><span class="pre">Incoming_Orders</span></code>, so it expects that row id.</p></li>
+</ul>
+</section>
+<section id="run-it">
+<h2>Run it<a class="headerlink" href="#run-it" title="Link to this heading">¶</a></h2>
+<p>Test against the public template (read-only, no API key needed):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>--env-file<span class="o">=</span>.env<span class="w"> </span>refill.ts<span class="w"> </span>--dry-run
+</pre></div>
+</div>
+<p>To actually place the order, make a copy of the template doc under your own account, generate an API key in <strong>Profile Settings</strong> → <strong>API</strong>, and update <code class="docutils literal notranslate"><span class="pre">.env</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GRIST_DOC_URL</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">host</span><span class="o">&gt;/</span><span class="n">api</span><span class="o">/</span><span class="n">docs</span><span class="o">/&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">doc</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span>
+<span class="n">GRIST_API_KEY</span><span class="o">=&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">key</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>--env-file<span class="o">=</span>.env<span class="w"> </span>refill.ts
+</pre></div>
+</div>
+<p>Open your doc — there’s a new row in <strong>Incoming Orders</strong> with line items for each low-stock product.</p>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="library/attachments.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Working with Attachments</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Full Example</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#the-script">The script</a></li>
+<li><a class="reference internal" href="#run-it">Run it</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library.html">Type-Safe Client Library</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Full Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-script">The script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-it">Run it</a></li>
+</ul>
+</li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/grist-kit.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>
