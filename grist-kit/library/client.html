@@ -14,7 +14,7 @@
     <script src="../_static/thdocs.js?v=4786390b"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Working with Records" href="records.html" />
+    <link rel="next" title="Authentication" href="authentication.html" />
     <link rel="prev" title="Generating a Type Definition File" href="generate.html" /> 
   <meta name="generator" content="thdocs">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,7 +76,7 @@
 <dl class="simple myst">
 <dt><code class="docutils literal notranslate"><span class="pre">baseDocUrl</span></code></dt><dd><p>Base URL of the Grist document. Required.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">apiKey</span></code></dt><dd><p>Grist API key. Required unless the document is public.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">apiKey</span></code> / <code class="docutils literal notranslate"><span class="pre">accessToken</span></code></dt><dd><p>One of these is required unless the document is public. See <a class="reference internal" href="authentication.html"><span class="doc">Authentication</span></a> for the difference and security checklist.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">fetchOptions</span></code></dt><dd><p>Additional options forwarded to the underlying <code class="docutils literal notranslate"><span class="pre">ofetch</span></code> client — useful for custom headers or timeouts.</p>
 </dd>
@@ -97,9 +97,9 @@
     <div class="thdocs-prev-next-label">Previous</div>
     <div class="thdocs-prev-next-title">Generating a Type Definition File</div>
   </a>
-  <a href="records.html" class="thdocs-next">
+  <a href="authentication.html" class="thdocs-next">
     <div class="thdocs-prev-next-label">Next</div>
-    <div class="thdocs-prev-next-title">Working with Records</div>
+    <div class="thdocs-prev-next-title">Authentication</div>
   </a>
 </nav>
             <div class="clearer"></div>
@@ -133,6 +133,7 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generate.html">Generating a Type Definition File</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Creating a Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="records.html">Working with Records</a></li>
 <li class="toctree-l2"><a class="reference internal" href="attachments.html">Working with Attachments</a></li>
 </ul>

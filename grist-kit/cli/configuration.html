@@ -59,7 +59,7 @@
 <dl class="simple myst">
 <dt><code class="docutils literal notranslate"><span class="pre">GRIST_DOC_URL</span></code></dt><dd><p>Base doc URL — e.g. <code class="docutils literal notranslate"><span class="pre">https://grist.example.com/api/docs/xxxx</span></code>. Required for all commands.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">GRIST_API_KEY</span></code></dt><dd><p>Grist API key. Required unless the document is public.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">GRIST_API_KEY</span></code> / <code class="docutils literal notranslate"><span class="pre">GRIST_ACCESS_TOKEN</span></code></dt><dd><p>Provide one (not both). See <a class="reference internal" href="../library/authentication.html"><span class="doc">Authentication</span></a> for the difference.</p>
 </dd>
 </dl>
 <p>The CLI reads from environment variables. It also supports loading a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file, though real environment variables take precedence.</p>
@@ -71,6 +71,8 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--doc-url</span> <span class="pre">&lt;url&gt;</span></code></dt><dd><p>Overrides <code class="docutils literal notranslate"><span class="pre">GRIST_DOC_URL</span></code>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--api-key</span> <span class="pre">&lt;key&gt;</span></code></dt><dd><p>Overrides <code class="docutils literal notranslate"><span class="pre">GRIST_API_KEY</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--access-token</span> <span class="pre">&lt;token&gt;</span></code></dt><dd><p>Overrides <code class="docutils literal notranslate"><span class="pre">GRIST_ACCESS_TOKEN</span></code>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--env-file</span> <span class="pre">&lt;path&gt;</span></code></dt><dd><p>Load a specific <code class="docutils literal notranslate"><span class="pre">.env</span></code> file instead of the default.</p>
 </dd>

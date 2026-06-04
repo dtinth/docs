@@ -8,6 +8,7 @@ The grist-kit client library lets you query and manipulate Grist documents from 
 library/installation
 library/generate
 library/client
+library/authentication
 library/records
 library/attachments
 ```

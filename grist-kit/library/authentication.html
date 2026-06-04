@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Authentication &#8212; grist-kit 0.1.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=db70e5da" />
+    <script src="../_static/documentation_options.js?v=92734c54"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Working with Records" href="records.html" />
+    <link rel="prev" title="Creating a Client" href="client.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="../_static/toctree.js"></script>
+  <script src="../_static/searchtools.js"></script>
+  <script src="../_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="../index.html" class="thdocs-header-logo">
+    grist-kit 0.1.2 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="../index.html">grist-kit 0.1.2 documentation</a></li>
+    <li><a href="../library.html">Type-Safe Client Library</a></li>
+    <li aria-current="page">Authentication</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="authentication">
+<h1>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h1>
+<p>grist-kit supports two ways to authenticate against a Grist document: an API key, or a Grist access token. They differ in lifetime, scope, and how they are sent on the wire. Pick the one that matches your use case.</p>
+<section id="api-key">
+<h2>API key<a class="headerlink" href="#api-key" title="Link to this heading">¶</a></h2>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">gristDoc</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;grist-kit&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gristDoc</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">baseDocUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.GRIST_DOC_URL</span><span class="o">!</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">apiKey</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.GRIST_API_KEY</span><span class="p">,</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>API keys are long-lived credentials tied to a single Grist user. They are sent as <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span> <span class="pre">&lt;key&gt;</span></code> on every request. Generate one in Grist’s <strong>Profile Settings → API</strong>. Use this when you have a stable server-to-server trust relationship with Grist.</p>
+</section>
+<section id="access-token">
+<h2>Access token<a class="headerlink" href="#access-token" title="Link to this heading">¶</a></h2>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">gristDoc</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;grist-kit&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gristDoc</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">baseDocUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">tokenInfo.baseUrl</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">accessToken</span><span class="o">:</span><span class="w"> </span><span class="kt">tokenInfo.token</span><span class="p">,</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Access tokens are short-lived (15-minute default TTL), document-scoped JWTs. They are sent as a <code class="docutils literal notranslate"><span class="pre">?auth=&lt;token&gt;</span></code> query parameter on every request. They are the auth mechanism used by Grist’s custom-widget plugin API (<code class="docutils literal notranslate"><span class="pre">grist.docApi.getAccessToken()</span></code>).</p>
+<p>A function is also accepted, invoked <strong>per request</strong>:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gristDoc</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">baseDocUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">tokenInfo.baseUrl</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">accessToken</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">tokenInfo</span><span class="p">.</span><span class="nx">token</span><span class="p">,</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Use a function when the token may need to be refreshed (e.g., a widget whose user keeps the tab open for more than 15 minutes). Use a plain string when the token arrives from outside grist-kit (e.g., a backend that receives it in a request from a widget) and is used for a single short-lived operation.</p>
+</section>
+<section id="mutual-exclusion">
+<h2>Mutual exclusion<a class="headerlink" href="#mutual-exclusion" title="Link to this heading">¶</a></h2>
+<p>You may not set both <code class="docutils literal notranslate"><span class="pre">apiKey</span></code> and <code class="docutils literal notranslate"><span class="pre">accessToken</span></code> at the same time. <code class="docutils literal notranslate"><span class="pre">createRequester</span></code> throws:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Specify</span> <span class="n">either</span> <span class="n">apiKey</span> <span class="ow">or</span> <span class="n">accessToken</span><span class="p">,</span> <span class="ow">not</span> <span class="n">both</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>An empty string for either field is treated as “not set”, so <code class="docutils literal notranslate"><span class="pre">apiKey:</span> <span class="pre">&quot;&quot;</span></code> + <code class="docutils literal notranslate"><span class="pre">accessToken:</span> <span class="pre">&quot;tok&quot;</span></code> is valid (only the access token is used).</p>
+</section>
+<section id="unauthenticated">
+<h2>Unauthenticated<a class="headerlink" href="#unauthenticated" title="Link to this heading">¶</a></h2>
+<p>If neither field is set, requests are sent without any auth header or query parameter. This works for public Grist documents.</p>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="client.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Creating a Client</div>
+  </a>
+  <a href="records.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Working with Records</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Authentication</a><ul>
+<li><a class="reference internal" href="#api-key">API key</a></li>
+<li><a class="reference internal" href="#access-token">Access token</a></li>
+<li><a class="reference internal" href="#mutual-exclusion">Mutual exclusion</a></li>
+<li><a class="reference internal" href="#unauthenticated">Unauthenticated</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">CLI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Type-Safe Client Library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generate.html">Generating a Type Definition File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">Creating a Client</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="records.html">Working with Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attachments.html">Working with Attachments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../example.html">Full Example</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="../_static/grist-kit.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

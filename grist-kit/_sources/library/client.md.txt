@@ -27,8 +27,8 @@ Pass the generated schema as the type parameter to enable type inference across 
 `baseDocUrl`
 : Base URL of the Grist document. Required.
 
-`apiKey`
-: Grist API key. Required unless the document is public.
+`apiKey` / `accessToken`
+: One of these is required unless the document is public. See {doc}`authentication` for the difference and security checklist.
 
 `fetchOptions`
 : Additional options forwarded to the underlying `ofetch` client — useful for custom headers or timeouts.
