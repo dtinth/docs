@@ -1,3 +1,5 @@
+<!-- Generated from src/help/topics.ts — do not edit directly. Run `vp run docs` to regenerate. -->
+
 # Working with Attachments
 
 Attachment operations are available via `doc.attachments`.

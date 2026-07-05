@@ -14,7 +14,7 @@
     <script src="_static/thdocs.js?v=4786390b"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="CLI" href="cli.html" /> 
+    <link rel="next" title="Quick Start" href="quickstart.html" /> 
   <meta name="generator" content="thdocs">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,47 +49,47 @@
   </ul>
 </nav>
 <main class="prose">
+<!-- Generated from src/help/topics.ts — do not edit directly. Run `vp run docs` to regenerate. -->
 <section id="grist-kit">
 <h1>grist-kit<a class="headerlink" href="#grist-kit" title="Link to this heading">¶</a></h1>
-<p>A CLI and type-safe client library for <a class="reference external" href="https://www.getgrist.com">Grist</a>, written in TypeScript. It provides:</p>
+<p>grist-kit is a CLI and type-safe client library for <a class="reference external" href="https://www.getgrist.com">Grist</a>, written in TypeScript. It provides:</p>
 <ul class="simple">
-<li><p>An agent-friendly <a class="reference internal" href="cli.html"><span class="std std-doc">CLI</span></a> for interacting with Grist documents.</p></li>
-<li><p>A <a class="reference internal" href="library/generate.html"><span class="std std-doc">command-line tool to generate type definitions</span></a> from a Grist table schema, along with a <a class="reference internal" href="library/client.html"><span class="std std-doc">type-safe client</span></a> for programmatically querying and manipulating Grist documents.</p></li>
+<li><p>An agent-friendly <strong>CLI</strong> for inspecting and querying Grist documents from the shell: list tables, fetch records, run SQL queries.</p></li>
+<li><p>A <strong>type-safe client library</strong>: generate a TypeScript schema from a live doc, then read and write records with column names, filter values, and write payloads checked at compile time.</p></li>
 </ul>
-<hr class="docutils" />
 <div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">CLI</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli/quickstart.html">Quick Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/configuration.html">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/tables.html">Listing Tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/fetching.html">Fetching Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Listing Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Fetching Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Running SQL Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate.html">Generating a Type Definition File</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="library.html">Type-Safe Client Library</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="library/installation.html">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library/generate.html">Generating a Type Definition File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library/client.html">Creating a Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library/authentication.html">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library/records.html">Working with Records</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library/attachments.html">Working with Attachments</a></li>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Client library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library.html">Using the Client Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crud.html">Reading and Writing Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attachments.html">Working with Attachments</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="example.html">Full Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="example.html#setup">Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example.html#the-script">The script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example.html#run-it">Run it</a></li>
-</ul>
-</li>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Full Example</a></li>
 </ul>
 </div>
 </section>
 
 </main>
 <nav class="thdocs-prev-next" aria-label="Pagination">
-  <a href="cli.html" class="thdocs-next">
+  <a href="quickstart.html" class="thdocs-next">
     <div class="thdocs-prev-next-label">Next</div>
-    <div class="thdocs-prev-next-title">CLI</div>
+    <div class="thdocs-prev-next-title">Quick Start</div>
   </a>
 </nav>
             <div class="clearer"></div>
@@ -99,7 +99,9 @@
   <aside class="thdocs-page-toc">
     <div class="thdocs-page-toc-title">On this page</div>
     <ul>
-<li><a class="reference internal" href="#">grist-kit</a></li>
+<li><a class="reference internal" href="#">grist-kit</a><ul>
+</ul>
+</li>
 </ul>
 
   </aside>
@@ -112,9 +114,24 @@
   <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
     <thdocs-tree id="toctree-root">
       
-      <div class="thdocs-fallback-tree"><ul>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="library.html">Type-Safe Client Library</a></li>
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Listing Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Fetching Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Running SQL Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate.html">Generating a Type Definition File</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Client library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library.html">Using the Client Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crud.html">Reading and Writing Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attachments.html">Working with Attachments</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Full Example</a></li>
 </ul>
 </div>

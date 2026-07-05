@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Configuration &#8212; grist-kit 0.1.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
-    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=db70e5da" />
-    <script src="../_static/documentation_options.js?v=92734c54"></script>
-    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script src="../_static/thdocs.js?v=4786390b"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=db70e5da" />
+    <script src="_static/documentation_options.js?v=92734c54"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Listing Tables" href="tables.html" />
     <link rel="prev" title="Quick Start" href="quickstart.html" /> 
   <meta name="generator" content="thdocs">
@@ -21,9 +21,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
-  <script src="../_static/toctree.js"></script>
-  <script src="../_static/searchtools.js"></script>
-  <script src="../_static/language_data.js"></script>
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
   </head><body>
 <header class="thdocs-header">
   <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
@@ -33,7 +33,7 @@
       <line x1="3" y1="18" x2="21" y2="18" />
     </svg>
   </button>
-  <a href="../index.html" class="thdocs-header-logo">
+  <a href="index.html" class="thdocs-header-logo">
     grist-kit 0.1.2 documentation
   </a>
 </header>  
@@ -45,38 +45,32 @@
             
 <nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
   <ul>
-    <li><a href="../index.html">grist-kit 0.1.2 documentation</a></li>
-    <li><a href="../cli.html">CLI</a></li>
+    <li><a href="index.html">grist-kit 0.1.2 documentation</a></li>
     <li aria-current="page">Configuration</li>
   </ul>
 </nav>
 <main class="prose">
+<!-- Generated from src/help/topics.ts — do not edit directly. Run `vp run docs` to regenerate. -->
 <section id="configuration">
 <h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h1>
 <p>All CLI commands require a Grist document URL. Credentials are read from environment variables or flags.</p>
 <section id="environment-variables">
 <h2>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h2>
-<dl class="simple myst">
-<dt><code class="docutils literal notranslate"><span class="pre">GRIST_DOC_URL</span></code></dt><dd><p>Base doc URL — e.g. <code class="docutils literal notranslate"><span class="pre">https://grist.example.com/api/docs/xxxx</span></code>. Required for all commands.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">GRIST_API_KEY</span></code> / <code class="docutils literal notranslate"><span class="pre">GRIST_ACCESS_TOKEN</span></code></dt><dd><p>Provide one (not both). See <a class="reference internal" href="../library/authentication.html"><span class="doc">Authentication</span></a> for the difference.</p>
-</dd>
-</dl>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GRIST_DOC_URL</span></code> — base doc URL, e.g. <code class="docutils literal notranslate"><span class="pre">https://grist.example.com/api/docs/xxxx</span></code>. Required for all commands. Find it in Grist under <strong>Settings</strong> → <strong>API</strong> → <strong>Document ID</strong> → <strong>Base doc URL</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRIST_API_KEY</span></code> / <code class="docutils literal notranslate"><span class="pre">GRIST_ACCESS_TOKEN</span></code> — provide one (not both). Neither is needed for public documents. See <code class="docutils literal notranslate"><span class="pre">grist-kit</span> <span class="pre">help</span> <span class="pre">authentication</span></code> for the difference.</p></li>
+</ul>
 <p>The CLI reads from environment variables. It also supports loading a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file, though real environment variables take precedence.</p>
 </section>
 <section id="flags">
 <h2>Flags<a class="headerlink" href="#flags" title="Link to this heading">¶</a></h2>
 <p>These flags are accepted by every command and override the corresponding environment variable.</p>
-<dl class="simple myst">
-<dt><code class="docutils literal notranslate"><span class="pre">--doc-url</span> <span class="pre">&lt;url&gt;</span></code></dt><dd><p>Overrides <code class="docutils literal notranslate"><span class="pre">GRIST_DOC_URL</span></code>.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--api-key</span> <span class="pre">&lt;key&gt;</span></code></dt><dd><p>Overrides <code class="docutils literal notranslate"><span class="pre">GRIST_API_KEY</span></code>.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--access-token</span> <span class="pre">&lt;token&gt;</span></code></dt><dd><p>Overrides <code class="docutils literal notranslate"><span class="pre">GRIST_ACCESS_TOKEN</span></code>.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--env-file</span> <span class="pre">&lt;path&gt;</span></code></dt><dd><p>Load a specific <code class="docutils literal notranslate"><span class="pre">.env</span></code> file instead of the default.</p>
-</dd>
-</dl>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--doc-url</span> <span class="pre">&lt;url&gt;</span></code> — overrides <code class="docutils literal notranslate"><span class="pre">GRIST_DOC_URL</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--api-key</span> <span class="pre">&lt;key&gt;</span></code> — overrides <code class="docutils literal notranslate"><span class="pre">GRIST_API_KEY</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--access-token</span> <span class="pre">&lt;token&gt;</span></code> — overrides <code class="docutils literal notranslate"><span class="pre">GRIST_ACCESS_TOKEN</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--env-file</span> <span class="pre">&lt;path&gt;</span></code> — load a specific <code class="docutils literal notranslate"><span class="pre">.env</span></code> file instead of the default.</p></li>
+</ul>
 </section>
 </section>
 
@@ -115,20 +109,29 @@
   <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
     <thdocs-tree id="toctree-root">
       
-      <div class="thdocs-fallback-tree"><ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../cli.html">CLI</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tables.html">Listing Tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fetching.html">Fetching Records</a></li>
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Listing Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Fetching Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Running SQL Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate.html">Generating a Type Definition File</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../library.html">Type-Safe Client Library</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../example.html">Full Example</a></li>
+<p class="caption" role="heading"><span class="caption-text">Client library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library.html">Using the Client Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crud.html">Reading and Writing Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attachments.html">Working with Attachments</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Full Example</a></li>
 </ul>
 </div>
     </thdocs-tree>
-    <a href="../_static/grist-kit.pdf" class="thdocs-pdf-link">
+    <a href="_static/grist-kit.pdf" class="thdocs-pdf-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
       Download PDF
     </a>

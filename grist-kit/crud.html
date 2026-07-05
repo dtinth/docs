@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Working with Records &#8212; grist-kit 0.1.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
-    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=db70e5da" />
-    <script src="../_static/documentation_options.js?v=92734c54"></script>
-    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script src="../_static/thdocs.js?v=4786390b"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <title>Reading and Writing Records &#8212; grist-kit 0.1.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=db70e5da" />
+    <script src="_static/documentation_options.js?v=92734c54"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Working with Attachments" href="attachments.html" />
     <link rel="prev" title="Authentication" href="authentication.html" /> 
   <meta name="generator" content="thdocs">
@@ -21,9 +21,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
-  <script src="../_static/toctree.js"></script>
-  <script src="../_static/searchtools.js"></script>
-  <script src="../_static/language_data.js"></script>
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
   </head><body>
 <header class="thdocs-header">
   <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
@@ -33,7 +33,7 @@
       <line x1="3" y1="18" x2="21" y2="18" />
     </svg>
   </button>
-  <a href="../index.html" class="thdocs-header-logo">
+  <a href="index.html" class="thdocs-header-logo">
     grist-kit 0.1.2 documentation
   </a>
 </header>  
@@ -45,14 +45,14 @@
             
 <nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
   <ul>
-    <li><a href="../index.html">grist-kit 0.1.2 documentation</a></li>
-    <li><a href="../library.html">Type-Safe Client Library</a></li>
-    <li aria-current="page">Working with Records</li>
+    <li><a href="index.html">grist-kit 0.1.2 documentation</a></li>
+    <li aria-current="page">Reading and Writing Records</li>
   </ul>
 </nav>
 <main class="prose">
-<section id="working-with-records">
-<h1>Working with Records<a class="headerlink" href="#working-with-records" title="Link to this heading">¶</a></h1>
+<!-- Generated from src/help/topics.ts — do not edit directly. Run `vp run docs` to regenerate. -->
+<section id="reading-and-writing-records">
+<h1>Reading and Writing Records<a class="headerlink" href="#reading-and-writing-records" title="Link to this heading">¶</a></h1>
 <p>Access a table via <code class="docutils literal notranslate"><span class="pre">doc.table(&quot;TableName&quot;)</span></code>. All methods are typed against the generated schema.</p>
 <section id="list">
 <h2>list<a class="headerlink" href="#list" title="Link to this heading">¶</a></h2>
@@ -64,16 +64,12 @@
 <span class="p">});</span>
 </pre></div>
 </div>
-<dl class="simple myst">
-<dt><code class="docutils literal notranslate"><span class="pre">filter</span></code></dt><dd><p>Equality-style filters keyed by column name. Each value is an array of allowed values.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">sort</span></code></dt><dd><p>Column name to sort by. Prefix with <code class="docutils literal notranslate"><span class="pre">-</span></code> for descending order. Accepts a single value or an array.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">limit</span></code></dt><dd><p>Maximum number of rows to return.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">hidden</span></code></dt><dd><p>Include hidden columns in the response.</p>
-</dd>
-</dl>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filter</span></code> — equality-style filters keyed by column name. Each value is an array of allowed values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sort</span></code> — column name to sort by. Prefix with <code class="docutils literal notranslate"><span class="pre">-</span></code> for descending order. Accepts a single value or an array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">limit</span></code> — maximum number of rows to return.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden</span></code> — include hidden columns in the response.</p></li>
+</ul>
 </section>
 <section id="insert">
 <h2>insert<a class="headerlink" href="#insert" title="Link to this heading">¶</a></h2>
@@ -100,14 +96,11 @@
 <span class="w">  </span><span class="p">.</span><span class="nx">upsert</span><span class="p">([{</span><span class="w"> </span><span class="nx">require</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;alice@example.com&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">fields</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">Tier</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pro&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}]);</span>
 </pre></div>
 </div>
-<dl class="simple myst">
-<dt><code class="docutils literal notranslate"><span class="pre">onMany</span></code></dt><dd><p>Behavior when multiple rows match: <code class="docutils literal notranslate"><span class="pre">&quot;first&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">noCreate</span></code></dt><dd><p>Do not create a new row when no match is found.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">noUpdate</span></code></dt><dd><p>Do not update an existing row when a match is found.</p>
-</dd>
-</dl>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">onMany</span></code> — behavior when multiple rows match: <code class="docutils literal notranslate"><span class="pre">&quot;first&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">noCreate</span></code> — do not create a new row when no match is found.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">noUpdate</span></code> — do not update an existing row when a match is found.</p></li>
+</ul>
 </section>
 <section id="delete">
 <h2>delete<a class="headerlink" href="#delete" title="Link to this heading">¶</a></h2>
@@ -143,7 +136,7 @@
   <aside class="thdocs-page-toc">
     <div class="thdocs-page-toc-title">On this page</div>
     <ul>
-<li><a class="reference internal" href="#">Working with Records</a><ul>
+<li><a class="reference internal" href="#">Reading and Writing Records</a><ul>
 <li><a class="reference internal" href="#list">list</a></li>
 <li><a class="reference internal" href="#insert">insert</a></li>
 <li><a class="reference internal" href="#update">update</a></li>
@@ -164,22 +157,29 @@
   <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
     <thdocs-tree id="toctree-root">
       
-      <div class="thdocs-fallback-tree"><ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../cli.html">CLI</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../library.html">Type-Safe Client Library</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generate.html">Generating a Type Definition File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html">Creating a Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Working with Records</a></li>
-<li class="toctree-l2"><a class="reference internal" href="attachments.html">Working with Attachments</a></li>
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Listing Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Fetching Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Running SQL Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate.html">Generating a Type Definition File</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../example.html">Full Example</a></li>
+<p class="caption" role="heading"><span class="caption-text">Client library</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="library.html">Using the Client Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reading and Writing Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attachments.html">Working with Attachments</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Full Example</a></li>
 </ul>
 </div>
     </thdocs-tree>
-    <a href="../_static/grist-kit.pdf" class="thdocs-pdf-link">
+    <a href="_static/grist-kit.pdf" class="thdocs-pdf-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
       Download PDF
     </a>

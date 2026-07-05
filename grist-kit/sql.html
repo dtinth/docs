@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CLI &#8212; grist-kit 0.1.2 documentation</title>
+    <title>Running SQL Queries &#8212; grist-kit 0.1.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
     <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=db70e5da" />
     <script src="_static/documentation_options.js?v=92734c54"></script>
@@ -14,8 +14,8 @@
     <script src="_static/thdocs.js?v=4786390b"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Quick Start" href="cli/quickstart.html" />
-    <link rel="prev" title="grist-kit" href="index.html" /> 
+    <link rel="next" title="Generating a Type Definition File" href="generate.html" />
+    <link rel="prev" title="Fetching Records" href="records.html" /> 
   <meta name="generator" content="thdocs">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,44 +46,42 @@
 <nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
   <ul>
     <li><a href="index.html">grist-kit 0.1.2 documentation</a></li>
-    <li aria-current="page">CLI</li>
+    <li aria-current="page">Running SQL Queries</li>
   </ul>
 </nav>
 <main class="prose">
-<section id="cli">
-<h1>CLI<a class="headerlink" href="#cli" title="Link to this heading">¶</a></h1>
-<p>grist-kit provides a command-line interface for working with Grist documents — <a class="reference internal" href="cli/tables.html"><span class="std std-doc">listing tables</span></a>, <a class="reference internal" href="cli/fetching.html"><span class="std std-doc">fetching records, and running SQL queries</span></a> — without writing code or making manual API calls. This makes it useful for both humans and AI agents that need to inspect or manipulate Grist data directly from the shell.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cli/quickstart.html">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cli/configuration.html">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli/configuration.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/configuration.html#flags">Flags</a></li>
+<!-- Generated from src/help/topics.ts — do not edit directly. Run `vp run docs` to regenerate. -->
+<section id="running-sql-queries">
+<h1>Running SQL Queries<a class="headerlink" href="#running-sql-queries" title="Link to this heading">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">sql</span></code> command runs a read-only SQL query against the document and prints the results.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grist-kit<span class="w"> </span>sql<span class="w"> </span><span class="s2">&quot;&lt;query&gt;&quot;</span><span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</div>
+<p>Options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">&lt;json|csv&gt;</span></code> — output format. Defaults to <code class="docutils literal notranslate"><span class="pre">json</span></code>.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cli/tables.html">Listing Tables</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli/tables.html#text-output">Text output</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/tables.html#json-output">JSON output</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cli/fetching.html">Fetching Records</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli/fetching.html#records">records</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/fetching.html#sql">sql</a></li>
-</ul>
-</li>
-</ul>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grist-kit<span class="w"> </span>sql<span class="w"> </span><span class="s2">&quot;SELECT SKU, In_Stock FROM All_Products ORDER BY In_Stock LIMIT 3&quot;</span><span class="w"> </span>--format<span class="w"> </span>csv
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SKU</span><span class="p">,</span><span class="n">In_Stock</span>
+<span class="n">VEG</span><span class="o">-</span><span class="n">BLCK</span><span class="o">-</span><span class="mi">34</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">SEW</span><span class="o">-</span><span class="n">LTBL</span><span class="o">-</span><span class="mi">36</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">SEW</span><span class="o">-</span><span class="n">LTBL</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span><span class="mi">0</span>
+</pre></div>
 </div>
 </section>
 
 </main>
 <nav class="thdocs-prev-next" aria-label="Pagination">
-  <a href="index.html" class="thdocs-prev">
+  <a href="records.html" class="thdocs-prev">
     <div class="thdocs-prev-next-label">Previous</div>
-    <div class="thdocs-prev-next-title">grist-kit</div>
+    <div class="thdocs-prev-next-title">Fetching Records</div>
   </a>
-  <a href="cli/quickstart.html" class="thdocs-next">
+  <a href="generate.html" class="thdocs-next">
     <div class="thdocs-prev-next-label">Next</div>
-    <div class="thdocs-prev-next-title">Quick Start</div>
+    <div class="thdocs-prev-next-title">Generating a Type Definition File</div>
   </a>
 </nav>
             <div class="clearer"></div>
@@ -93,7 +91,7 @@
   <aside class="thdocs-page-toc">
     <div class="thdocs-page-toc-title">On this page</div>
     <ul>
-<li><a class="reference internal" href="#">CLI</a></li>
+<li><a class="reference internal" href="#">Running SQL Queries</a></li>
 </ul>
 
   </aside>
@@ -106,15 +104,24 @@
   <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
     <thdocs-tree id="toctree-root">
       
-      <div class="thdocs-fallback-tree"><ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">CLI</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli/quickstart.html">Quick Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/configuration.html">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/tables.html">Listing Tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/fetching.html">Fetching Records</a></li>
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Listing Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="records.html">Fetching Records</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running SQL Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate.html">Generating a Type Definition File</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="library.html">Type-Safe Client Library</a></li>
+<p class="caption" role="heading"><span class="caption-text">Client library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library.html">Using the Client Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crud.html">Reading and Writing Records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attachments.html">Working with Attachments</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Full Example</a></li>
 </ul>
 </div>

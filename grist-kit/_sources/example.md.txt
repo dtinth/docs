@@ -1,3 +1,5 @@
+<!-- Generated from src/help/topics.ts — do not edit directly. Run `vp run docs` to regenerate. -->
+
 # Full Example
 
 This example shows a complete script that connects to a Grist doc, reads low-stock products, and places a refill order. It uses the [Inventory Manager](https://www.getgrist.com/templates/inventory-manager/) template and covers the full workflow: setup, type generation, and a typesafe read/write script.

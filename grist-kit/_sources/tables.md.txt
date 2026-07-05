@@ -1,18 +1,21 @@
+<!-- Generated from src/help/topics.ts — do not edit directly. Run `vp run docs` to regenerate. -->
+
 # Listing Tables
 
 The `tables` command lists all tables in a Grist document, along with their columns and types.
 
 ```bash
-npx -y grist-kit tables [options]
+grist-kit tables [options]
 ```
 
-`--format <text|json>`
-: Output format. Defaults to `text`.
+Options:
+
+- `--format <text|json>` — output format. Defaults to `text`.
 
 ## Text output
 
 ```bash
-npx -y grist-kit tables
+grist-kit tables
 ```
 
 ```
@@ -37,7 +40,7 @@ Incoming_Orders
 Use `--format json` to get the full column metadata from the Grist API, including labels, formulas, and widget options. Useful for inspecting the document schema.
 
 ```bash
-npx -y grist-kit tables --format json
+grist-kit tables --format json
 ```
 
 ```
