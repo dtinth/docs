@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Configuration &#8212; vxbeamer 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=db70e5da" />
+    <script src="_static/documentation_options.js?v=7026087e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API" href="api.html" />
+    <link rel="prev" title="Authentication" href="authentication.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="index.html" class="thdocs-header-logo">
+    vxbeamer 0.0.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="index.html">vxbeamer 0.0.0 documentation</a></li>
+    <li aria-current="page">Configuration</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h1>
+<p>The backend is configured with environment variables.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DASHSCOPE_API_KEY</span></code></p></td>
+<td><p>Default provider</p></td>
+<td><p>Alibaba Cloud DashScope key for Qwen3-ASR-Flash, Qwen Omni Realtime and Qwen-Audio ASR. The default provider is <code class="docutils literal notranslate"><span class="pre">qwen</span></code>, so it is needed unless <code class="docutils literal notranslate"><span class="pre">ASR_PROVIDER</span></code> names another one (<code class="docutils literal notranslate"><span class="pre">mock</span></code> needs no key)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DASHSCOPE_WORKSPACE_ID</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Model Studio workspace id. Needed only by <code class="docutils literal notranslate"><span class="pre">qwen-omni/qwen3.8-omni-flash-realtime</span></code> and the <code class="docutils literal notranslate"><span class="pre">qwen-audio/*</span></code> models, which are served from <code class="docutils literal notranslate"><span class="pre">&lt;id&gt;.ap-southeast-1.maas.aliyuncs.com</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">API_KEYS</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Comma-separated <code class="docutils literal notranslate"><span class="pre">sub:secret</span></code> pairs for API key exchange</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">GROQ_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Groq API key for gpt-oss-120b post-processing; enables the <code class="docutils literal notranslate"><span class="pre">+groq</span></code> configurations</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ASR_CONFIGURATION</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Default configuration id (default: derived from <code class="docutils literal notranslate"><span class="pre">ASR_PROVIDER</span></code>/<code class="docutils literal notranslate"><span class="pre">ASR_MODEL</span></code>/<code class="docutils literal notranslate"><span class="pre">GROQ_API_KEY</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ASR_CONFIGURATIONS</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Comma-separated configurations clients may select (default: every configuration with credentials)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ASR_PROVIDER</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Provider for the derived default: <code class="docutils literal notranslate"><span class="pre">qwen</span></code> (default), <code class="docutils literal notranslate"><span class="pre">qwen-omni</span></code>, <code class="docutils literal notranslate"><span class="pre">qwen-audio</span></code>, <code class="docutils literal notranslate"><span class="pre">byteplus</span></code>, <code class="docutils literal notranslate"><span class="pre">openai</span></code>, <code class="docutils literal notranslate"><span class="pre">xai</span></code>, <code class="docutils literal notranslate"><span class="pre">elevenlabs</span></code>, <code class="docutils literal notranslate"><span class="pre">iapp</span></code>, <code class="docutils literal notranslate"><span class="pre">openrouter</span></code>, <code class="docutils literal notranslate"><span class="pre">meta</span></code>, <code class="docutils literal notranslate"><span class="pre">paxa</span></code>, <code class="docutils literal notranslate"><span class="pre">gemini</span></code>, <code class="docutils literal notranslate"><span class="pre">ai-gateway</span></code>, or <code class="docutils literal notranslate"><span class="pre">mock</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ASR_MODEL</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Model for the derived default (default: the provider’s own default model)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BYTEPLUS_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>BytePlus key; enables the <code class="docutils literal notranslate"><span class="pre">byteplus</span></code> configurations</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BYTEPLUS_LANGUAGE</span></code></p></td>
+<td><p>No</p></td>
+<td><p>BytePlus language hint, e.g. <code class="docutils literal notranslate"><span class="pre">th-TH</span></code> (default: unset — Mandarin/English only)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BYTEPLUS_RESOURCE_ID</span></code></p></td>
+<td><p>No</p></td>
+<td><p>BytePlus resource id (default: <code class="docutils literal notranslate"><span class="pre">volc.seedasr.sauc.duration</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BYTEPLUS_BASE_URL</span></code></p></td>
+<td><p>No</p></td>
+<td><p>BytePlus endpoint base, without the mode path segment</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OPENAI_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>OpenAI key; enables the <code class="docutils literal notranslate"><span class="pre">openai</span></code> (<code class="docutils literal notranslate"><span class="pre">gpt-live-transcribe</span></code>) configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">XAI_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>xAI key; enables the <code class="docutils literal notranslate"><span class="pre">xai</span></code> (<code class="docutils literal notranslate"><span class="pre">grok-voice-transcribe-2.0</span></code>, streaming) configuration</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ELEVENLABS_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>ElevenLabs key; enables the <code class="docutils literal notranslate"><span class="pre">elevenlabs</span></code> (<code class="docutils literal notranslate"><span class="pre">scribe_v2_realtime</span></code>) configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IAPP_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>iApp key; enables the <code class="docutils literal notranslate"><span class="pre">iapp</span></code> (<code class="docutils literal notranslate"><span class="pre">chinda-asr-realtime-v1</span></code>, streaming, Thai only) configuration</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OPENROUTER_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>OpenRouter key; enables the <code class="docutils literal notranslate"><span class="pre">openrouter</span></code> configurations (<code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-2</span></code>, <code class="docutils literal notranslate"><span class="pre">meta/muse-voice-transcribe-1.0</span></code>, <code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-1.5</span></code>, <code class="docutils literal notranslate"><span class="pre">google/gemini-3.5-transcribe</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">META_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Meta key; enables the <code class="docutils literal notranslate"><span class="pre">meta</span></code> (<code class="docutils literal notranslate"><span class="pre">muse-voice-transcribe-1.0</span></code>, direct realtime API) configuration</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PAXA_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Paxa Labs key; enables the <code class="docutils literal notranslate"><span class="pre">paxa</span></code> configurations (batch and realtime)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PAXA_CONVENTION</span></code></p></td>
+<td><p>No</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">written</span></code> to render numbers as digits and use the Thai repetition mark (default: the vendor’s <code class="docutils literal notranslate"><span class="pre">spoken</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GEMINI_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Google Gemini API key; enables the <code class="docutils literal notranslate"><span class="pre">gemini</span></code> (<code class="docutils literal notranslate"><span class="pre">gemini-3.5-transcribe-live</span></code>) configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AI_GATEWAY_API_KEY</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Vercel AI Gateway key; enables the <code class="docutils literal notranslate"><span class="pre">ai-gateway</span></code> (<code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-2-streaming</span></code>) configuration</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OIDC_DISCOVERY_URL</span></code></p></td>
+<td><p>No</p></td>
+<td><p>OIDC provider discovery URL (alternative to API keys)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OIDC_CLIENT_ID</span></code></p></td>
+<td><p>No</p></td>
+<td><p>OIDC client ID (default: <code class="docutils literal notranslate"><span class="pre">vxbeamer-mobile</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OIDC_AUDIENCE</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Expected token audience (default: same as client ID)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OIDC_SECRET</span></code></p></td>
+<td><p>No</p></td>
+<td><p>HMAC secret for session tokens (default: <code class="docutils literal notranslate"><span class="pre">local-dev-secret</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PUBLIC_URL</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Address clients should use for pairing links (default: the address the request came in on)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">WEBHOOK_URL</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Endpoint to POST completed transcriptions to</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PORT</span></code></p></td>
+<td><p>No</p></td>
+<td><p>HTTP port (default: <code class="docutils literal notranslate"><span class="pre">8787</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">WS_IDLE_TIMEOUT_MS</span></code></p></td>
+<td><p>No</p></td>
+<td><p>How long a recording socket may go without audio before it is closed and its vendor connection released (default: <code class="docutils literal notranslate"><span class="pre">60000</span></code>; <code class="docutils literal notranslate"><span class="pre">0</span></code> disables)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QWEN_OMNI_STICKY_LINGER_MS</span></code></p></td>
+<td><p>No</p></td>
+<td><p>How long an unused Qwen Omni connection is kept open after a recording, for the next one from the same client (default: <code class="docutils literal notranslate"><span class="pre">30000</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QWEN_OMNI_STICKY_MAX_AUDIO_SECONDS</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Audio a kept Qwen Omni connection may carry across recordings before it is retired (default: <code class="docutils literal notranslate"><span class="pre">180</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="eval-storage">
+<h2>Eval storage<a class="headerlink" href="#eval-storage" title="Link to this heading">¶</a></h2>
+<p>Where eval <strong>votes</strong> and <strong>eval-sets</strong> are saved. The backend only signs upload URLs; the browser uploads directly to the bucket, so recordings never pass through the server and no bucket credential ever reaches a browser. Setting <code class="docutils literal notranslate"><span class="pre">EVAL_STORAGE_BUCKET</span></code> turns the feature on; without it, evals still run and winners still apply, they are just not recorded.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EVAL_STORAGE_BUCKET</span></code></p></td>
+<td><p>No</p></td>
+<td><p>S3-compatible bucket for votes and eval-sets. Enables eval storage</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EVAL_STORAGE_ACCESS_KEY_ID</span></code></p></td>
+<td><p>With bucket</p></td>
+<td><p>Access key id used to sign upload URLs</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EVAL_STORAGE_SECRET_ACCESS_KEY</span></code></p></td>
+<td><p>With bucket</p></td>
+<td><p>Secret access key used to sign upload URLs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EVAL_STORAGE_REGION</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Bucket region (default: <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EVAL_STORAGE_ENDPOINT</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Custom S3-compatible endpoint, e.g. MinIO or R2 (default: AWS)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EVAL_STORAGE_FORCE_PATH_STYLE</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Set to <code class="docutils literal notranslate"><span class="pre">true</span></code> for endpoints needing path-style addressing, e.g. MinIO</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EVAL_STORAGE_PREFIX</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Key prefix placed before <code class="docutils literal notranslate"><span class="pre">votes/</span></code> and <code class="docutils literal notranslate"><span class="pre">eval-sets/</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Objects are keyed by kind, then UTC date, then time and message id:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">votes</span><span class="o">/</span><span class="mi">2026</span><span class="o">/</span><span class="mi">07</span><span class="o">/</span><span class="mi">16</span><span class="o">/</span><span class="mi">2026</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">16</span><span class="n">T09</span><span class="o">-</span><span class="mi">30</span><span class="o">-</span><span class="mi">00</span><span class="o">-</span><span class="mi">123</span><span class="n">Z</span><span class="o">-&lt;</span><span class="n">messageId</span><span class="o">&gt;.</span><span class="n">json</span>
+<span class="nb">eval</span><span class="o">-</span><span class="n">sets</span><span class="o">/</span><span class="mi">2026</span><span class="o">/</span><span class="mi">07</span><span class="o">/</span><span class="mi">16</span><span class="o">/</span><span class="mi">2026</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">16</span><span class="n">T09</span><span class="o">-</span><span class="mi">30</span><span class="o">-</span><span class="mi">00</span><span class="o">-</span><span class="mi">123</span><span class="n">Z</span><span class="o">-&lt;</span><span class="n">messageId</span><span class="o">&gt;.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>A <strong>vote</strong> (<code class="docutils literal notranslate"><span class="pre">{&quot;type&quot;:&quot;vote&quot;,…}</span></code>) is written on every winner pick and carries the winning configuration id, the full candidate list, per-candidate cost/latency/errors, and the audio’s duration — but <strong>no audio and no transcripts</strong>, so it is safe to store unconditionally. An <strong>eval-set</strong> (<code class="docutils literal notranslate"><span class="pre">{&quot;type&quot;:&quot;eval-set&quot;,…}</span></code>) is written only when the user ticks save-for-eval, and adds the recording as a base64 WAV plus every candidate’s transcript. A pick’s vote and eval-set share a key suffix, so one finds the other.</p>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="authentication.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Authentication</div>
+  </a>
+  <a href="api.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">API</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Configuration</a><ul>
+<li><a class="reference internal" href="#eval-storage">Eval storage</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#eval-storage">Eval storage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Speech recognition</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asr-configurations.html">Model configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vxasr.html">vxasr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asr-vendor-notes.html">ASR model observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apps/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/website.html">Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/desktop.html">vxbeamer Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/watch.html">vxbeamer transmitter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Decisions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adr/index.html">Decisions</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/vxbeamer.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

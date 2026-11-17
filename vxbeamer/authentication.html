@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Authentication &#8212; vxbeamer 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=db70e5da" />
+    <script src="_static/documentation_options.js?v=7026087e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Getting started" href="getting-started.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="index.html" class="thdocs-header-logo">
+    vxbeamer 0.0.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="index.html">vxbeamer 0.0.0 documentation</a></li>
+    <li aria-current="page">Authentication</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="authentication">
+<h1>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h1>
+<p>vxbeamer comes with two authentication methods:</p>
+<ul class="simple">
+<li><p><strong>User authentication</strong> via OIDC, for interactive use from the frontend.</p></li>
+<li><p><strong>API keys</strong> (via <code class="docutils literal notranslate"><span class="pre">API_KEYS</span></code>), for integration with scripts.</p></li>
+</ul>
+<section id="user-authentication">
+<h2>User authentication<a class="headerlink" href="#user-authentication" title="Link to this heading">¶</a></h2>
+<p>The OIDC provider must support:</p>
+<ol class="arabic simple">
+<li><p><strong>PKCE flow</strong> — the frontend performs the authorization code flow with PKCE and exchanges the resulting ID token for a session with the backend.</p></li>
+<li><p><strong>Discovery document</strong> — the provider must expose its configuration at the standard <code class="docutils literal notranslate"><span class="pre">/.well-known/openid-configuration</span></code> path.</p></li>
+<li><p><strong>CORS</strong> — cross-origin requests must be allowed, since the frontend will contact the provider directly from the browser.</p></li>
+<li><p><strong>Restricted token issuance</strong> — the provider must only issue ID tokens to authorized users. There is no built-in user whitelist in vxbeamer itself, so access control must be enforced at the provider level.</p></li>
+</ol>
+<p><a class="reference external" href="https://goauthentik.io">Authentik</a> is a self-hosted, open-source identity provider that meets all of these requirements.</p>
+</section>
+<section id="pairing-a-client">
+<span id="id1"></span><h2>Pairing a client<a class="headerlink" href="#pairing-a-client" title="Link to this heading">¶</a></h2>
+<p>Clients that cannot easily sign in themselves (a PWA on iOS, the Android app, anything on a different machine from the browser you are signed in on) pair instead. Open <code class="docutils literal notranslate"><span class="pre">/pair</span></code> on your backend, sign in, and it shows a one-time pairing link and QR code. Open the link in the client, scan the QR code, or paste the link into its pairing box. The link carries the backend’s address and a 12-character code; the client redeems the code at <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/auth/pair</span></code> for its own session.</p>
+<p>Codes are valid for two minutes and work once. They are kept in memory, so a backend running several instances would need to share them.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">/pair</span></code> page runs the OIDC code flow itself, so the provider must allow <code class="docutils literal notranslate"><span class="pre">https://&lt;your-backend&gt;/pair</span></code> as a redirect URI. Register it as an exact match, not a wildcard. Set <code class="docutils literal notranslate"><span class="pre">PUBLIC_URL</span></code> if the backend sits behind a proxy and the link should not use the address it sees.</p>
+</section>
+<section id="api-keys-personal-access-tokens">
+<h2>API keys (personal access tokens)<a class="headerlink" href="#api-keys-personal-access-tokens" title="Link to this heading">¶</a></h2>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">API_KEYS</span></code> environment variable in the format <code class="docutils literal notranslate"><span class="pre">&lt;sub&gt;:&lt;key&gt;</span></code>. In case of multiple keys, separate by commas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">API_KEYS</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">sub</span><span class="o">-</span><span class="n">claim</span><span class="p">:</span><span class="n">my</span><span class="o">-</span><span class="n">secret</span><span class="o">-</span><span class="n">key</span><span class="p">,</span><span class="n">your</span><span class="o">-</span><span class="n">sub</span><span class="o">-</span><span class="n">claim</span><span class="p">:</span><span class="n">another</span><span class="o">-</span><span class="n">secret</span>
+</pre></div>
+</div>
+<p>To find your <code class="docutils literal notranslate"><span class="pre">sub</span></code> claim:</p>
+<ol class="arabic simple">
+<li><p>Pair the web app with your backend (see <a class="reference internal" href="#pairing-a-client"><span class="std std-ref">Pairing a client</span></a>)</p></li>
+<li><p>Open Settings (⚙️ icon)</p></li>
+<li><p>Copy your <code class="docutils literal notranslate"><span class="pre">sub</span></code> from the “Signed in” section</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;sub&gt;</span></code> must match the <code class="docutils literal notranslate"><span class="pre">sub</span></code> claim of your OIDC user. You can have multiple keys for the same user (useful for key rotation or different integrations).</p>
+<p>API keys are not used directly for authenticated requests. Instead, scripts exchange them for short-lived access tokens via <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/auth/token</span></code>. This keeps all authentication consistent: protected endpoints only accept session tokens, regardless of whether they came from OIDC or API key exchange.</p>
+</section>
+<section id="access-tokens">
+<h2>Access tokens<a class="headerlink" href="#access-tokens" title="Link to this heading">¶</a></h2>
+<p>All protected endpoints require an access token. Pass it as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span> <span class="pre">&lt;token&gt;</span></code> header, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?access_token=&lt;token&gt;</span></code> query parameter</p></li>
+</ul>
+<section id="token-flow">
+<h3>Token flow<a class="headerlink" href="#token-flow" title="Link to this heading">¶</a></h3>
+<p><strong>For OIDC users (interactive frontend):</strong></p>
+<ol class="arabic simple">
+<li><p>Exchange OIDC id_token for access &amp; refresh tokens: <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/auth/session</span></code> with <code class="docutils literal notranslate"><span class="pre">id_token</span></code></p></li>
+<li><p>Access token (15 min TTL) is used for protected endpoints</p></li>
+<li><p>When access token &lt; 10 minutes remaining, refresh both tokens: <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/auth/refresh</span></code> with <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code></p></li>
+<li><p>Refresh token is valid for 3 days from the last refresh</p></li>
+</ol>
+<p><strong>For API keys (scripts/integrations):</strong></p>
+<ol class="arabic simple">
+<li><p>Exchange API key for access token: <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/auth/token</span></code> with <code class="docutils literal notranslate"><span class="pre">api_key</span></code></p></li>
+<li><p>Access token (15 min TTL) is used for protected endpoints</p></li>
+<li><p>No refresh token is issued; obtain a new access token by exchanging the API key again</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="getting-started.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Getting started</div>
+  </a>
+  <a href="configuration.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Configuration</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">Authentication</a><ul>
+<li><a class="reference internal" href="#user-authentication">User authentication</a></li>
+<li><a class="reference internal" href="#pairing-a-client">Pairing a client</a></li>
+<li><a class="reference internal" href="#api-keys-personal-access-tokens">API keys (personal access tokens)</a></li>
+<li><a class="reference internal" href="#access-tokens">Access tokens</a><ul>
+<li><a class="reference internal" href="#token-flow">Token flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#user-authentication">User authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pairing-a-client">Pairing a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-keys-personal-access-tokens">API keys (personal access tokens)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-tokens">Access tokens</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Speech recognition</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asr-configurations.html">Model configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vxasr.html">vxasr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asr-vendor-notes.html">ASR model observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apps/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/website.html">Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/desktop.html">vxbeamer Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/watch.html">vxbeamer transmitter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Decisions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adr/index.html">Decisions</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/vxbeamer.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

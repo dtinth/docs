@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>vxbeamer &#8212; vxbeamer 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=db70e5da" />
+    <script src="_static/documentation_options.js?v=7026087e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started" href="getting-started.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="#" class="thdocs-header-logo">
+    vxbeamer 0.0.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="#">vxbeamer 0.0.0 documentation</a></li>
+    <li aria-current="page">vxbeamer</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="vxbeamer">
+<h1>vxbeamer<a class="headerlink" href="#vxbeamer" title="Link to this heading">¶</a></h1>
+<p>vxbeamer is a self-hosted, personal speech transcriber with a real-time web interface.</p>
+<p>I speak into my phone. The voice message is instantly transcribed. Then I can swipe on my phone to beam the transcription to my laptop. <a class="reference external" href="https://github.com/user-attachments/assets/ff6188ed-3d5c-4d0d-bbf1-a39916091e2a">Watch the demo video</a>.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>For most of my transcription needs, I use <a class="reference external" href="https://ai.google.dev/gemini-api/docs/audio">Google Gemini</a> (through the <a class="reference external" href="https://dt.in.th/Lsnr">&#64;lsnr</a> LINE bot) as it provides the highest accuracy. However, it comes with high latency, which makes it somewhat frustrating to use for voice typing scenarios. <em>(It has very high throughput though, e.g., 15 minutes of audio content can be transcribed in less than 20 seconds.)</em></p>
+<p>vxbeamer uses a different workflow: It uses <a class="reference external" href="https://qwen.ai/blog?id=qwen3.5-omni">Qwen3.5 Omni</a> <a class="reference external" href="https://www.alibabacloud.com/help/en/model-studio/realtime">Realtime</a> (via <a class="reference external" href="https://modelstudio.alibabacloud.com/">Alibaba Cloud Model Studio</a>) to transcribe speech in real-time. This trades some accuracy for significantly faster feedback.</p>
+<p>The frontend is a PWA that can be added to the home screen. Tap the record button to transcribe, swipe right to broadcast a transcription as an event (for custom integrations), and swipe left to delete it.</p>
+<p>This project is primarily for personal use and is not designed to be particularly flexible. That said, the setup is documented here: start with <a class="reference internal" href="getting-started.html"><span class="doc">Getting started</span></a>.</p>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h2>
+<img alt="vxbeamer architecture diagram including desktop app" src="_images/architecture.png" />
+<ul class="simple">
+<li><p><strong>Frontend</strong> — React PWA (<code class="docutils literal notranslate"><span class="pre">apps/website</span></code>), deployed statically (hosted on Vercel)</p></li>
+<li><p><strong>Backend</strong> — Node.js/Hono server (<code class="docutils literal notranslate"><span class="pre">apps/backend</span></code>), deployed via Docker (self-hosted)</p></li>
+<li><p><strong>Desktop app</strong> — Tauri desktop client (<code class="docutils literal notranslate"><span class="pre">apps/desktop</span></code>) that receives backend events and integrates with the local machine (basically, it’s the frontend web app with extra desktop integrations)</p></li>
+<li><p><strong>ASR</strong> — any of the providers on the <a class="reference internal" href="asr-configurations.html"><span class="doc">Model configurations</span></a> page. The default is <code class="docutils literal notranslate"><span class="pre">qwen</span></code> (Qwen3-ASR-Flash Realtime via DashScope, Alibaba Cloud); the overview above describes Qwen Omni Realtime, which <code class="docutils literal notranslate"><span class="pre">ASR_PROVIDER=qwen-omni</span></code> selects</p></li>
+<li><p><strong>Post-processing</strong> — optional; gpt-oss-120b via Groq, for configurations whose output needs formatting cleanup (not needed for Qwen Omni Realtime; the default configuration uses it when <code class="docutils literal notranslate"><span class="pre">GROQ_API_KEY</span></code> is set)</p></li>
+</ul>
+<p>The code lives at <a class="reference external" href="https://github.com/dtinth/vxbeamer">dtinth/vxbeamer</a>. Under <code class="docutils literal notranslate"><span class="pre">apps/</span></code> are the backend, the website, the desktop app and the Android and Wear OS apps; <code class="docutils literal notranslate"><span class="pre">packages/vxasr</span></code> is the ASR client the backend uses.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#deployment">Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#user-authentication">User authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#pairing-a-client">Pairing a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#api-keys-personal-access-tokens">API keys (personal access tokens)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#access-tokens">Access tokens</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#eval-storage">Eval storage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#endpoints">Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#sse-events">SSE events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#websocket-protocol">WebSocket protocol</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Speech recognition</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asr-configurations.html">Model configurations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="asr-configurations.html#discovering-them">Discovering them</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vxasr.html">vxasr</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vxasr.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vxasr.html#the-vxasr-cli">The <code class="docutils literal notranslate"><span class="pre">vxasr</span></code> CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vxasr.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="asr-vendor-notes.html">ASR model observations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#fixture">Fixture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#method">Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#alibaba-cloud-dashscope-qwen">Alibaba Cloud DashScope — Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#alibaba-cloud-dashscope-qwen-omni-offline">Alibaba Cloud DashScope — Qwen Omni (offline)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#alibaba-cloud-dashscope-qwen-omni-realtime">Alibaba Cloud DashScope — Qwen Omni (realtime)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#alibaba-cloud-dashscope-fun-asr">Alibaba Cloud DashScope — Fun-ASR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#byteplus-seed-asr">BytePlus — Seed-ASR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#openrouter">OpenRouter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#meta-direct-realtime-api">Meta (direct realtime API)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#paxa-labs">Paxa Labs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#batch-providers-timing-compared">Batch providers, timing compared</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#google-gemini-3-5-transcribe">Google Gemini 3.5 Transcribe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#microsoft-mai-transcribe-2-streaming-vercel-ai-gateway">Microsoft MAI-Transcribe-2 Streaming (Vercel AI Gateway)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#typhoon-scb-10x">Typhoon (SCB 10X)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#repeat-runs">Repeat runs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#errors-and-timeouts-observed">Errors and timeouts observed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#vendor-documented-language-support-for-comparison">Vendor-documented language support, for comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr-vendor-notes.html#reproducing">Reproducing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Apps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apps/backend.html">Backend</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apps/backend.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apps/website.html">Website</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apps/website.html#keyboard-shortcuts">Keyboard shortcuts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/website.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apps/desktop.html">vxbeamer Desktop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apps/desktop.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/desktop.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/desktop.html#building-for-production">Building for production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/desktop.html#ci">CI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apps/watch.html">vxbeamer transmitter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apps/watch.html#status">Status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/watch.html#design">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/watch.html#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/watch.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/watch.html#building">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/watch.html#installing">Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps/watch.html#ci">CI</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Decisions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adr/index.html">Decisions</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="getting-started.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Getting started</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">vxbeamer</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#architecture">Architecture</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Speech recognition</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asr-configurations.html">Model configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vxasr.html">vxasr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asr-vendor-notes.html">ASR model observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apps/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/website.html">Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/desktop.html">vxbeamer Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/watch.html">vxbeamer transmitter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Decisions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adr/index.html">Decisions</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/vxbeamer.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

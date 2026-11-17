@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>A model configuration, not a provider, is the unit of selection &#8212; vxbeamer 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=db70e5da" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Decisions" href="index.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="../_static/toctree.js"></script>
+  <script src="../_static/searchtools.js"></script>
+  <script src="../_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="../index.html" class="thdocs-header-logo">
+    vxbeamer 0.0.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="../index.html">vxbeamer 0.0.0 documentation</a></li>
+    <li><a href="index.html">Decisions</a></li>
+    <li aria-current="page">A model configuration, not a provider, is the unit of selection</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="a-model-configuration-not-a-provider-is-the-unit-of-selection">
+<h1>A model configuration, not a provider, is the unit of selection<a class="headerlink" href="#a-model-configuration-not-a-provider-is-the-unit-of-selection" title="Link to this heading">¶</a></h1>
+<p>Status: accepted. This record was written after the fact, from the decision as it is stated in the code (<code class="docutils literal notranslate"><span class="pre">packages/vxasr/src/builtin.ts</span></code>, <code class="docutils literal notranslate"><span class="pre">apps/backend/src/asr.ts</span></code>) and the <code class="docutils literal notranslate"><span class="pre">vxasr</span></code> README.</p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading">¶</a></h2>
+<p>vxbeamer talks to many speech-recognition vendors. A vendor’s output can also be run through a post-processing step, such as the Groq formatting pass. Evals pit candidate transcripts against each other, and the winner of an eval replaces the primary answer, so everything that can be a candidate has to be comparable with the rest on equal terms.</p>
+</section>
+<section id="decision">
+<h2>Decision<a class="headerlink" href="#decision" title="Link to this heading">¶</a></h2>
+<p>The thing a client selects, an eval votes for and the catalogue lists is a <strong>model configuration</strong>: a provider, a model and its post-processing chain, written <code class="docutils literal notranslate"><span class="pre">provider/model</span></code> or <code class="docutils literal notranslate"><span class="pre">provider/model+post</span></code>. Post-processing is part of a configuration’s identity, not a flag on the request.</p>
+<p>So a model raw and the same model with Groq formatting are two configurations, declared separately, and a vote for one says something different from a vote for the other. A client names a configuration with <code class="docutils literal notranslate"><span class="pre">?configuration=</span></code> and cannot ask for a post-processing step on its own.</p>
+<p>Every model is pinned to a dated snapshot wherever the vendor publishes one. An undated id floats, because the vendor repoints it without notice, and that would let a transcript change with nothing in the repository changing, and make a vote name a moving target. A model the vendor offers only undated is declared as such, with a comment saying so.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">mock</span></code> provider is never paired with a real post-processing step: there is deliberately no <code class="docutils literal notranslate"><span class="pre">mock/mock+groq</span></code>, so no branch in selection can wrap it by accident.</p>
+</section>
+<section id="consequences">
+<h2>Consequences<a class="headerlink" href="#consequences" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The list of configurations is a catalogue in <code class="docutils literal notranslate"><span class="pre">packages/vxasr/src/builtin.ts</span></code>; a new vendor or model is a new entry, and <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/asr/configurations</span></code> lets a client discover the set instead of hardcoding it (see <a class="reference internal" href="../asr-configurations.html"><span class="doc">Model configurations</span></a>).</p></li>
+<li><p>Ids contain <code class="docutils literal notranslate"><span class="pre">+</span></code> (and sometimes <code class="docutils literal notranslate"><span class="pre">/</span></code>), so clients must URL-encode them.</p></li>
+<li><p>A configuration is selectable once the environment carries every credential it needs, so the set a deployment offers follows from its keys.</p></li>
+<li><p>Models that already produce well-formatted output are declared raw only, since a second pass costs a vote slot and a call for nothing.</p></li>
+</ul>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="index.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Decisions</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">A model configuration, not a provider, is the unit of selection</a><ul>
+<li><a class="reference internal" href="#context">Context</a></li>
+<li><a class="reference internal" href="#decision">Decision</a></li>
+<li><a class="reference internal" href="#consequences">Consequences</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Speech recognition</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../asr-configurations.html">Model configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vxasr.html">vxasr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../asr-vendor-notes.html">ASR model observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../apps/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/website.html">Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/desktop.html">vxbeamer Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/watch.html">vxbeamer transmitter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Decisions</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Decisions</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="../_static/vxbeamer.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

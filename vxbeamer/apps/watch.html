@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>vxbeamer transmitter &#8212; vxbeamer 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=db70e5da" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Decisions" href="../adr/index.html" />
+    <link rel="prev" title="vxbeamer Desktop" href="desktop.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="../_static/toctree.js"></script>
+  <script src="../_static/searchtools.js"></script>
+  <script src="../_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="../index.html" class="thdocs-header-logo">
+    vxbeamer 0.0.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="../index.html">vxbeamer 0.0.0 documentation</a></li>
+    <li aria-current="page">vxbeamer transmitter</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="vxbeamer-transmitter">
+<h1>vxbeamer transmitter<a class="headerlink" href="#vxbeamer-transmitter" title="Link to this heading">¶</a></h1>
+<p>Voice input for vxbeamer from a phone, or from a Wear OS watch (built and
+tested against a Samsung Galaxy Watch 5) that never talks to the internet
+itself (dtinth/vxbeamer#86).</p>
+<p>Two separate Android apps live here, in one Gradle project:</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wear/</span></code></strong> — runs on the watch. One button. Tap to start: captures the
+mic (16 kHz / 16-bit / mono, the exact format vxbeamer’s own <code class="docutils literal notranslate"><span class="pre">/ws</span></code> already
+expects) and streams it to the phone over Bluetooth, using the Wear OS
+Data Layer’s <code class="docutils literal notranslate"><span class="pre">ChannelClient</span></code>. Tap again to stop.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mobile/</span></code></strong> — runs on the paired phone. Records from its own
+microphone, and receives audio relayed from the watch.</p>
+<p><strong>Recording never waits for the network.</strong> Audio goes to local storage as
+it is spoken, and uploading is a separate, retryable thing that happens to
+it afterwards — the same shape as a voice memo. Tapping stop is instant
+whatever the connection is doing, nothing is lost when an upload fails,
+and a bad transcript can be transcribed again from the audio still on the
+device.</p>
+<p>In the normal case the two run at once: the uploader tails the file while
+the microphone is still writing it, so a transcript arrives as promptly as
+it would from a live socket. The same code path run later against a
+finished file is a retry.</p>
+<p>Three ways to start, because none of them is best everywhere:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Reach</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Full screen</p></td>
+<td><p>Open the app</p></td>
+<td><p>Record button at the bottom, in thumb reach, above the history</p></td>
+</tr>
+<tr class="row-odd"><td><p>Floating button</p></td>
+<td><p>One tap, anywhere</p></td>
+<td><p>Draggable, live transcript and level meter. Uses “draw over other apps”, which banking apps can suppress on Android 12+, so it is opt-in and switchable off</p></td>
+</tr>
+<tr class="row-even"><td><p>Quick Settings tile</p></td>
+<td><p>Swipe down, tap</p></td>
+<td><p>No permission, and no app can suppress it</p></td>
+</tr>
+</tbody>
+</table>
+<p>A second tile, “Floating button”, switches the floating button on and off
+from the same shade, so it need not be left on all the time. With the
+permission not yet granted, tapping it opens the app, where the toggle asks.</p>
+<p>Leaving the app mid-recording drops it into a square picture-in-picture
+window. That window is a <strong>status readout, not a control</strong> — a PiP window
+never delivers touches to its content, so its stop button is the
+<code class="docutils literal notranslate"><span class="pre">RemoteAction</span></code> revealed by tapping it.</p>
+<p>Watch audio goes through the same store, so relayed recordings get the
+same history and the same retry as local ones.</p>
+<p>Any recording’s audio can be exported as a WAV, in the same format the
+eval fixtures use, for listening to or testing a transcription against.
+Audio is capped at 10 MB in total, oldest dropped first — except audio
+that has not been transcribed yet, which is never deleted to stay under
+the cap, since that would destroy the only copy of what was said.</p>
+</li>
+</ul>
+<p>The phone app pairs with your backend: open <code class="docutils literal notranslate"><span class="pre">/pair</span></code> on the backend wherever
+you are signed in, then scan the QR code it shows (Google’s code scanner, no
+camera permission) or paste its link into the app. The link carries the
+backend’s address, so there is no URL to type.</p>
+<section id="status">
+<h2>Status<a class="headerlink" href="#status" title="Link to this heading">¶</a></h2>
+<p>The <strong>phone app works</strong> — transcribing from its own mic is verified on real
+hardware (dtinth/vxbeamer#86).</p>
+<p>The <strong>watch relay is still unverified</strong>: it has never completed a recording
+on a real watch, and the watch it was written for has a failing battery. It
+compiles and its one known bug is fixed (the relay shares
+<code class="docutils literal notranslate"><span class="pre">BackendWebSocket</span></code> with the phone, which was rejecting its own URLs until
+that was found on device), but treat it as untested.</p>
+<p>This is developed in a sandbox with no emulator (no hardware
+virtualization), so anything not listed as verified above has only been
+checked for <code class="docutils literal notranslate"><span class="pre">assembleDebug</span></code> and <code class="docutils literal notranslate"><span class="pre">lintDebug</span></code> passing.</p>
+</section>
+<section id="design">
+<h2>Design<a class="headerlink" href="#design" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Piece</p></th>
+<th class="head"><p>Job</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Recording</span></code>, <code class="docutils literal notranslate"><span class="pre">UploadPolicy</span></code>, <code class="docutils literal notranslate"><span class="pre">RetentionPolicy</span></code></p></td>
+<td><p>What a recording is, what gets uploaded next, what gets kept</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RecordingStore</span></code></p></td>
+<td><p>Audio files and the index on disk</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AudioCapture</span></code></p></td>
+<td><p>Microphone to file. Knows nothing about the network</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TranscriptionUploader</span></code></p></td>
+<td><p>File to <code class="docutils literal notranslate"><span class="pre">/ws</span></code>, and <code class="docutils literal notranslate"><span class="pre">/sse</span></code> back. Knows nothing about the microphone</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Recorder</span></code></p></td>
+<td><p>Ties those together and owns the queue</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RecorderService</span></code></p></td>
+<td><p>Keeps it alive in the background; hosts the floating button</p></td>
+</tr>
+</tbody>
+</table>
+<p>The split is what makes the tests possible: everything in the first four
+rows is free of Android APIs, so it runs on a plain JVM.</p>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>apps/watch
+./gradlew<span class="w"> </span>testDebugUnitTest
+</pre></div>
+</div>
+<p>Unit tests, no emulator, seconds to run — and they run in CI on every push.
+They cover the parts where being wrong is quiet: URL building (a swapped
+<code class="docutils literal notranslate"><span class="pre">ws</span></code>/<code class="docutils literal notranslate"><span class="pre">wss</span></code> scheme shipped once and took a device and a logcat to find), the
+<code class="docutils literal notranslate"><span class="pre">/sse</span></code> event filtering that decides whether a transcript is <em>yours</em>, the
+upload and retention rules, crash recovery, and the store’s behaviour across
+a restart.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>JDK 21</strong></p></td>
+<td><p>e.g. <code class="docutils literal notranslate"><span class="pre">mise</span> <span class="pre">use</span> <span class="pre">-g</span> <span class="pre">java&#64;21</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Android SDK</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">compileSdk</span> <span class="pre">34</span></code>; command-line tools are enough, Android Studio is not required to build</p></td>
+</tr>
+</tbody>
+</table>
+<p>On an Apple Silicon Mac or another arm64 Linux machine, Google’s own <code class="docutils literal notranslate"><span class="pre">aapt2</span></code>
+(pulled in by the Android Gradle Plugin) is x86_64-only and will fail to run.
+See <a class="reference external" href="https://github.com/Commit451/android-arm-build-tools">Commit451/android-arm-build-tools</a>
+for a drop-in arm64 replacement, or build on an x86_64 machine — GitHub
+Actions’ runners already are, so CI needs none of this.</p>
+</section>
+<section id="building">
+<h2>Building<a class="headerlink" href="#building" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>apps/watch
+./gradlew<span class="w"> </span>assembleDebug
+</pre></div>
+</div>
+<p>Produces two unsigned-but-debug-signed APKs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mobile/build/outputs/apk/debug/mobile-debug.apk</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wear/build/outputs/apk/debug/wear-debug.apk</span></code></p></li>
+</ul>
+</section>
+<section id="installing">
+<h2>Installing<a class="headerlink" href="#installing" title="Link to this heading">¶</a></h2>
+<p>Both apps are personal and unpublished — there is no Play Store listing.
+Install straight from the APK:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>adb<span class="w"> </span>install<span class="w"> </span>mobile/build/outputs/apk/debug/mobile-debug.apk<span class="w">   </span><span class="c1"># to the phone</span>
+adb<span class="w"> </span>-s<span class="w"> </span>&lt;watch-serial&gt;<span class="w"> </span>install<span class="w"> </span>wear/build/outputs/apk/debug/wear-debug.apk<span class="w">   </span><span class="c1"># to the watch, over adb-over-wifi or a USB dock</span>
+</pre></div>
+</div>
+<p>Or download the built APKs from GitHub Actions (see below) and open the file
+directly on-device.</p>
+<p>Pair the phone app with your backend once before trying to record from the
+watch.</p>
+</section>
+<section id="ci">
+<h2>CI<a class="headerlink" href="#ci" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/dtinth/vxbeamer/blob/main/.github/workflows/watch.yml">Build Watch Apps</a> workflow builds
+both APKs on every push to <code class="docutils literal notranslate"><span class="pre">main</span></code> and on pull requests touching this
+directory, and uploads them as GitHub Actions artifacts — open the workflow
+run and download <code class="docutils literal notranslate"><span class="pre">vxbeamer-watch-relay-mobile-debug</span></code> /
+<code class="docutils literal notranslate"><span class="pre">vxbeamer-watch-relay-wear-debug</span></code> from the bottom of the page.</p>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="desktop.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">vxbeamer Desktop</div>
+  </a>
+  <a href="../adr/index.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Decisions</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">vxbeamer transmitter</a><ul>
+<li><a class="reference internal" href="#status">Status</a></li>
+<li><a class="reference internal" href="#design">Design</a></li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#building">Building</a></li>
+<li><a class="reference internal" href="#installing">Installing</a></li>
+<li><a class="reference internal" href="#ci">CI</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Speech recognition</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../asr-configurations.html">Model configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vxasr.html">vxasr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../asr-vendor-notes.html">ASR model observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apps</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="website.html">Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="desktop.html">vxbeamer Desktop</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">vxbeamer transmitter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#status">Status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing">Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ci">CI</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Decisions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../adr/index.html">Decisions</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="../_static/vxbeamer.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

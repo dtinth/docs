@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>vxbeamer Desktop &#8212; vxbeamer 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="../_static/thdocs.css?v=db70e5da" />
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="vxbeamer transmitter" href="watch.html" />
+    <link rel="prev" title="Website" href="website.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="../_static/toctree.js"></script>
+  <script src="../_static/searchtools.js"></script>
+  <script src="../_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="../index.html" class="thdocs-header-logo">
+    vxbeamer 0.0.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="../index.html">vxbeamer 0.0.0 documentation</a></li>
+    <li aria-current="page">vxbeamer Desktop</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="vxbeamer-desktop">
+<h1>vxbeamer Desktop<a class="headerlink" href="#vxbeamer-desktop" title="Link to this heading">¶</a></h1>
+<p>A Tauri-based desktop wrapper for the vxbeamer web app. It serves the built
+website assets inside a native webview and adds desktop-specific features such
+as acting on swipe events received from another device (copy to clipboard or
+paste into the active application).</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Node.js ≥ 20</strong></p></td>
+<td><p>Managed by <code class="docutils literal notranslate"><span class="pre">voidzero-dev/setup-vp</span></code> in CI; use <a class="reference external" href="https://github.com/nvm-sh/nvm">nvm</a> or <a class="reference external" href="https://github.com/Schniz/fnm">fnm</a> locally</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Vite+ (<code class="docutils literal notranslate"><span class="pre">vp</span></code>)</strong></p></td>
+<td><p>Install and expose the global <code class="docutils literal notranslate"><span class="pre">vp</span></code> command as described by the Vite+ toolchain</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Rust (stable)</strong></p></td>
+<td><p>Install from <a class="reference external" href="https://rustup.rs/">https://rustup.rs/</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Platform system libraries</strong></p></td>
+<td><p>See table below</p></td>
+</tr>
+</tbody>
+</table>
+<section id="linux-system-libraries">
+<h3>Linux system libraries<a class="headerlink" href="#linux-system-libraries" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>pkg-config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libglib2.0-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libgtk-3-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libwebkit2gtk-4.1-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libayatana-appindicator3-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>librsvg2-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libxdo-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libssl-dev
+</pre></div>
+</div>
+</section>
+<section id="macos">
+<h3>macOS<a class="headerlink" href="#macos" title="Link to this heading">¶</a></h3>
+<p>No extra system libraries are required. Xcode Command Line Tools must be
+installed (<code class="docutils literal notranslate"><span class="pre">xcode-select</span> <span class="pre">--install</span></code>).</p>
+</section>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h3>
+<p>No extra system libraries are required. Make sure the
+<a class="reference external" href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft C++ Build Tools</a>
+(or Visual Studio with the “Desktop development with C++” workload) are
+installed.</p>
+</section>
+</section>
+<section id="development">
+<h2>Development<a class="headerlink" href="#development" title="Link to this heading">¶</a></h2>
+<p>Start the live-reloading development server (runs the website dev server and
+opens the Tauri webview against it):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From the repository root</span>
+vp<span class="w"> </span>install
+
+<span class="c1"># Then either:</span>
+vp<span class="w"> </span>run<span class="w"> </span>desktop#dev
+<span class="c1"># or, from apps/desktop:</span>
+<span class="nb">cd</span><span class="w"> </span>apps/desktop
+vp<span class="w"> </span>run<span class="w"> </span>website#dev<span class="w">   </span><span class="c1"># in a separate terminal</span>
+node_modules/.bin/tauri<span class="w"> </span>dev
+</pre></div>
+</div>
+<p>The website dev server listens on port <strong>20470</strong> (see <code class="docutils literal notranslate"><span class="pre">tauri.conf.json</span></code>).</p>
+</section>
+<section id="building-for-production">
+<h2>Building for production<a class="headerlink" href="#building-for-production" title="Link to this heading">¶</a></h2>
+<p>From the <strong>repository root</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vp<span class="w"> </span>install
+vp<span class="w"> </span>run<span class="w"> </span>desktop#build
+</pre></div>
+</div>
+<p>Or from the <code class="docutils literal notranslate"><span class="pre">apps/desktop</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>scripts/prepare-web-assets.mjs<span class="w">   </span><span class="c1"># builds the website and copies dist/</span>
+node_modules/.bin/tauri<span class="w"> </span>build
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">prepare-web-assets.mjs</span></code> builds the website via the global <code class="docutils literal notranslate"><span class="pre">vp</span> <span class="pre">run</span> <span class="pre">website#build</span></code> and
+copies the output into <code class="docutils literal notranslate"><span class="pre">apps/desktop/dist/</span></code>, which Tauri then bundles.</p>
+<section id="output-bundles">
+<h3>Output bundles<a class="headerlink" href="#output-bundles" title="Link to this heading">¶</a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Platform</p></th>
+<th class="head"><p>Location</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linux <code class="docutils literal notranslate"><span class="pre">.deb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">src-tauri/target/release/bundle/deb/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Linux <code class="docutils literal notranslate"><span class="pre">.AppImage</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">src-tauri/target/release/bundle/appimage/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>macOS <code class="docutils literal notranslate"><span class="pre">.dmg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">src-tauri/target/release/bundle/dmg/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Windows <code class="docutils literal notranslate"><span class="pre">.msi</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">src-tauri/target/release/bundle/msi/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Windows <code class="docutils literal notranslate"><span class="pre">.exe</span></code> (NSIS)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">src-tauri/target/release/bundle/nsis/</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="ci">
+<h2>CI<a class="headerlink" href="#ci" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference external" href="https://github.com/dtinth/vxbeamer/blob/main/.github/workflows/desktop.yml">Build Desktop</a> workflow builds the app on
+all three platforms (Linux, macOS, Windows) on every push to <code class="docutils literal notranslate"><span class="pre">main</span></code> and on
+pull requests. The resulting bundles are uploaded as GitHub Actions artifacts.
+When a release is published from the npm publish workflow, the same build is
+reused to attach those bundles to the GitHub release.</p>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="website.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">Website</div>
+  </a>
+  <a href="watch.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">vxbeamer transmitter</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">vxbeamer Desktop</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li><a class="reference internal" href="#linux-system-libraries">Linux system libraries</a></li>
+<li><a class="reference internal" href="#macos">macOS</a></li>
+<li><a class="reference internal" href="#windows">Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#development">Development</a></li>
+<li><a class="reference internal" href="#building-for-production">Building for production</a><ul>
+<li><a class="reference internal" href="#output-bundles">Output bundles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ci">CI</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Speech recognition</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../asr-configurations.html">Model configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vxasr.html">vxasr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../asr-vendor-notes.html">ASR model observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apps</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="website.html">Website</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">vxbeamer Desktop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-for-production">Building for production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ci">CI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="watch.html">vxbeamer transmitter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Decisions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../adr/index.html">Decisions</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="../_static/vxbeamer.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>

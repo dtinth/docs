@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ASR model observations &#8212; vxbeamer 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=3e69a11e" />
+    <link rel="stylesheet" type="text/css" href="_static/thdocs.css?v=db70e5da" />
+    <script src="_static/documentation_options.js?v=7026087e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/thdocs.js?v=4786390b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Backend" href="apps/backend.html" />
+    <link rel="prev" title="vxasr" href="vxasr.html" /> 
+  <meta name="generator" content="thdocs">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+  <script src="_static/toctree.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  </head><body>
+<header class="thdocs-header">
+  <button type="button" class="thdocs-header-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <a href="index.html" class="thdocs-header-logo">
+    vxbeamer 0.0.0 documentation
+  </a>
+</header>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<nav class="thdocs-breadcrumbs" aria-label="Breadcrumbs">
+  <ul>
+    <li><a href="index.html">vxbeamer 0.0.0 documentation</a></li>
+    <li aria-current="page">ASR model observations</li>
+  </ul>
+</nav>
+<main class="prose">
+<section id="asr-model-observations">
+<h1>ASR model observations<a class="headerlink" href="#asr-model-observations" title="Link to this heading">¶</a></h1>
+<p>Raw results from running models against <code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code>. <strong>Observations only</strong> — what was sent, what came back. No rankings.</p>
+<p>Everything here was run against live vendor endpoints on <strong>2026-07-16</strong>.</p>
+<section id="fixture">
+<h2>Fixture<a class="headerlink" href="#fixture" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code> — raw PCM, 16 kHz / 16-bit / mono, little-endian, no header.
+294,986 bytes = 9.218 s. Thai speech containing English technical terms
+(“TypeScript”, “Elysia”, “Railway”, “MongoDB Atlas”).</p>
+</section>
+<section id="method">
+<h2>Method<a class="headerlink" href="#method" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Audio sent at <strong>realtime pacing</strong>: 3200-byte chunks (100 ms), 100 ms apart, unless a row says otherwise.</p></li>
+<li><p><strong>One run per row unless a repeat count is given.</strong> These models are LLMs with audio intake and are <strong>not deterministic</strong> — see <a class="reference internal" href="#repeat-runs">Repeat runs</a>, where identical inputs produced different outputs.</p></li>
+<li><p>Transcripts are reproduced <strong>exactly</strong>, including case, spacing and trailing punctuation.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="alibaba-cloud-dashscope-qwen">
+<h2>Alibaba Cloud DashScope — Qwen<a class="headerlink" href="#alibaba-cloud-dashscope-qwen" title="Link to this heading">¶</a></h2>
+<p>OpenAI-compatible realtime protocol. <code class="docutils literal notranslate"><span class="pre">wss://dashscope-intl.aliyuncs.com/api-ws/v1/realtime?model=&lt;id&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>, <code class="docutils literal notranslate"><span class="pre">session.update</span></code> with <code class="docutils literal notranslate"><span class="pre">turn_detection:</span> <span class="pre">null</span></code> (Manual mode), audio base64 in <code class="docutils literal notranslate"><span class="pre">input_audio_buffer.append</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime</span></code> (floating)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล.</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime-2025-10-27</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล.</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime-2026-02-10</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">typescript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">elixir</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">railway</span> <span class="pre">และใช้</span> <span class="pre">mongodb</span> <span class="pre">atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime</span></code> + Groq</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล.</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-omni-flash-realtime</span></code></p></td>
+<td><p><strong>no result</strong> — 60 s timeout. It speaks its own protocol, not this one; see the Qwen Omni (realtime) section.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Usage reported: <code class="docutils literal notranslate"><span class="pre">dashscope:qwen3-asr-flash:seconds</span></code> quantity <strong>10</strong>, unit price <code class="docutils literal notranslate"><span class="pre">$0.000035</span></code> → <code class="docutils literal notranslate"><span class="pre">$0.000350</span></code>.
+With Groq, additionally: <code class="docutils literal notranslate"><span class="pre">groq:openai/gpt-oss-120b:input-tokens</span></code> <strong>224</strong> &#64; <code class="docutils literal notranslate"><span class="pre">$1.5e-7</span></code>, <code class="docutils literal notranslate"><span class="pre">output-tokens</span></code> <strong>~160</strong> &#64; <code class="docutils literal notranslate"><span class="pre">$6e-7</span></code> → <code class="docutils literal notranslate"><span class="pre">$0.000479</span></code> total.</p>
+</section>
+<section id="alibaba-cloud-dashscope-qwen-omni-offline">
+<h2>Alibaba Cloud DashScope — Qwen Omni (offline)<a class="headerlink" href="#alibaba-cloud-dashscope-qwen-omni-offline" title="Link to this heading">¶</a></h2>
+<p><strong>Not</strong> the realtime WS protocol — these are offline/batch models reached over
+HTTP. <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions</span></code>
+(OpenAI-compatible), <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>, a <code class="docutils literal notranslate"><span class="pre">messages</span></code> array carrying an
+<code class="docutils literal notranslate"><span class="pre">input_audio</span></code> content part (base64 WAV data URI) alongside a text prompt, with
+<code class="docutils literal notranslate"><span class="pre">modalities:</span> <span class="pre">[&quot;text&quot;]</span></code>.</p>
+<p>The whole 9.218 s clip is uploaded at once; there is no pacing.</p>
+<p>Prompt used for every row below — <strong>these models are prompt-driven, so the
+prompt is part of the input</strong>:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Transcribe</span> <span class="pre">this</span> <span class="pre">audio</span> <span class="pre">verbatim.</span> <span class="pre">Output</span> <span class="pre">only</span> <span class="pre">the</span> <span class="pre">transcript.</span></code></p>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>output</p></th>
+<th class="head"><p>wall</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-plus</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>1.7 s</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-omni-flash</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">Deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>1.7 s</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Alecia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>1.7 s</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Billing is in tokens, not seconds</strong> — a different cost model from every ASR
+model above:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>prompt (audio + text)</p></th>
+<th class="head"><p>completion</p></th>
+<th class="head"><p>total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-plus</span></code></p></td>
+<td><p>89 (65 + 24)</p></td>
+<td><p>32</p></td>
+<td><p>121</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash</span></code></p></td>
+<td><p>89 (65 + 24)</p></td>
+<td><p>31</p></td>
+<td><p>120</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-omni-flash</span></code></p></td>
+<td><p>137 (117 + 20)</p></td>
+<td><p>55</p></td>
+<td><p>192</p></td>
+</tr>
+</tbody>
+</table>
+<p>The same audio tokenises differently across the two generations (65 vs 117
+audio tokens).</p>
+<p>The omni <strong>realtime</strong> models transcribe from their own weights too, over their
+own protocol — see the Qwen Omni (realtime) section. These offline rows are a
+different endpoint (HTTP, not WS) reached with a prompt rather than an
+<code class="docutils literal notranslate"><span class="pre">instructions</span></code> string.</p>
+</section>
+<section id="alibaba-cloud-dashscope-qwen-omni-realtime">
+<h2>Alibaba Cloud DashScope — Qwen Omni (realtime)<a class="headerlink" href="#alibaba-cloud-dashscope-qwen-omni-realtime" title="Link to this heading">¶</a></h2>
+<p>These have <strong>their own protocol</strong> — not the Qwen ASR realtime one. Same URL
+shape (<code class="docutils literal notranslate"><span class="pre">wss://…/api-ws/v1/realtime?model=&lt;id&gt;</span></code>; the vendor now recommends the
+workspace domain <code class="docutils literal notranslate"><span class="pre">{WorkspaceId}.ap-southeast-1.maas.aliyuncs.com</span></code>, though the
+legacy host answered), <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>, but:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">session.update</span></code> with <code class="docutils literal notranslate"><span class="pre">modalities:</span> <span class="pre">[&quot;text&quot;]</span></code>, <strong><code class="docutils literal notranslate"><span class="pre">input_audio_format:</span> <span class="pre">&quot;pcm&quot;</span></code></strong>,
+<code class="docutils literal notranslate"><span class="pre">turn_detection:</span> <span class="pre">null</span></code> (manual), and an <strong><code class="docutils literal notranslate"><span class="pre">instructions</span></code></strong> string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_audio_buffer.append</span></code> (base64) → <code class="docutils literal notranslate"><span class="pre">input_audio_buffer.commit</span></code> → <code class="docutils literal notranslate"><span class="pre">response.create</span></code>.</p></li>
+<li><p>The model’s own output arrives on <strong><code class="docutils literal notranslate"><span class="pre">response.text.delta</span></code> / <code class="docutils literal notranslate"><span class="pre">response.text.done</span></code></strong>.</p></li>
+<li><p>No <code class="docutils literal notranslate"><span class="pre">session.finish</span></code> — that is the ASR protocol’s message, not this one’s.</p></li>
+</ul>
+<p>Instructions used for every row below — <strong>these models are instruction-driven,
+so the instruction is part of the input</strong>:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Transcribe</span> <span class="pre">the</span> <span class="pre">user's</span> <span class="pre">audio</span> <span class="pre">verbatim.</span> <span class="pre">Output</span> <span class="pre">only</span> <span class="pre">the</span> <span class="pre">transcript,</span> <span class="pre">nothing</span> <span class="pre">else.</span></code></p>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-plus-realtime</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash-realtime</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-omni-flash-realtime</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Billing is in <strong>tokens</strong>:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>input (text + audio)</p></th>
+<th class="head"><p>output</p></th>
+<th class="head"><p>total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-plus-realtime</span></code></p></td>
+<td><p>114 (44 + 70)</p></td>
+<td><p>32</p></td>
+<td><p>146</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash-realtime</span></code></p></td>
+<td><p>114 (44 + 70)</p></td>
+<td><p>32</p></td>
+<td><p>146</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-omni-flash-realtime</span></code></p></td>
+<td><p>165 (40 + 125)</p></td>
+<td><p>47</p></td>
+<td><p>212</p></td>
+</tr>
+</tbody>
+</table>
+<p>The vendor documents speech recognition for <strong>113 languages and dialects</strong>, a
+120-minute session cap, and per-model conversation-history limits
+(<code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-plus-realtime</span></code> 100 audio turns / 600 s; <code class="docutils literal notranslate"><span class="pre">-flash-realtime</span></code>
+80 / 480 s; <code class="docutils literal notranslate"><span class="pre">qwen3-omni-flash-realtime</span></code> 8 turns).</p>
+<section id="the-separate-transcription-sub-service">
+<h3>The separate transcription sub-service<a class="headerlink" href="#the-separate-transcription-sub-service" title="Link to this heading">¶</a></h3>
+<p>Independently of the model’s own output, a session may name an ASR model in
+<code class="docutils literal notranslate"><span class="pre">session.input_audio_transcription</span></code>; its results arrive on
+<code class="docutils literal notranslate"><span class="pre">conversation.item.input_audio_transcription.*</span></code>. <strong>This is not the omni model
+transcribing</strong> — it is a different model running alongside:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">session.input_audio_transcription</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">conversation.item.input_audio_transcription.completed</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">model:</span> <span class="pre">&quot;gummy-realtime-v1&quot;</span> <span class="pre">}</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล.</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{}</span></code> (no model named)</p></td>
+<td><p>no event at all</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">model:</span> <span class="pre">&quot;qwen3-asr-flash-realtime-2025-10-27&quot;</span> <span class="pre">}</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล.</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Note these differ from the omni model’s own <code class="docutils literal notranslate"><span class="pre">response.text</span></code> output above: this
+stream renders <code class="docutils literal notranslate"><span class="pre">project</span></code> in Latin, the omni model renders <code class="docutils literal notranslate"><span class="pre">โปรเจกต์</span></code> in Thai.</p>
+</section>
+<section id="with-no-instructions">
+<h3>With no <code class="docutils literal notranslate"><span class="pre">instructions</span></code><a class="headerlink" href="#with-no-instructions" title="Link to this heading">¶</a></h3>
+<p>Sending <code class="docutils literal notranslate"><span class="pre">response.create</span></code> without an <code class="docutils literal notranslate"><span class="pre">instructions</span></code> string produced a
+<strong>conversational reply</strong>, in Thai, offering to help design the project described
+in the clip — a Tech Stack breakdown with numbered sections and follow-up
+questions. Not a transcript. The audio’s content drove a conversation.</p>
+<p>Observed event sequence: <code class="docutils literal notranslate"><span class="pre">session.created</span></code>, <code class="docutils literal notranslate"><span class="pre">session.updated</span></code>,
+<code class="docutils literal notranslate"><span class="pre">conversation.item.input_audio_transcription.delta</span></code>, <code class="docutils literal notranslate"><span class="pre">input_audio_buffer.committed</span></code>,
+<code class="docutils literal notranslate"><span class="pre">response.created</span></code>, <code class="docutils literal notranslate"><span class="pre">response.output_item.added</span></code>, <code class="docutils literal notranslate"><span class="pre">conversation.item.created</span></code>,
+<code class="docutils literal notranslate"><span class="pre">response.content_part.added</span></code>, <code class="docutils literal notranslate"><span class="pre">response.text.delta</span></code>,
+<code class="docutils literal notranslate"><span class="pre">conversation.item.input_audio_transcription.completed</span></code>, <code class="docutils literal notranslate"><span class="pre">response.text.done</span></code>,
+<code class="docutils literal notranslate"><span class="pre">response.content_part.done</span></code>, <code class="docutils literal notranslate"><span class="pre">response.output_item.done</span></code>, <code class="docutils literal notranslate"><span class="pre">response.done</span></code>.</p>
+</section>
+<section id="against-our-asr-provider">
+<h3>Against our ASR provider<a class="headerlink" href="#against-our-asr-provider" title="Link to this heading">¶</a></h3>
+<p>Our <code class="docutils literal notranslate"><span class="pre">qwen</span></code> provider speaks the ASR-specific protocol (<code class="docutils literal notranslate"><span class="pre">session.finish</span></code>) and
+waits for ASR events, so it does not drive these models:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-omni-flash-realtime</span></code></p></td>
+<td><p>no result, 60 s timeout</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-plus-realtime</span></code></p></td>
+<td><p>no result, 60 s timeout</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash-realtime</span></code></p></td>
+<td><p>no result, 60 s timeout</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="qwen3-8-omni-flash-realtime-2026-11-12">
+<h3><code class="docutils literal notranslate"><span class="pre">qwen3.8-omni-flash-realtime</span></code> (2026-11-12)<a class="headerlink" href="#qwen3-8-omni-flash-realtime-2026-11-12" title="Link to this heading">¶</a></h3>
+<p>Served only from a workspace endpoint:
+<code class="docutils literal notranslate"><span class="pre">wss://&lt;WorkspaceId&gt;.ap-southeast-1.maas.aliyuncs.com/api-ws/v1/realtime?model=qwen3.8-omni-flash-realtime</span></code>,
+not the shared <code class="docutils literal notranslate"><span class="pre">dashscope-intl</span></code> one. No dated snapshot is listed in the vendor’s
+docs. The vendor’s page describes a new nested <code class="docutils literal notranslate"><span class="pre">session.update</span></code> shape
+(<code class="docutils literal notranslate"><span class="pre">audio.input.format</span></code>, <code class="docutils literal notranslate"><span class="pre">audio.output</span></code>), but our existing flat handshake
+(<code class="docutils literal notranslate"><span class="pre">input_audio_format:</span> <span class="pre">&quot;pcm&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">sample_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">turn_detection:</span> <span class="pre">null</span></code>) is accepted
+unchanged, so the same adapter drives it.</p>
+<p>On the 9.2 s fixture, four realtime runs: two returned the same transcript as
+<code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash-realtime-2026-03-15</span></code> (<code class="docutils literal notranslate"><span class="pre">เฟรมเวิร์ก</span></code> in Thai, <code class="docutils literal notranslate"><span class="pre">deploy</span></code> in
+Latin); one rendered <code class="docutils literal notranslate"><span class="pre">deploy</span></code> as <code class="docutils literal notranslate"><span class="pre">ดีพลอย</span></code>; one kept <code class="docutils literal notranslate"><span class="pre">framework</span></code> in Latin. Same
+token counts (70 audio, 97 text, 29-33 output), about 10 s wall clock, but
+fewer and coarser partials (9-11 against 31). Four runs is a sample, not a
+measurement.</p>
+<p>Price, from the vendor’s model-pricing page (Singapore, USD per 1M tokens, read
+2026-11-12): input text $0.23, input audio $0.93, output text $0.70, output
+audio $1.87. We ask for text-only output, so the text rate applies: about
+$0.00011 for this clip. The page lists <code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash-realtime</span></code> at $0.55 /
+$4.50 / $3.30 / $17.70 on the same four columns. <code class="docutils literal notranslate"><span class="pre">QWEN_OMNI_PRICING</span></code> used to
+charge the output <em>audio</em> column ($17.70, and $62 for plus) for text output; it
+now charges the text column ($3.30 and $12.40), so the 3.5 clip cost
+is now about $0.00047 rather than $0.00094 (4.4x the 3.8 price, not 8.5x).</p>
+</section>
+<section id="qwen-audio-3-1-asr-flash-message-and-streaming-2026-11-12">
+<h3><code class="docutils literal notranslate"><span class="pre">qwen-audio-3.1-asr-flash-message</span></code> and <code class="docutils literal notranslate"><span class="pre">-streaming</span></code> (2026-11-12)<a class="headerlink" href="#qwen-audio-3-1-asr-flash-message-and-streaming-2026-11-12" title="Link to this heading">¶</a></h3>
+<p>A third Qwen wire protocol: DashScope’s duplex <code class="docutils literal notranslate"><span class="pre">run-task</span></code> (a <code class="docutils literal notranslate"><span class="pre">run-task</span></code> text frame,
+raw PCM as binary frames, <code class="docutils literal notranslate"><span class="pre">finish-task</span></code>), against
+<code class="docutils literal notranslate"><span class="pre">wss://&lt;WorkspaceId&gt;.ap-southeast-1.maas.aliyuncs.com/api-ws/v1/inference</span></code>. Audio may
+only be sent after <code class="docutils literal notranslate"><span class="pre">task-started</span></code>. Results come as <code class="docutils literal notranslate"><span class="pre">result-generated</span></code> with a
+<code class="docutils literal notranslate"><span class="pre">sentence</span></code> (<code class="docutils literal notranslate"><span class="pre">sentence_id</span></code>, <code class="docutils literal notranslate"><span class="pre">sentence_end</span></code>, <code class="docutils literal notranslate"><span class="pre">text</span></code>) and cumulative <code class="docutils literal notranslate"><span class="pre">usage</span></code> tokens.</p>
+<p><strong>When partials arrive</strong> (9.2 s clip, real-time pacing, last audio chunk at 9.45 s):
+the Omni models send no partial before the last chunk, because the adapter sends
+<code class="docutils literal notranslate"><span class="pre">response.create</span></code> only at the end. Both Audio-3.1 models stream while the audio is
+still being sent: <code class="docutils literal notranslate"><span class="pre">-streaming</span></code> 13 partials from 1.3 s, <code class="docutils literal notranslate"><span class="pre">-message</span></code> 22 partials from
+0.5 s (with <code class="docutils literal notranslate"><span class="pre">intermediate_result_enabled</span></code>; its default is final-only). Every model
+finishes 0.2-0.7 s after the last chunk.</p>
+<p><strong>Partials are not the transcript.</strong> <code class="docutils literal notranslate"><span class="pre">-message</span></code> guesses the language from the first
+fraction of a second, so its partials are English and Chinese junk until late in the
+clip (<code class="docutils literal notranslate"><span class="pre">language_hints:</span> <span class="pre">[&quot;th&quot;]</span></code> did not change the partials). <code class="docutils literal notranslate"><span class="pre">-streaming</span></code> partials
+are garbled early and readable from about 5 s. The partials only tell the user they
+are being heard.</p>
+<p><strong>Final text</strong>, 7 runs of <code class="docutils literal notranslate"><span class="pre">-message</span></code> paced at real time: 5 gave the good transcript (Thai script,
+spaced, <code class="docutils literal notranslate"><span class="pre">TypeScript</span></code>/<code class="docutils literal notranslate"><span class="pre">Elysia</span></code>/<code class="docutils literal notranslate"><span class="pre">deploy</span></code>/<code class="docutils literal notranslate"><span class="pre">Railway</span></code>/<code class="docutils literal notranslate"><span class="pre">MongoDB</span> <span class="pre">Atlas</span></code> in Latin, matching
+<code class="docutils literal notranslate"><span class="pre">qwen3.8-omni-flash-realtime</span></code>’s good runs); 2 wrote phonetic Thai for every English
+word (<code class="docutils literal notranslate"><span class="pre">ไทป์สคริปต์</span></code>, <code class="docutils literal notranslate"><span class="pre">เอลิเซีย</span></code>, <code class="docutils literal notranslate"><span class="pre">มองโกดีบีแอดลาสต์</span></code>) with 77 output tokens instead of 54. 5 runs of <code class="docutils literal notranslate"><span class="pre">-streaming</span></code>: always no spaces between words, always Latin
+<code class="docutils literal notranslate"><span class="pre">project</span></code>/<code class="docutils literal notranslate"><span class="pre">typescript</span></code>/<code class="docutils literal notranslate"><span class="pre">framework</span></code>/<code class="docutils literal notranslate"><span class="pre">elysia</span></code>/<code class="docutils literal notranslate"><span class="pre">deploy</span></code>/<code class="docutils literal notranslate"><span class="pre">railway</span></code> in lowercase, and
+<code class="docutils literal notranslate"><span class="pre">MongoDB</span> <span class="pre">Atlas</span></code> wrong in a different way each time (<code class="docutils literal notranslate"><span class="pre">mongodbb</span> <span class="pre">atlas</span></code>, <code class="docutils literal notranslate"><span class="pre">mongodbbas</span></code>,
+<code class="docutils literal notranslate"><span class="pre">mongodbbasas</span></code>). Neither run-to-run variation is a measurement; n is small.</p>
+<p><strong>Faster than real time</strong> (the CLI’s <code class="docutils literal notranslate"><span class="pre">--fast</span></code>, every chunk sent back to back; 3 runs
+each, 9.2 s clip): all three new models accept it. <code class="docutils literal notranslate"><span class="pre">qwen3.8-omni-flash-realtime</span></code>
+1.07-1.15 s, <code class="docutils literal notranslate"><span class="pre">-message</span></code> 0.83-0.86 s, <code class="docutils literal notranslate"><span class="pre">-streaming</span></code> 1.98-2.58 s. The text and token
+counts are the same as when paced at real time (3.8 and <code class="docutils literal notranslate"><span class="pre">-message</span></code> the good
+transcript all 3 times, though the phonetic-Thai variant of <code class="docutils literal notranslate"><span class="pre">-message</span></code> is seen only
+when paced, so 3 fast runs do not rule it out; <code class="docutils literal notranslate"><span class="pre">-streaming</span></code> the same unspaced text with <code class="docutils literal notranslate"><span class="pre">mongodbbas</span></code> all 3
+times), so nothing was dropped. One short clip, so a clip of several minutes sent as
+fast could still behave differently; not tested.</p>
+<p><strong>Tokens and price.</strong> <code class="docutils literal notranslate"><span class="pre">-message</span></code> 116 in / 54 out, <code class="docutils literal notranslate"><span class="pre">-streaming</span></code> 109 in / 45 out, the
+vendor’s measured counts. Price, from the vendor’s pricing page (Singapore, per 1M
+tokens): $0.93 input / $0.70 output for both, about $0.00015 and $0.00013 per clip.</p>
+</section>
+<section id="tuning-the-message-model-s-parameters-2026-11-12">
+<h3>Tuning the message model’s parameters (2026-11-12)<a class="headerlink" href="#tuning-the-message-model-s-parameters-2026-11-12" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">qwen-audio-3.1-asr-flash-message</span></code> takes these <code class="docutils literal notranslate"><span class="pre">parameters</span></code> on <code class="docutils literal notranslate"><span class="pre">run-task</span></code> (vendor’s
+client-events page): <code class="docutils literal notranslate"><span class="pre">disfluency_removal_enabled</span></code> (its “native text polishing”:
+drops fillers), <code class="docutils literal notranslate"><span class="pre">language_hints</span></code> (up to 4 codes; applies to finals), <code class="docutils literal notranslate"><span class="pre">vocabulary</span></code> /
+<code class="docutils literal notranslate"><span class="pre">vocabulary_id</span></code> (hotwords, weight 1-5, or 50 for a “super” hotword, at most 50 of
+those), <code class="docutils literal notranslate"><span class="pre">input.context</span></code> (up to 5 user/assistant turns, 400 characters a turn),
+<code class="docutils literal notranslate"><span class="pre">max_sentence_silence</span></code> (200-6000 ms, default 800), <code class="docutils literal notranslate"><span class="pre">vad_model</span></code>,
+<code class="docutils literal notranslate"><span class="pre">speech_noise_threshold</span></code>, <code class="docutils literal notranslate"><span class="pre">heartbeat</span></code>, <code class="docutils literal notranslate"><span class="pre">keep_dialect</span></code> (Chinese dialects) and
+<code class="docutils literal notranslate"><span class="pre">intermediate_result_enabled</span></code>. Not tried, for want of audio: <code class="docutils literal notranslate"><span class="pre">vad_model</span></code>,
+<code class="docutils literal notranslate"><span class="pre">speech_noise_threshold</span></code>, <code class="docutils literal notranslate"><span class="pre">keep_dialect</span></code>.</p>
+<p>What was run: the 9.2 s Thai fixture (about 400 sessions in all, 6-56 runs per
+setting, several sessions in parallel at real-time pacing), and two synthetic English
+clips made with ffmpeg’s <code class="docutils literal notranslate"><span class="pre">flite</span></code> voice, one of spoken numbers and one full of
+“um/uh/you know”. Counts below are runs of the same audio, not independent speakers.</p>
+<p><strong>English words in Thai, spelled in Thai script</strong> (“phonetic”: <code class="docutils literal notranslate"><span class="pre">ไทป์สคริปต์</span></code>,
+<code class="docutils literal notranslate"><span class="pre">เอลิเซีย</span></code>) as a share of runs on the Thai clip: no parameters 15 of 40;
+<code class="docutils literal notranslate"><span class="pre">language_hints:</span> <span class="pre">[&quot;th&quot;]</span></code> 1 of 24; <code class="docutils literal notranslate"><span class="pre">disfluency_removal_enabled</span></code> 0 of 24; hotwords at
+weight 50 0 of 24 (at weight 5, 5 of 8); a Thai+Latin example turn in <code class="docutils literal notranslate"><span class="pre">context</span></code> 0 of
+24 (a bare word list, 4 of 8); <code class="docutils literal notranslate"><span class="pre">th</span></code> + polishing 0 of 12, with weight-50 hotwords also
+0 of 12. Setting <code class="docutils literal notranslate"><span class="pre">max_sentence_silence</span></code> at all (200, 800 or 3000) made it worse, 44
+of 56; cause unknown, so just do not set it.</p>
+<p><strong>Spoken numbers</strong> (English clip): with no parameters the model wrote digits in 5 of
+6 runs (<code class="docutils literal notranslate"><span class="pre">23</span> <span class="pre">apples</span></code>, <code class="docutils literal notranslate"><span class="pre">0812345678</span></code>, <code class="docutils literal notranslate"><span class="pre">2026</span></code>). Every <code class="docutils literal notranslate"><span class="pre">language_hints</span></code> form tried
+(<code class="docutils literal notranslate"><span class="pre">en</span></code>, <code class="docutils literal notranslate"><span class="pre">th</span></code>, <code class="docutils literal notranslate"><span class="pre">th,en</span></code>, <code class="docutils literal notranslate"><span class="pre">en,th</span></code>) wrote words in 24 of 24 (<code class="docutils literal notranslate"><span class="pre">twenty</span> <span class="pre">three</span></code>). Polishing
+alone gave digits in 18 of 18, and a hint plus polishing gave digits in 30 of 30. So
+a hint on its own breaks numbers, and polishing repairs it. <strong>Thai spoken numbers
+were not tested</strong>: there was no Thai audio with numbers.</p>
+<p><strong>Fillers</strong> (English clip): off, every <code class="docutils literal notranslate"><span class="pre">um</span></code>, <code class="docutils literal notranslate"><span class="pre">uh</span></code>, <code class="docutils literal notranslate"><span class="pre">you</span> <span class="pre">know</span></code> and <code class="docutils literal notranslate"><span class="pre">like</span></code> is kept;
+on, all are removed (6 of 6), and <code class="docutils literal notranslate"><span class="pre">Well</span></code> and <code class="docutils literal notranslate"><span class="pre">So</span></code> stay.</p>
+<p><strong>The streaming model accepts it too</strong>, and benefits (4 runs each): on the Thai clip
+the text gains word spaces, a capital <code class="docutils literal notranslate"><span class="pre">Project</span></code> and a correct <code class="docutils literal notranslate"><span class="pre">MongoDB</span> <span class="pre">Atlas</span></code>, where
+without it the text is unspaced and <code class="docutils literal notranslate"><span class="pre">mongodbbas</span></code>, though <code class="docutils literal notranslate"><span class="pre">ชื่อ</span></code> loses its last
+letter in 4 of 4; on the filler clip the fillers are removed 4 of 4.</p>
+<p>Conclusion: polishing is the one setting that helped on every axis, so
+<code class="docutils literal notranslate"><span class="pre">qwen-audio</span></code> turns it on by default (<code class="docutils literal notranslate"><span class="pre">disfluencyRemoval:</span> <span class="pre">false</span></code> to turn it off).</p>
+</section>
+<section id="grok-voice-transcribe-2-0-2026-11-12">
+<h3>Grok Voice Transcribe 2.0 (2026-11-12)<a class="headerlink" href="#grok-voice-transcribe-2-0-2026-11-12" title="Link to this heading">¶</a></h3>
+<p>xAI’s streaming speech-to-text, <code class="docutils literal notranslate"><span class="pre">wss://api.x.ai/v1/stt?model=grok-voice-transcribe-2.0</span></code>.
+Everything is configured in the query string; the server sends <code class="docutils literal notranslate"><span class="pre">transcript.created</span></code>
+(audio may only follow it), the client sends raw PCM frames, then
+<code class="docutils literal notranslate"><span class="pre">{&quot;type&quot;:&quot;audio.done&quot;}</span></code>. Priced per second of audio, $0.20 per hour streaming
+($0.10 per hour batch), per the vendor’s announcement of 2026-09-18; OpenRouter’s
+<code class="docutils literal notranslate"><span class="pre">x-ai/grok-stt-2.0</span></code> lists the batch rate, $0.000028 per second.</p>
+<p>On the 9.2 s Thai fixture (about 50 sessions, some in parallel):</p>
+<ul class="simple">
+<li><p><strong>Text</strong> is the best seen so far on this fixture: Thai in Thai script, every English
+word in Latin (<code class="docutils literal notranslate"><span class="pre">TypeScript</span></code>, <code class="docutils literal notranslate"><span class="pre">deploy</span></code>, <code class="docutils literal notranslate"><span class="pre">Railway</span></code>, <code class="docutils literal notranslate"><span class="pre">MongoDB</span> <span class="pre">Atlas</span></code>), with word spaces
+where a Latin word meets Thai. The one variable word is the framework name: <code class="docutils literal notranslate"><span class="pre">Elysia</span></code>
+(right) or <code class="docutils literal notranslate"><span class="pre">Elixir</span></code>, changing from run to run in every setting (<code class="docutils literal notranslate"><span class="pre">Elixir</span></code> more often;
+<code class="docutils literal notranslate"><span class="pre">Elysia</span></code> in 3 of 3 with <code class="docutils literal notranslate"><span class="pre">en</span></code> + <code class="docutils literal notranslate"><span class="pre">format</span></code>, too few runs to call that an effect).
+<code class="docutils literal notranslate"><span class="pre">filler_words</span></code> is off by default, so fillers are removed.</p></li>
+<li><p><strong>Partials</strong> (with <code class="docutils literal notranslate"><span class="pre">interim_results=true</span></code>) start 1-2 s in and read well, because each
+is the running text of the chunk being heard. A chunk final (<code class="docutils literal notranslate"><span class="pre">is_final</span></code>) locks about
+3-4 s of speech; an utterance final (<code class="docutils literal notranslate"><span class="pre">speech_final</span></code>) carries the whole stitched
+utterance. Without <code class="docutils literal notranslate"><span class="pre">interim_results</span></code> the first text comes at about 5.5 s.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">transcript.done.text</span></code> is empty.</strong> Only the utterance finals carry the text, so the
+adapter builds its final from those (and falls back to the chunk finals plus the
+last interim if the audio ended without one).</p></li>
+<li><p><strong>Fast dump is no faster</strong>: the whole 9.2 s clip sent at once still finished at
+about 13.5 s, so the provider is declared real-time only.</p></li>
+<li><p><strong>End-of-audio wait is erratic.</strong> From <code class="docutils literal notranslate"><span class="pre">audio.done</span></code> to <code class="docutils literal notranslate"><span class="pre">transcript.done</span></code>: 0.3-1 s on
+most single sessions, but 11 s, 18 s, 40 s and 43 s on others, and one session never
+finished. It happened with <code class="docutils literal notranslate"><span class="pre">interim_results</span></code> on and off (1 in 4 off), and with the
+audio sent evenly or with an 800 ms burst, so it is the vendor, not those settings.
+Several sessions at once made it worse. Worth watching before relying on this as a
+default; the backend’s own timeouts are what catch a session that never ends.</p></li>
+<li><p><strong>Text formatting</strong> (<code class="docutils literal notranslate"><span class="pre">format=true</span></code>) needs a <code class="docutils literal notranslate"><span class="pre">language</span></code> and, per the vendor, works
+for Arabic, Chinese, English, French, German, Japanese, Portuguese, Russian,
+Spanish, Swedish and Vietnamese: <strong>not Thai</strong>. Measured on the English numbers clip
+(2 runs each): no language, <code class="docutils literal notranslate"><span class="pre">th</span></code>, and <code class="docutils literal notranslate"><span class="pre">th</span></code> + <code class="docutils literal notranslate"><span class="pre">format</span></code> all spell the numbers out
+(<code class="docutils literal notranslate"><span class="pre">twenty</span> <span class="pre">three</span></code>, <code class="docutils literal notranslate"><span class="pre">zero</span> <span class="pre">eight</span> <span class="pre">one</span> <span class="pre">two</span> <span class="pre">...</span></code>); <code class="docutils literal notranslate"><span class="pre">en</span></code> + <code class="docutils literal notranslate"><span class="pre">format</span></code> writes <code class="docutils literal notranslate"><span class="pre">23</span></code>, <code class="docutils literal notranslate"><span class="pre">081-234-5678</span></code>
+and <code class="docutils literal notranslate"><span class="pre">2026</span></code>, but also mangled the price (<code class="docutils literal notranslate"><span class="pre">four</span> <span class="pre">hundred</span> <span class="pre">fifty</span> <span class="pre">BAHT</span></code> became <code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">50bht</span></code>).
+On the Thai fixture <code class="docutils literal notranslate"><span class="pre">en</span></code> + <code class="docutils literal notranslate"><span class="pre">format</span></code> left the text intact in 3 of 3 runs. <strong>Thai
+spoken numbers under an English bias were not tested</strong>: no Thai audio with numbers.</p></li>
+</ul>
+</section>
+<section id="scribe-realtime-v2-2026-11-14">
+<h3>Scribe Realtime v2 (2026-11-14)<a class="headerlink" href="#scribe-realtime-v2-2026-11-14" title="Link to this heading">¶</a></h3>
+<p>ElevenLabs’ <code class="docutils literal notranslate"><span class="pre">scribe_v2_realtime</span></code>, <code class="docutils literal notranslate"><span class="pre">wss://api.elevenlabs.io/v1/speech-to-text/realtime</span></code>,
+header <code class="docutils literal notranslate"><span class="pre">xi-api-key</span></code>. $0.22 per hour (the same as <code class="docutils literal notranslate"><span class="pre">scribe_v3_live</span></code>), per the vendor’s
+pricing page. The server speaks first (<code class="docutils literal notranslate"><span class="pre">session_started</span></code>); audio is JSON
+(<code class="docutils literal notranslate"><span class="pre">input_audio_chunk</span></code>, base64, <code class="docutils literal notranslate"><span class="pre">commit</span></code>, <code class="docutils literal notranslate"><span class="pre">sample_rate</span></code>); the turn ends with an empty
+chunk and <code class="docutils literal notranslate"><span class="pre">commit:</span> <span class="pre">true</span></code>.</p>
+<p>On the 9.2 s Thai fixture (about 30 sessions):</p>
+<ul class="simple">
+<li><p><strong>Text</strong> is the same in every run: Thai in Thai script, <code class="docutils literal notranslate"><span class="pre">Project</span></code>, <code class="docutils literal notranslate"><span class="pre">TypeScript</span></code>,
+<code class="docutils literal notranslate"><span class="pre">framework</span></code>, <code class="docutils literal notranslate"><span class="pre">Elysia</span></code>, <code class="docutils literal notranslate"><span class="pre">deploy</span></code>, <code class="docutils literal notranslate"><span class="pre">Railway</span></code>, <code class="docutils literal notranslate"><span class="pre">MongoDB</span> <span class="pre">Atlas</span></code> in Latin (5 of 5 at live
+pace, 5 of 5 fast, 5 of 5 with <code class="docutils literal notranslate"><span class="pre">language_code=th</span></code>). <code class="docutils literal notranslate"><span class="pre">Elysia</span></code> right in all of them.</p></li>
+<li><p><strong>Partials</strong>: none in the first 2 s (the vendor says processing starts after the
+first 2 s of audio), the first at about 2.2 s after audio starts, then one a second.
+Each <em>replaces</em> the one before. They are shaky: the first two are guesses (<code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">นี้คืออะไรครับ?</span></code>) and one went to <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">ниии--</span> <span class="pre">project</span></code> before recovering.</p></li>
+<li><p><strong>Commit to final</strong>: 0.25-0.31 s at live pace in 5 of 5 sessions.</p></li>
+<li><p><strong>Faster than real time works, and gives the same text.</strong> The 9.2 s clip sent all at
+once finished in 1.5-1.8 s (5 sessions); a 28.7 s clip in 2.5 s; a 37.3 s clip of
+different speech in 2.7 s. The one difference seen is the Thai spelling of
+<code class="docutils literal notranslate"><span class="pre">framework</span></code> in the 28 s clip (<code class="docutils literal notranslate"><span class="pre">เฟรมเวิร์ก</span></code> fast, <code class="docutils literal notranslate"><span class="pre">framework</span></code> live).</p></li>
+<li><p><strong>A commit with under 0.3 s of uncommitted audio is refused</strong>: <code class="docutils literal notranslate"><span class="pre">commit_throttled</span></code>,
+then the socket closes. A 0.1 s clip hits it; the provider pads with silence.</p></li>
+<li><p><strong>Commits sent in quick succession are throttled too</strong>: a commit every 9.2 s of
+audio, with the audio sent all at once, got <code class="docutils literal notranslate"><span class="pre">commit_throttled</span></code>.</p></li>
+<li><p><strong>The vendor commits by itself</strong> after about 36 s of audio. Sent faster than real
+time, that segment can arrive <em>after</em> our own commit was sent, and nothing on the
+wire says which committed segment answers our commit, so for a recording over 30 s
+the provider waits for segments to stop arriving (1 s). Checked live on the 37 s clip.</p></li>
+<li><p><strong>A clip made of the same sentence four times</strong> lost most of its text, at live pace
+and fast (<code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">นี้เขียนด้วย</span> <span class="pre">|</span> <span class="pre">มือ</span> <span class="pre">โอเค</span></code>); a 37 s clip of different speech came
+through whole. So it looks like handling of repeated audio, not the 36 s limit, but
+the cause is not known.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">no_verbatim=true</span></code></strong> removed <code class="docutils literal notranslate"><span class="pre">um</span></code>/<code class="docutils literal notranslate"><span class="pre">uh</span></code> (2 of 2, synthetic English), and wrote the
+phone number as <code class="docutils literal notranslate"><span class="pre">0812345678</span></code> and the year as <code class="docutils literal notranslate"><span class="pre">2026</span></code> in 1 of 2 runs (the other spelled
+them out). Default is verbatim: fillers kept, numbers as words, <code class="docutils literal notranslate"><span class="pre">BHT</span></code> for baht.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">scribe_v3_live</span></code></strong> (3 runs): <code class="docutils literal notranslate"><span class="pre">โปรเจกต์</span></code> in Thai script, but <code class="docutils literal notranslate"><span class="pre">Framework</span></code> and <code class="docutils literal notranslate"><span class="pre">Deploy</span></code>
+capitalized mid-sentence, and 26 partials instead of 9. Not declared.</p></li>
+<li><p>Errors are <code class="docutils literal notranslate"><span class="pre">{&quot;message_type&quot;:&quot;auth_error&quot;,&quot;error&quot;:&quot;…&quot;}</span></code> then a close (bad key).</p></li>
+</ul>
+<p>Not covered: noisy audio, real Thai speech with numbers, a session longer than a
+minute at live pace.</p>
+</section>
+<section id="iapp-realtime-2026-11-14">
+<h3>iApp realtime (2026-11-14)<a class="headerlink" href="#iapp-realtime-2026-11-14" title="Link to this heading">¶</a></h3>
+<p>iApp’s <code class="docutils literal notranslate"><span class="pre">realtime-v2</span></code>, <code class="docutils literal notranslate"><span class="pre">wss://api.iapp.co.th/v3/store/speech/speech-to-text/realtime-v2</span></code>,
+header <code class="docutils literal notranslate"><span class="pre">apikey</span></code> (a bad or missing key is an HTTP 401 before the upgrade). The model
+cannot be chosen; the server’s <code class="docutils literal notranslate"><span class="pre">ready</span></code> message reports <code class="docutils literal notranslate"><span class="pre">chinda-asr-realtime-v1</span></code>. Free
+during the vendor’s launch (their docs). The client sends a JSON settings message
+(<code class="docutils literal notranslate"><span class="pre">language_code:</span> <span class="pre">&quot;th&quot;</span></code> is the only language, <code class="docutils literal notranslate"><span class="pre">sample_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">encoding</span></code>, <code class="docutils literal notranslate"><span class="pre">latency_ms</span></code>,
+<code class="docutils literal notranslate"><span class="pre">end_silence_ms</span></code>); the server answers <code class="docutils literal notranslate"><span class="pre">ready</span></code>; audio is binary PCM16; the text message
+<code class="docutils literal notranslate"><span class="pre">end</span></code> finishes the turn, followed by the remaining finals and <code class="docutils literal notranslate"><span class="pre">done</span></code>.</p>
+<p>On the 9.2 s Thai fixture (about 12 sessions):</p>
+<ul class="simple">
+<li><p><strong>Text</strong>: Thai, with English words written <strong>in Thai script</strong>
+(<code class="docutils literal notranslate"><span class="pre">เฟรมเวิร์ค</span></code>, <code class="docutils literal notranslate"><span class="pre">เอเลเซีย</span></code> for Elysia, <code class="docutils literal notranslate"><span class="pre">ดีพลอย</span></code>, <code class="docutils literal notranslate"><span class="pre">มองโก้ดีบีแอดลัส</span></code>), as the vendor’s docs
+say; <code class="docutils literal notranslate"><span class="pre">deploy</span> <span class="pre">to</span> <span class="pre">Vercel</span></code> came out as <code class="docutils literal notranslate"><span class="pre">ดีพลอยไปเที่ยวเลวเวย์</span></code>. The same text in the live
+run and the fast runs at the default settings.</p></li>
+<li><p><strong>English speech is not supported</strong>: the synthetic English clips came back as Thai
+nonsense (<code class="docutils literal notranslate"><span class="pre">ไอฮันตีแอปเอิลส์เตอร์ฟิฟตี…</span></code>). A 37 s mixed clip came through fine in its Thai
+parts and mangled in the English ones, with a few Latin words slipping through.</p></li>
+<li><p><strong>Partials</strong>: 14 at the default <code class="docutils literal notranslate"><span class="pre">latency_ms</span></code> (560), the first at 1.1–1.5 s, about every
+0.6 s, each replacing the one before. At <code class="docutils literal notranslate"><span class="pre">latency_ms</span></code> 80 there are 39 (the first at
+0.8 s), at 320 24, at 1120 7–14 (the first at 1.2 s).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">latency_ms</span></code> changes the text</strong>: 80 wrote <code class="docutils literal notranslate"><span class="pre">มังโก้ดีแอดลัส</span></code> (dropping the <code class="docutils literal notranslate"><span class="pre">บี</span></code> of
+MongoDB) in 2 of 2 runs, and 320 <code class="docutils literal notranslate"><span class="pre">เฟรมเวิร์ค</span></code>/<code class="docutils literal notranslate"><span class="pre">มังโกดีบีแอดลาส</span></code>; 560 wrote
+<code class="docutils literal notranslate"><span class="pre">มองโก้ดีบีแอดลัส</span></code>. So the provider keeps the vendor’s default.</p></li>
+<li><p><strong>End to done</strong>: 19–26 ms at live pace; the sentence’s final arrives about 0.45 s before
+the audio ends (the clip ends with silence longer than <code class="docutils literal notranslate"><span class="pre">end_silence_ms</span></code>).</p></li>
+<li><p><strong>Faster than real time works, and gives the same text</strong>: the 9.2 s clip all at once
+finished in 1.7 s (0.75 s in the provider), a 37 s clip in 2.5 s.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TOO_FAST</span></code></strong> (<code class="docutils literal notranslate"><span class="pre">more</span> <span class="pre">than</span> <span class="pre">120</span> <span class="pre">s</span> <span class="pre">of</span> <span class="pre">audio</span> <span class="pre">is</span> <span class="pre">waiting;</span> <span class="pre">send</span> <span class="pre">audio</span> <span class="pre">in</span> <span class="pre">real</span> <span class="pre">time</span></code>) ends
+the session when too much audio is waiting: a 150 s clip sent at once got it 0.5 s
+in, with no final text. The provider therefore sends up to 90 s at once and the rest
+at twice real time: 149 s took 30 s and 298 s took 106 s, no error, so the vendor
+clears that backlog at least twice as fast as it arrives.</p></li>
+<li><p><strong>Concurrency</strong>: two sessions at once worked; a third on the same key got HTTP 429.</p></li>
+<li><p>A 0.1 s clip finishes normally with no text.</p></li>
+</ul>
+<p>Not covered: noisy audio, real Thai speech with numbers, <code class="docutils literal notranslate"><span class="pre">end_silence_ms</span></code> variations,
+the <code class="docutils literal notranslate"><span class="pre">BUSY</span></code> limit (20 live sessions at launch, per the docs).</p>
+</section>
+<section id="pacing-fast-dump-vs-realtime">
+<h3>Pacing: fast dump vs realtime<a class="headerlink" href="#pacing-fast-dump-vs-realtime" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">qwen-omni/qwen3.5-omni-flash-realtime-2026-03-15</span></code>, same fixture, 20 runs per
+condition through the <code class="docutils literal notranslate"><span class="pre">vxasr</span></code> CLI (<code class="docutils literal notranslate"><span class="pre">--fast</span></code> sends frames with no delay;
+realtime sends 3200 bytes each 100 ms).</p>
+<p><strong>Every run in both conditions returned a transcript. No hangs, no errors.</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>condition</p></th>
+<th class="head"><p>wall clock</p></th>
+<th class="head"><p>runs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--fast</span></code></p></td>
+<td><p>0–1 s</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>realtime</p></td>
+<td><p>9–10 s</p></td>
+<td><p>20</p></td>
+</tr>
+</tbody>
+</table>
+<p>The transcripts differ only in how the framework name is rendered:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>rendering</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">--fast</span></code></p></th>
+<th class="head"><p>realtime</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Elysia</span></code></p></td>
+<td><p>13</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Alecia</span></code></p></td>
+<td><p>4</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Alembia</span></code></p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Aleph.js</span></code></p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>65% vs 85% <code class="docutils literal notranslate"><span class="pre">Elysia</span></code>. <strong>Fisher’s exact (two-tailed): p = 0.273 — this sample does
+not establish a pacing effect.</strong> The direction was consistent across two
+independent samples (2/5 vs 4/5, then 11/15 vs 13/15), and <code class="docutils literal notranslate"><span class="pre">--fast</span></code> produced two
+renderings realtime never did, but neither observation is significant at this n.
+Distinguishing 65% from 85% needs roughly 70 runs per condition.</p>
+<p>Contrast BytePlus’s bi-directional <code class="docutils literal notranslate"><span class="pre">bigmodel</span></code> mode, which <strong>hangs outright</strong>
+under a fast dump (see its section) — but see below: that is not the mode this
+app ships.</p>
+<p>Cost is unaffected by pacing: this model bills per token, not per second.</p>
+</section>
+<section id="byteplus-bigmodel-nostream-the-shipped-mode-fast-dump-vs-realtime">
+<h3>BytePlus <code class="docutils literal notranslate"><span class="pre">bigmodel_nostream</span></code> (the shipped mode), fast dump vs realtime<a class="headerlink" href="#byteplus-bigmodel-nostream-the-shipped-mode-fast-dump-vs-realtime" title="Link to this heading">¶</a></h3>
+<p>The “BytePlus hangs on a fast dump” finding above is about the bi-directional
+<code class="docutils literal notranslate"><span class="pre">bigmodel</span></code> mode, which the catalogue deliberately does not declare (no
+<code class="docutils literal notranslate"><span class="pre">language</span></code> support — see its section). The mode actually shipped,
+<code class="docutils literal notranslate"><span class="pre">bigmodel_nostream</span></code>, had never been fast-dump tested. Run 2026-07-26, same
+fixture, through the <code class="docutils literal notranslate"><span class="pre">vxasr</span></code> CLI:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>condition</p></th>
+<th class="head"><p>wall clock</p></th>
+<th class="head"><p>outcome</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--fast</span></code>, <code class="docutils literal notranslate"><span class="pre">language</span></code> omitted, n=3</p></td>
+<td><p>1.4–2.2 s</p></td>
+<td><p>all 3 completed; no hang. Transcripts match the realtime row’s shape (English/Chinese nonsense)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--fast</span></code>, <code class="docutils literal notranslate"><span class="pre">BYTEPLUS_LANGUAGE=th-TH</span></code></p></td>
+<td><p>1.7 s</p></td>
+<td><p>correct Thai, byte-for-byte the same rendering as the realtime <code class="docutils literal notranslate"><span class="pre">th-TH</span></code> row above</p></td>
+</tr>
+<tr class="row-even"><td><p>realtime (100 ms/chunk)</p></td>
+<td><p>~9.2 s+</p></td>
+<td><p>(existing row above)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong><code class="docutils literal notranslate"><span class="pre">bigmodel_nostream</span></code> does not hang on a fast dump.</strong> Billing unaffected (still
+<code class="docutils literal notranslate"><span class="pre">byteplus:seedasr:seconds</span></code> quantity 10). This mode is also documented to
+withhold partials until 15 s of audio or the final packet regardless of
+pacing, so a fast dump costs it nothing it wasn’t already giving up.</p>
+<p>Also reconfirmed on this run: <code class="docutils literal notranslate"><span class="pre">qwen/qwen3-asr-flash-realtime-2025-10-27</span></code>
+(raw and <code class="docutils literal notranslate"><span class="pre">+groq</span></code>) and <code class="docutils literal notranslate"><span class="pre">qwen-omni/qwen3.5-omni-flash-realtime-2026-03-15</span></code> all
+complete a <code class="docutils literal notranslate"><span class="pre">--fast</span></code> dump in under 1.5 s with no hangs, consistent with the
+existing rows above.</p>
+<p><strong>Net: every configuration currently in <code class="docutils literal notranslate"><span class="pre">builtinConfigurations</span></code> (Qwen ASR,
+Qwen Omni, BytePlus <code class="docutils literal notranslate"><span class="pre">bigmodel_nostream</span></code>, each raw or <code class="docutils literal notranslate"><span class="pre">+groq</span></code>) tolerates a fast
+dump.</strong> The only “hangs on fast dump” case ever observed is the BytePlus mode
+the app does not use. The eval fan-out’s fixed 100 ms/frame pacing
+(<code class="docutils literal notranslate"><span class="pre">apps/website/src/evalRun.ts</span></code>) is accordingly a real speed-up opportunity —
+its comment’s justification (“BytePlus hangs outright on a fast dump”) turns
+out to describe an undeployed mode, not the shipped one.</p>
+</section>
+<section id="gummy-realtime-v1">
+<h3><code class="docutils literal notranslate"><span class="pre">gummy-realtime-v1</span></code><a class="headerlink" href="#gummy-realtime-v1" title="Link to this heading">¶</a></h3>
+<p>Surfaced only as a value for <code class="docutils literal notranslate"><span class="pre">input_audio_transcription.model</span></code>; it is not in the
+vendor’s speech-to-text model list. Addressed <strong>directly</strong> over the native
+run-task protocol with the same key:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gummy-realtime-v1</span></code></p></td>
+<td><p><strong>error</strong> — <code class="docutils literal notranslate"><span class="pre">AccessDenied:</span> <span class="pre">Access</span> <span class="pre">denied.</span></code> (with and without <code class="docutils literal notranslate"><span class="pre">language_hints</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="alibaba-cloud-dashscope-fun-asr">
+<h2>Alibaba Cloud DashScope — Fun-ASR<a class="headerlink" href="#alibaba-cloud-dashscope-fun-asr" title="Link to this heading">¶</a></h2>
+<p>Native run-task protocol. <code class="docutils literal notranslate"><span class="pre">wss://dashscope-intl.aliyuncs.com/api-ws/v1/inference</span></code>, <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>, JSON <code class="docutils literal notranslate"><span class="pre">run-task</span></code> → wait <code class="docutils literal notranslate"><span class="pre">task-started</span></code> → <strong>raw binary</strong> audio frames → <code class="docutils literal notranslate"><span class="pre">finish-task</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">language_hints</span></code></p></th>
+<th class="head"><p>output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime</span></code></p></td>
+<td><p><em>(omitted)</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Nickel</span> <span class="pre">repository</span> <span class="pre">type</span> <span class="pre">script,</span> <span class="pre">type</span> <span class="pre">framework</span> <span class="pre">shoe</span> <span class="pre">elisia</span> <span class="pre">deploy</span> <span class="pre">material</span> <span class="pre">way,</span> <span class="pre">lettuce</span> <span class="pre">mongo</span> <span class="pre">db</span> <span class="pre">atlas,</span> <span class="pre">penpui</span> <span class="pre">balikantan</span> <span class="pre">common.</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[&quot;th&quot;]</span></code></p></td>
+<td><p>byte-identical to omitted</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[&quot;xx&quot;]</span></code> (bogus)</p></td>
+<td><p>byte-identical to omitted</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[&quot;zh&quot;]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Nickelodeon</span> <span class="pre">Pasar</span> <span class="pre">Typescript</span> <span class="pre">Child</span> <span class="pre">Framework</span> <span class="pre">Shoes</span> <span class="pre">Elisia</span> <span class="pre">Deploy</span> <span class="pre">Material</span> <span class="pre">Way</span> <span class="pre">LagosMongoDB</span> <span class="pre">AtlasPenpah</span> <span class="pre">Berikan</span> <span class="pre">tan</span> <span class="pre">common。</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime-2025-11-07</span></code></p></td>
+<td><p><em>(omitted)</em></p></td>
+<td><p>byte-identical to <code class="docutils literal notranslate"><span class="pre">fun-asr-realtime</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime-2025-11-07</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[&quot;th&quot;]</span></code></p></td>
+<td><p>byte-identical to omitted</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime-2026-02-28</span></code></p></td>
+<td><p>—</p></td>
+<td><p><strong>error</strong> — <code class="docutils literal notranslate"><span class="pre">task-failed</span></code>, <code class="docutils literal notranslate"><span class="pre">error_code:</span> <span class="pre">ModelNotFound</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">zh</span></code> changes the output; <code class="docutils literal notranslate"><span class="pre">th</span></code> and a bogus code do not. Vendor-reported billed duration for the 9.218 s clip: <strong>9 s</strong> (<code class="docutils literal notranslate"><span class="pre">ceil(bytes</span> <span class="pre">/</span> <span class="pre">32000)</span></code> gives 10).</p>
+</section>
+<section id="byteplus-seed-asr">
+<h2>BytePlus — Seed-ASR<a class="headerlink" href="#byteplus-seed-asr" title="Link to this heading">¶</a></h2>
+<p>Binary-framed protocol. <code class="docutils literal notranslate"><span class="pre">wss://voice.ap-southeast-1.bytepluses.com/api/v3/sauc/&lt;mode&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">X-Api-Key</span></code>, <code class="docutils literal notranslate"><span class="pre">X-Api-Resource-Id</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>mode</p></th>
+<th class="head"><p>resource id</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">audio.language</span></code></p></th>
+<th class="head"><p>output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bigmodel</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">volc.seedasr.sauc.duration</span></code> (2.0)</p></td>
+<td><p><em>(unsupported on this mode)</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">Niagara</span> <span class="pre">typescript</span> <span class="pre">Chai</span> <span class="pre">framework</span> <span class="pre">Chai</span> <span class="pre">do</span> <span class="pre">deploy</span> <span class="pre">material</span> <span class="pre">way</span> <span class="pre">来自</span> <span class="pre">Chai</span> <span class="pre">MongoDB</span> <span class="pre">Atlassian</span> <span class="pre">common。</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bigmodel</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">volc.bigasr.sauc.duration</span></code> (1.0)</p></td>
+<td><p><em>(unsupported on this mode)</em></p></td>
+<td><p>byte-identical to the 2.0 row</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bigmodel</span></code> + Groq</p></td>
+<td><p>2.0</p></td>
+<td><p>—</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Niagara</span> <span class="pre">TypeScript.</span> <span class="pre">Chai</span> <span class="pre">framework.</span> <span class="pre">Chai</span> <span class="pre">deploys</span> <span class="pre">material</span> <span class="pre">way</span> <span class="pre">from</span> <span class="pre">Chai</span> <span class="pre">MongoDB</span> <span class="pre">Atlassian</span> <span class="pre">common.</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bigmodel_async</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>—</p></td>
+<td><p><strong>parse error</strong> — <code class="docutils literal notranslate"><span class="pre">Unexpected</span> <span class="pre">token</span> <span class="pre">'s',</span> <span class="pre">&quot;sult&quot;:{&quot;ad&quot;…</span></code>; frames appear to omit the sequence field our parser expects at byte 12</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bigmodel_nostream</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p><em>(omitted)</em></p></td>
+<td><p>run 1: <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Nick</span> <span class="pre">and</span> <span class="pre">Repasa</span> <span class="pre">TypeScript,</span> <span class="pre">Chai</span> <span class="pre">framework</span> <span class="pre">to</span> <span class="pre">Elisia</span> <span class="pre">to</span> <span class="pre">deploy</span> <span class="pre">material</span> <span class="pre">way,</span> <span class="pre">Let's</span> <span class="pre">say</span> <span class="pre">Mongodb</span> <span class="pre">at</span> <span class="pre">last,</span> <span class="pre">and</span> <span class="pre">two</span> <span class="pre">high</span> <span class="pre">baricantum</span> <span class="pre">common.</span></code><br>run 2: <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Nick</span> <span class="pre">and</span> <span class="pre">Repasa</span> <span class="pre">TypeScript</span> <span class="pre">Chai</span> <span class="pre">framework</span> <span class="pre">to</span> <span class="pre">Elisia</span> <span class="pre">to</span> <span class="pre">deploy</span> <span class="pre">material</span> <span class="pre">way</span> <span class="pre">Let's</span> <span class="pre">I'm</span> <span class="pre">going</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">at</span> <span class="pre">last</span> <span class="pre">and</span> <span class="pre">put</span> <span class="pre">high巴厘干坦</span> <span class="pre">common</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bigmodel_nostream</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">th-TH</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษาไทป์สคริปต์</span> <span class="pre">ใช้เฟรมเวิร์กชื่ออเลเซีย</span> <span class="pre">โดยดีพลอยไปที่เรลเวย์</span> <span class="pre">และใช้มองโกดีบีแอทลาสเป็นผู้ให้บริการฐานข้อมูล.</span></code> <em>(2 runs, byte-identical)</em></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bigmodel_nostream</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">en-US</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษาไทป์สคริปต์ใช้เฟรมเวิร์คชื่ออเลเซียโดยดีพลอยไปที่เรลเวย์และใช้มองโกดีบีแอทลาสเป็นผู้ให้บริการฐานข้อมูล.</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Usage reported: <code class="docutils literal notranslate"><span class="pre">byteplus:seedasr:seconds</span></code> quantity <strong>10</strong>, unit price <code class="docutils literal notranslate"><span class="pre">$0.0000417</span></code> → <code class="docutils literal notranslate"><span class="pre">$0.000417</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">language</span></code> is documented as supported only on <code class="docutils literal notranslate"><span class="pre">bigmodel_nostream</span></code>, not <code class="docutils literal notranslate"><span class="pre">bigmodel</span></code>. With it omitted, the vendor documents coverage as <em>“Mandarin Chinese, English, Cantonese, Shanghainese, Minnan, Sichuan, Shaanxi dialect”</em>.</p>
+</section>
+<hr class="docutils" />
+<section id="openrouter">
+<h2>OpenRouter<a class="headerlink" href="#openrouter" title="Link to this heading">¶</a></h2>
+<p>Run <strong>2026-08-23</strong>, not 2026-07-16 like the rest of this file. A single HTTP endpoint fanning out to many backing vendors: <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">https://openrouter.ai/api/v1/audio/transcriptions</span></code>, <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>, <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code> with <code class="docutils literal notranslate"><span class="pre">model</span></code> and <code class="docutils literal notranslate"><span class="pre">file</span></code> fields. One request per model — the whole clip goes up as one WAV file, no pacing, no partials. Compared 19 models (dtinth/vxbeamer#86).</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>output</p></th>
+<th class="head"><p>cost</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nvidia/nemotron-3.5-asr-streaming-multilingual-0.6b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โ</span> <span class="pre">ป</span> <span class="pre">ร</span> <span class="pre">เ</span> <span class="pre">จ</span> <span class="pre">็</span> <span class="pre">ก</span> <span class="pre">ต</span> <span class="pre">์</span> <span class="pre">น</span> <span class="pre">ี</span> <span class="pre">้</span> <span class="pre">เ</span> <span class="pre">ข</span> <span class="pre">ี</span> <span class="pre">ย</span> <span class="pre">น</span> <span class="pre">ด</span> <span class="pre">้</span> <span class="pre">ว</span> <span class="pre">ย</span> <span class="pre">ภ</span> <span class="pre">า</span> <span class="pre">ษ</span> <span class="pre">า</span> <span class="pre">ไ</span> <span class="pre">ท</span> <span class="pre">ป</span> <span class="pre">์</span> <span class="pre">ส</span> <span class="pre">ค</span> <span class="pre">ร</span> <span class="pre">ิ</span> <span class="pre">ป</span> <span class="pre">ใ</span> <span class="pre">ช</span> <span class="pre">้</span> <span class="pre">เ</span> <span class="pre">ฟ</span> <span class="pre">ร</span> <span class="pre">ม</span> <span class="pre">เ</span> <span class="pre">ว</span> <span class="pre">ิ</span> <span class="pre">ร</span> <span class="pre">์</span> <span class="pre">ค</span> <span class="pre">ช</span> <span class="pre">ื</span> <span class="pre">่</span> <span class="pre">อ</span> <span class="pre">เ</span> <span class="pre">อ</span> <span class="pre">เ</span> <span class="pre">ล</span> <span class="pre">เ</span> <span class="pre">ซ</span> <span class="pre">ี</span> <span class="pre">ย</span> <span class="pre">โ</span> <span class="pre">ด</span> <span class="pre">ย</span> <span class="pre">ด</span> <span class="pre">ี</span> <span class="pre">พ</span> <span class="pre">ล</span> <span class="pre">อ</span> <span class="pre">ย</span> <span class="pre">ไ</span> <span class="pre">ป</span> <span class="pre">ท</span> <span class="pre">ี</span> <span class="pre">่</span> <span class="pre">เ</span> <span class="pre">ร</span> <span class="pre">ล</span> <span class="pre">เ</span> <span class="pre">ว</span> <span class="pre">ย</span> <span class="pre">์</span> <span class="pre">แ</span> <span class="pre">ล</span> <span class="pre">ะ</span> <span class="pre">ใ</span> <span class="pre">ช</span> <span class="pre">้</span> <span class="pre">ม</span> <span class="pre">อ</span> <span class="pre">ง</span> <span class="pre">โ</span> <span class="pre">ก</span> <span class="pre">ด</span> <span class="pre">ี</span> <span class="pre">บ</span> <span class="pre">ี</span> <span class="pre">แ</span> <span class="pre">อ</span> <span class="pre">ต</span> <span class="pre">ล</span> <span class="pre">า</span> <span class="pre">ส</span> <span class="pre">เ</span> <span class="pre">ป</span> <span class="pre">็</span> <span class="pre">น</span> <span class="pre">ผ</span> <span class="pre">ู</span> <span class="pre">้</span> <span class="pre">ใ</span> <span class="pre">ห</span> <span class="pre">้</span> <span class="pre">บ</span> <span class="pre">ร</span> <span class="pre">ิ</span> <span class="pre">ก</span> <span class="pre">า</span> <span class="pre">ร</span> <span class="pre">ฐ</span> <span class="pre">า</span> <span class="pre">น</span> <span class="pre">ข</span> <span class="pre">้</span> <span class="pre">อ</span> <span class="pre">ม</span> <span class="pre">ู</span> <span class="pre">ล</span></code> — every character space-separated, unusable as-is</p></td>
+<td><p>$0.000031</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mistralai/voxtral-small-24b-2507-stt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">này</span> <span class="pre">được</span> <span class="pre">viết</span> <span class="pre">bằng</span> <span class="pre">ngôn</span> <span class="pre">ngữ</span> <span class="pre">TypeScript,</span> <span class="pre">sử</span> <span class="pre">dụng</span> <span class="pre">framework</span> <span class="pre">tên</span> <span class="pre">là</span> <span class="pre">Elysia</span> <span class="pre">để</span> <span class="pre">deploy</span> <span class="pre">về</span> <span class="pre">Railway</span> <span class="pre">và</span> <span class="pre">sử</span> <span class="pre">dụng</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">là</span> <span class="pre">người</span> <span class="pre">cung</span> <span class="pre">cấp</span> <span class="pre">cơ</span> <span class="pre">sở</span> <span class="pre">dữ</span> <span class="pre">liệu.</span></code> — Vietnamese, not Thai</p></td>
+<td><p>$0.000461</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mistralai/voxtral-mini-3b-2507</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">này</span> <span class="pre">viết</span> <span class="pre">bằng</span> <span class="pre">ngôn</span> <span class="pre">ngữ</span> <span class="pre">TypeScript,</span> <span class="pre">sử</span> <span class="pre">dụng</span> <span class="pre">framework</span> <span class="pre">tên</span> <span class="pre">là</span> <span class="pre">Elecia</span> <span class="pre">được</span> <span class="pre">triển</span> <span class="pre">khai</span> <span class="pre">trên</span> <span class="pre">Railway</span> <span class="pre">và</span> <span class="pre">sử</span> <span class="pre">dụng</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">làm</span> <span class="pre">cơ</span> <span class="pre">sở</span> <span class="pre">dữ</span> <span class="pre">liệu.</span></code> — Vietnamese, not Thai</p></td>
+<td><p>$0.000154</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qwen/qwen3-asr-1.7b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกtnี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อเอลิเซียโดยดิโพยไปที่เรลเวสและใช้มองโกดีบีแอตลาสเป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.000069</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen/qwen3-asr-0.6b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">Ellassay</span> <span class="pre">โดย</span> <span class="pre">Deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">Mongo</span> <span class="pre">DB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.000031</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">openai/gpt-transcribe</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษาไทป์สคริปต์</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดยดีพลอยไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.000750</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish-audio/transcribe-1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกtnี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อเอลิเซียโดยดิโพยไปที่เรลเวสและใช้มองโกดีบีแอตลาสเป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.001000</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">x-ai/grok-stt-1.0</span></code></p></td>
+<td><p>first try: <strong>error</strong> (404) — <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">endpoints</span> <span class="pre">available</span> <span class="pre">matching</span> <span class="pre">your</span> <span class="pre">guardrail</span> <span class="pre">restrictions</span> <span class="pre">and</span> <span class="pre">data</span> <span class="pre">policy</span></code>, fixed by a privacy-setting change on the account; retry: <code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษาไทปสคริปต์</span> <span class="pre">ใช้เฟรมเวิร์กชื่อเอลิเซียโดยดิปลอยไปที่เรลเวลและใช้มงโก้ดีบีแอทลาสเป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.000256</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">deepgram/nova-3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Nikon</span> <span class="pre">Repaza</span> <span class="pre">TypeScript,</span> <span class="pre">Chai</span> <span class="pre">Framework,</span> <span class="pre">Shai</span> <span class="pre">Alesia,</span> <span class="pre">the</span> <span class="pre">deploy</span> <span class="pre">material</span> <span class="pre">way</span> <span class="pre">like</span> <span class="pre">Shai</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">and</span> <span class="pre">Puhai</span> <span class="pre">Baligantan</span> <span class="pre">Komun.</span></code> — English only, no Thai script</p></td>
+<td><p>$0.000661</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-1.5</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.001000</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nvidia/parakeet-tdt-0.6b-v3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Nichian</span> <span class="pre">Repasa</span> <span class="pre">Type</span> <span class="pre">script</span> <span class="pre">Chi</span> <span class="pre">Framework</span> <span class="pre">Shield</span> <span class="pre">Alicia</span> <span class="pre">deploy</span> <span class="pre">Battery</span> <span class="pre">Railway</span> <span class="pre">La</span> <span class="pre">Chi</span> <span class="pre">Mongo</span> <span class="pre">DB</span> <span class="pre">Atlas</span> <span class="pre">Bent</span> <span class="pre">Punha</span> <span class="pre">Belgantan</span> <span class="pre">Comun.</span></code> — English only, no Thai script</p></td>
+<td><p>$0.000230</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mistralai/voxtral-mini-transcribe</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">проектни</span> <span class="pre">хриен</span> <span class="pre">дуэ</span> <span class="pre">пасат</span> <span class="pre">TypeScript,</span> <span class="pre">шай</span> <span class="pre">фреймвэрк</span> <span class="pre">шью</span> <span class="pre">Elysia</span> <span class="pre">дуэ</span> <span class="pre">деплой</span> <span class="pre">бай</span> <span class="pre">ти</span> <span class="pre">railway,</span> <span class="pre">лэ</span> <span class="pre">шай</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">бен</span> <span class="pre">пухэй</span> <span class="pre">барікан</span> <span class="pre">тхан</span> <span class="pre">хамун.</span></code> — Cyrillic transliteration, not Thai</p></td>
+<td><p>$0.000495</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen/qwen3-asr-flash-2026-02-10</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">typescript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">elixir</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">railway</span> <span class="pre">และใช้</span> <span class="pre">mongodb</span> <span class="pre">atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.000315</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">google/chirp-3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">นี้</span> <span class="pre">เขียน</span> <span class="pre">ด้วย</span> <span class="pre">ภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">Framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">Deploy</span> <span class="pre">ไป</span> <span class="pre">ที่</span> <span class="pre">Railway</span> <span class="pre">และ</span> <span class="pre">ใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็น</span> <span class="pre">ผู้</span> <span class="pre">ให้</span> <span class="pre">บริการ</span> <span class="pre">ฐาน</span> <span class="pre">ข้อ</span> <span class="pre">มูล</span></code> — word-space-separated Thai</p></td>
+<td><p>$0.002667</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">openai/gpt-4o-mini-transcribe</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจคนี้เขียนด้วยภาษาไทป์สคริปต์</span> <span class="pre">ใช้เฟรมเวิร์คชื่ออีเลเซีย</span> <span class="pre">โดยดีพลอยไปที่เรลเวย์</span> <span class="pre">และใช้มองโกดีบีแอตลาสเป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.000410</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">openai/whisper-large-v3-turbo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจ็กต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">Alixier</span> <span class="pre">โดย</span> <span class="pre">Deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.000031</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">openai/whisper-large-v3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจคนี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">Framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.000069</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">openai/whisper-1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจคนี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">Framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">Deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.001000</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">openai/gpt-4o-transcribe</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">Framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+<td><p>$0.000600</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-2</span></code> (run <strong>2026-09-06</strong>, on release day)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โพรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railways</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code> — two small misses: <code class="docutils literal notranslate"><span class="pre">โพรเจกต์</span></code> instead of <code class="docutils literal notranslate"><span class="pre">โปรเจกต์</span></code>, and <code class="docutils literal notranslate"><span class="pre">Railways</span></code> instead of <code class="docutils literal notranslate"><span class="pre">Railway</span></code></p></td>
+<td><p>$0.000278</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">meta/muse-voice-transcribe-1.0</span></code> (run <strong>2026-09-17</strong>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้</span> <span class="pre">framework</span> <span class="pre">ชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code> — every word right; <code class="docutils literal notranslate"><span class="pre">framework</span></code> kept in Latin rather than transliterated (a style choice, arguably clearer, not an error), <code class="docutils literal notranslate"><span class="pre">railway</span></code> only differs from the reference by capitalization</p></td>
+<td><p>$0.000464</p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-1.5</span></code> is the one added as a <code class="docutils literal notranslate"><span class="pre">vxasr</span></code> configuration (<code class="docutils literal notranslate"><span class="pre">openrouter/microsoft/mai-transcribe-1.5</span></code>) — see <code class="docutils literal notranslate"><span class="pre">../packages/vxasr/src/providers/openrouter.ts</span></code>. Cost is what the vendor’s <code class="docutils literal notranslate"><span class="pre">usage.cost</span></code> field reports directly, in USD, not a rate needing multiplication like every other section in this file.</p>
+<p><code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-2</span></code> costs about a third of <code class="docutils literal notranslate"><span class="pre">1.5</span></code>, but made two small errors that <code class="docutils literal notranslate"><span class="pre">1.5</span></code> did not (dtinth/vxbeamer#86). Not yet added as a configuration — the drop in accuracy needs a decision first.</p>
+<p><code class="docutils literal notranslate"><span class="pre">meta/muse-voice-transcribe-1.0</span></code> is the cleanest transcript of every OpenRouter model tried so far on this fixture, and costs under half of <code class="docutils literal notranslate"><span class="pre">mai-transcribe-1.5</span></code>. Added as the OpenRouter provider’s default (dtinth/vxbeamer#86).</p>
+</section>
+<hr class="docutils" />
+<section id="meta-direct-realtime-api">
+<h2>Meta (direct realtime API)<a class="headerlink" href="#meta-direct-realtime-api" title="Link to this heading">¶</a></h2>
+<p>Run <strong>2026-09-18</strong>. Same model as the OpenRouter entry above (<code class="docutils literal notranslate"><span class="pre">muse-voice-transcribe-1.0</span></code>), spoken to directly over <code class="docutils literal notranslate"><span class="pre">wss://api.meta.ai/v1/asr/realtime</span></code> instead of through OpenRouter’s batch wrapper — see <code class="docutils literal notranslate"><span class="pre">../packages/vxasr/src/providers/meta-muse.ts</span></code>. <code class="docutils literal notranslate"><span class="pre">PUSH_TO_TALK</span></code> mode, <code class="docutils literal notranslate"><span class="pre">PCM_16KHZ</span></code>, no <code class="docutils literal notranslate"><span class="pre">languageBias</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>output</p></th>
+<th class="head"><p>usage</p></th>
+<th class="head"><p>wall</p></th>
+<th class="head"><p>first partial</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Alessia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railway</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code> — two misses the OpenRouter batch route on the same model did not make: <code class="docutils literal notranslate"><span class="pre">เฟรมเวิร์ก</span></code> (transliterated) instead of <code class="docutils literal notranslate"><span class="pre">framework</span></code> in Latin, and <code class="docutils literal notranslate"><span class="pre">Elysia</span></code> came out as <code class="docutils literal notranslate"><span class="pre">Alessia</span></code></p></td>
+<td><p>$0.0005 (10 s billed, rounded up from the clip’s 9.218 s — coarser than OpenRouter’s fractional-cost billing)</p></td>
+<td><p>5.1 s</p></td>
+<td><p>2.4 s</p></td>
+</tr>
+</tbody>
+</table>
+<p>Genuine streaming partials, unlike every OpenRouter model above (batch-only, no partials at all) — 24 partial updates arrived before the final. But the transcript itself is a regression from the batch route on this one clip: same underlying model, worse output. Not clear yet whether that is <code class="docutils literal notranslate"><span class="pre">PUSH_TO_TALK</span></code> mode specifically, missing <code class="docutils literal notranslate"><span class="pre">languageBias</span></code>, or just this endpoint’s own defaults differing from whatever OpenRouter’s wrapper sends — one run is not a verdict. Added as a configuration anyway (<code class="docutils literal notranslate"><span class="pre">meta/muse-voice-transcribe-1.0</span></code>, raw only) since the realtime partials are the whole reason this provider exists; the OpenRouter route stays available as a separate configuration for whichever a future eval favors.</p>
+</section>
+<hr class="docutils" />
+<section id="paxa-labs">
+<h2>Paxa Labs<a class="headerlink" href="#paxa-labs" title="Link to this heading">¶</a></h2>
+<p>Run <strong>2026-09-22</strong> (dtinth/vxbeamer#86). <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">https://api.paxalabs.com/v1/stt</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>, JSON body with the audio base64-encoded — a batch
+call, no pacing, no partials. Model <code class="docutils literal notranslate"><span class="pre">paxa-stt-lite-v1-preview</span></code>. Four clips,
+both <code class="docutils literal notranslate"><span class="pre">convention</span></code> values, 3 runs each.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>clip</p></th>
+<th class="head"><p>output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>English, 2.0 s</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">But</span> <span class="pre">it</span> <span class="pre">only</span> <span class="pre">happens</span> <span class="pre">sometimes.</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Thai, 2.1 s</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">เห็นด้วยตามที่แนะนำครับผม</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>eval-set, 13.0 s</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">เออมันจะมี</span> <span class="pre">issue</span> <span class="pre">นึงที่เกี่ยวกับ</span> <span class="pre">sandbox</span> <span class="pre">provider</span> <span class="pre">อืมคิดว่ามีอะไรที่ต้องเคาะไหมในนั้น</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code>, 9.2 s</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โพรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">TypeScript</span> <span class="pre">ใช้เฟรมเวิร์กชื่อ</span> <span class="pre">Elysia</span> <span class="pre">โดย</span> <span class="pre">deploy</span> <span class="pre">ไปที่</span> <span class="pre">Railways</span> <span class="pre">และใช้</span> <span class="pre">MongoDB</span> <span class="pre">Atlas</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Byte-identical across all three runs of every clip</strong> — 1 distinct output
+out of 3, everywhere. For comparison, <code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash-realtime</span></code> gave 5–10
+distinct out of 10 on the same clips.</p>
+<p>It is also the only model compared in this file that needed no instruction to
+avoid the defects the others have: no filler tags, no spaces between Thai
+words, no English translated into Thai, and <code class="docutils literal notranslate"><span class="pre">Elysia</span></code> correct every run. Two
+small misses on <code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code>, both shared with <code class="docutils literal notranslate"><span class="pre">mai-transcribe-2</span></code>:
+<code class="docutils literal notranslate"><span class="pre">โพรเจกต์</span></code> for <code class="docutils literal notranslate"><span class="pre">โปรเจกต์</span></code>, and <code class="docutils literal notranslate"><span class="pre">Railways</span></code> for <code class="docutils literal notranslate"><span class="pre">Railway</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">convention=spoken</span></code> and <code class="docutils literal notranslate"><span class="pre">convention=written</span></code> produced <strong>identical</strong> output on
+all four clips. Per the vendor they differ on numbers (<code class="docutils literal notranslate"><span class="pre">1,250บาท</span></code> vs
+<code class="docutils literal notranslate"><span class="pre">พันสองร้อยห้าสิบบาท</span></code>) and the repetition mark <code class="docutils literal notranslate"><span class="pre">ๆ</span></code>, and none of these clips
+contains a number, a unit, or a repeated word — so this is a gap in the
+fixtures, not a finding about the modes.</p>
+<p>Cost: 8.33 credits per minute, 10,000 credits for ฿329 → <strong>฿16.45/hour</strong>
+(~$0.47 at ฿35/USD).</p>
+<section id="realtime-websocket">
+<h3>Realtime WebSocket<a class="headerlink" href="#realtime-websocket" title="Link to this heading">¶</a></h3>
+<p>Run <strong>2026-09-24</strong> (dtinth/vxbeamer#86). <code class="docutils literal notranslate"><span class="pre">wss://api.paxalabs.com/v1/stt/live</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code> on the upgrade request, model
+<code class="docutils literal notranslate"><span class="pre">paxa-stt-lite-realtime-v1-preview</span></code>. A <code class="docutils literal notranslate"><span class="pre">start</span></code> JSON frame, raw binary PCM, then
+<code class="docutils literal notranslate"><span class="pre">{&quot;type&quot;:&quot;end&quot;}</span></code>. See <code class="docutils literal notranslate"><span class="pre">../packages/vxasr/src/providers/paxa-realtime.ts</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>test</p></th>
+<th class="head"><p>result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">end</span></code> → final, realtime pacing, n=6</p></td>
+<td><p><strong>52–58 ms</strong>. The vendor detects the end of speech, so the final often arrives before the audio ends.</p></td>
+</tr>
+<tr class="row-odd"><td><p>recording cut at 5 s, mid-speech</p></td>
+<td><p>final 327 ms after <code class="docutils literal notranslate"><span class="pre">end</span></code>, with the text up to the cut</p></td>
+</tr>
+<tr class="row-even"><td><p>fast dump</p></td>
+<td><p>accepted: 0.7 s for the 9.2 s clip, 1.0 s for a 21.4 s clip</p></td>
+</tr>
+<tr class="row-odd"><td><p>audio before <code class="docutils literal notranslate"><span class="pre">started</span></code>, 100 ms frames</p></td>
+<td><p>both accepted (the docs show 20 ms frames)</p></td>
+</tr>
+<tr class="row-even"><td><p>wrong key</p></td>
+<td><p>HTTP 401 on the upgrade</p></td>
+</tr>
+<tr class="row-odd"><td><p>3 s of silence</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">done</span></code> with <code class="docutils literal notranslate"><span class="pre">turns:</span> <span class="pre">0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>partials</p></td>
+<td><p>about one each 3 s</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>A pause starts a new turn</strong>, and each turn gets its own final <code class="docutils literal notranslate"><span class="pre">transcript</span></code>
+frame: a 3 s pause between two copies of the clip gave <code class="docutils literal notranslate"><span class="pre">turn:</span> <span class="pre">1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">turn:</span> <span class="pre">2</span></code>. The adapter joins the turns into one final.</p>
+<p>Transcript as the batch endpoint, except for <code class="docutils literal notranslate"><span class="pre">Railway</span></code>/<code class="docutils literal notranslate"><span class="pre">Railways</span></code>: with
+realtime pacing, 6 of 8 finals had <code class="docutils literal notranslate"><span class="pre">Railway</span></code>; batch and fast dump had
+<code class="docutils literal notranslate"><span class="pre">Railways</span></code> every time. Too few runs to call it an effect of pacing.</p>
+<p>Charged at <strong>12.5 credits/min</strong> against 8.33 for batch, for the whole
+connection, silence included: the 21.4 s two-turn run was charged 21.4 s.
+<strong>฿24.68/hour</strong> (~$0.71 at ฿35/USD).</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="batch-providers-timing-compared">
+<h2>Batch providers, timing compared<a class="headerlink" href="#batch-providers-timing-compared" title="Link to this heading">¶</a></h2>
+<p>Run <strong>2026-09-22</strong> (dtinth/vxbeamer#86). All four are batch HTTP endpoints, so
+this is like for like. Interleaved — each iteration calls all four back to
+back, so network drift lands on every provider equally rather than on whoever
+happened to run during it. 8 runs each, wall time of the whole call.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>provider</p></th>
+<th class="head"><p>2 s clip (median)</p></th>
+<th class="head"><p>13 s clip (median)</p></th>
+<th class="head"><p>cost/hour</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">paxa-stt-lite-v1-preview</span></code></p></td>
+<td><p><strong>568 ms</strong></p></td>
+<td><p><strong>900 ms</strong></p></td>
+<td><p>$0.470</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-2</span></code></p></td>
+<td><p>850 ms</p></td>
+<td><p>952 ms</p></td>
+<td><p><strong>$0.109</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-1.5</span></code></p></td>
+<td><p>1407 ms</p></td>
+<td><p>1682 ms</p></td>
+<td><p>$0.391</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">meta/muse-voice-transcribe-1.0</span></code></p></td>
+<td><p>1834 ms</p></td>
+<td><p>3856 ms</p></td>
+<td><p>$0.181</p></td>
+</tr>
+</tbody>
+</table>
+<p>Timing is from this machine, whose route and bandwidth are its own; the
+ordering is the finding, not the absolute figures. Costs are normalised from
+the per-request figures recorded above against the 9.218 s fixture.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">muse-voice-transcribe-1.0</span></code> was the OpenRouter default until this run.</strong> It
+had been chosen on transcript quality on one fixture and never timed: it is
+four times slower than the other two, and produced the worst transcript of the
+three here (<code class="docutils literal notranslate"><span class="pre">อีสชู</span></code> for <code class="docutils literal notranslate"><span class="pre">issue</span></code>, and Thai transliteration where the others
+keep <code class="docutils literal notranslate"><span class="pre">sandbox</span> <span class="pre">provider</span></code> in Latin). <code class="docutils literal notranslate"><span class="pre">mai-transcribe-2</span></code> replaced it as the
+default — fastest, cheapest, and its 13 s transcript was identical to Paxa’s.</p>
+<p>Latency by clip length, Paxa alone, 10 runs each: 0.5 s → 384 ms, 2 s → 433 ms,
+5 s → 568 ms, 13 s → 622 ms. Fitting those gives <strong>~408 ms fixed plus ~18 ms
+per second of audio</strong> — overhead-dominated, so 26× the audio costs 1.6× the
+time. (Measured in isolation; the interleaved figures above are higher, which
+is why they are the ones quoted for comparison.)</p>
+</section>
+<hr class="docutils" />
+<section id="google-gemini-3-5-transcribe">
+<h2>Google Gemini 3.5 Transcribe<a class="headerlink" href="#google-gemini-3-5-transcribe" title="Link to this heading">¶</a></h2>
+<p>Run <strong>2026-09-26</strong> (dtinth/vxbeamer#86). Tried three ways. Clips: <code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code>, the 2.0 s English and 2.1 s Thai clips, and the 13.0 s eval-set clip from the Paxa section.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>route</p></th>
+<th class="head"><p>time to final</p></th>
+<th class="head"><p>partials</p></th>
+<th class="head"><p>cost/hour</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OpenRouter <code class="docutils literal notranslate"><span class="pre">google/gemini-3.5-transcribe</span></code></p></td>
+<td><p>4–6 s per request, any clip length (22 runs)</p></td>
+<td><p>none</p></td>
+<td><p>$0.18</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gemini API batch (<code class="docutils literal notranslate"><span class="pre">v1beta/interactions</span></code>)</p></td>
+<td><p>5.2–5.8 s</p></td>
+<td><p>none</p></td>
+<td><p>$0.30</p></td>
+</tr>
+<tr class="row-even"><td><p>Gemini API Live, <code class="docutils literal notranslate"><span class="pre">gemini-3.5-transcribe-live</span></code></p></td>
+<td><p>0.3–0.7 s after the audio ends</p></td>
+<td><p>about each 0.5 s</p></td>
+<td><p>$0.54</p></td>
+</tr>
+</tbody>
+</table>
+<p>OpenRouter’s reported cost is the input tokens only (25 audio tokens per second at $2/1M); the Gemini API prices are from Google’s pricing page. See <code class="docutils literal notranslate"><span class="pre">../packages/vxasr/src/providers/gemini-live.ts</span></code> for the Live protocol.</p>
+<p><code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code> was perfect on every run of all three routes, and so were the English and Thai clips. The batch model gave byte-identical output across 5 runs of each clip. On the eval-set clip the batch model wrote <code class="docutils literal notranslate"><span class="pre">อีกชู</span></code> for <code class="docutils literal notranslate"><span class="pre">issue</span></code>; <code class="docutils literal notranslate"><span class="pre">custom_vocabulary:</span> <span class="pre">[&quot;issue&quot;]</span></code> fixed it.</p>
+<p><strong>Live, with the vendor’s voice detection (the default).</strong> Each pause ends a turn with its own final. After <code class="docutils literal notranslate"><span class="pre">audioStreamEnd</span></code>, a turn in progress gets its final, but if nobody is speaking the service sends nothing more. A whole clip sent at once never produced a final.</p>
+<p><strong>Live, push-to-talk</strong> (<code class="docutils literal notranslate"><span class="pre">automaticActivityDetection:</span> <span class="pre">{disabled:</span> <span class="pre">true}</span></code>, <code class="docutils literal notranslate"><span class="pre">activityStart</span></code>/<code class="docutils literal notranslate"><span class="pre">activityEnd</span></code>). One final per recording, and <code class="docutils literal notranslate"><span class="pre">ACTIVITY_END</span></code> always follows <code class="docutils literal notranslate"><span class="pre">activityEnd</span></code>, even for silence. A whole clip sent at once works: 3.3 s for the 9.2 s clip.</p>
+<p><strong>Push-to-talk dropped sentences</strong> on clips joined from separate recordings: [A] the <code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code> sentence, [B] the Thai clip, [C] the English clip. The same result on every run (3 of 3):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>clip</p></th>
+<th class="head"><p>push-to-talk</p></th>
+<th class="head"><p>push-to-talk + <code class="docutils literal notranslate"><span class="pre">SMART</span></code></p></th>
+<th class="head"><p>voice detection + <code class="docutils literal notranslate"><span class="pre">SMART</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A, 3 s pause, B, 2 s pause, C</p></td>
+<td><p>complete</p></td>
+<td><p>C dropped, B misheard</p></td>
+<td><p>complete</p></td>
+</tr>
+<tr class="row-odd"><td><p>A, 0.3 s pause, B</p></td>
+<td><p>B misheard</p></td>
+<td><p>B dropped</p></td>
+<td><p>complete</p></td>
+</tr>
+<tr class="row-even"><td><p>eval-set clip</p></td>
+<td><p>complete</p></td>
+<td><p>complete</p></td>
+<td><p>complete</p></td>
+</tr>
+</tbody>
+</table>
+<p>“Misheard” is <code class="docutils literal notranslate"><span class="pre">เขียนด้วย</span></code> for <code class="docutils literal notranslate"><span class="pre">เห็นด้วย</span></code>. Push-to-talk + <code class="docutils literal notranslate"><span class="pre">SMART</span></code> + <code class="docutils literal notranslate"><span class="pre">customVocabulary:</span> <span class="pre">[&quot;issue&quot;]</span></code> also dropped the second half of the eval-set clip (4 of 4). Push-to-talk + <code class="docutils literal notranslate"><span class="pre">SMART</span></code> is what the <code class="docutils literal notranslate"><span class="pre">gemini</span></code> configuration uses, chosen with this known (dtinth/vxbeamer#86).</p>
+</section>
+<hr class="docutils" />
+<section id="microsoft-mai-transcribe-2-streaming-vercel-ai-gateway">
+<h2>Microsoft MAI-Transcribe-2 Streaming (Vercel AI Gateway)<a class="headerlink" href="#microsoft-mai-transcribe-2-streaming-vercel-ai-gateway" title="Link to this heading">¶</a></h2>
+<p>Run <strong>2026-10-02</strong> (dtinth/vxbeamer#86). <code class="docutils literal notranslate"><span class="pre">microsoft/mai-transcribe-2-streaming</span></code>, offered only through the Vercel AI Gateway, reached with the AI SDK’s <code class="docutils literal notranslate"><span class="pre">experimental_streamTranscribe</span></code> (<code class="docutils literal notranslate"><span class="pre">ai</span></code> 7.0.127, <code class="docutils literal notranslate"><span class="pre">&#64;ai-sdk/gateway</span></code> 4.0.103), PCM 16 kHz. See <code class="docutils literal notranslate"><span class="pre">../packages/vxasr/src/providers/ai-gateway.ts</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>clip</p></th>
+<th class="head"><p>final after the audio ends</p></th>
+<th class="head"><p>transcript</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code>, realtime, n=5</p></td>
+<td><p>342–491 ms</p></td>
+<td><p>as batch <code class="docutils literal notranslate"><span class="pre">mai-transcribe-2</span></code>: correct except <code class="docutils literal notranslate"><span class="pre">Railways</span></code>; <code class="docutils literal notranslate"><span class="pre">framework</span></code> in Latin or Thai varies</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code>, fast dump</p></td>
+<td><p>3.2 s</p></td>
+<td><p>the same</p></td>
+</tr>
+<tr class="row-even"><td><p>A, 3 s pause, B, 2 s pause, C (Gemini section)</p></td>
+<td><p>348 ms</p></td>
+<td><p><strong>all three sentences</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>A, 0.3 s pause, B</p></td>
+<td><p>433 ms</p></td>
+<td><p>both sentences, <code class="docutils literal notranslate"><span class="pre">เห็นด้วย</span></code> correct</p></td>
+</tr>
+<tr class="row-even"><td><p>the same sentence twice, 3 s pause</p></td>
+<td><p>349 ms</p></td>
+<td><p>both copies</p></td>
+</tr>
+<tr class="row-odd"><td><p>eval-set clip, 13.0 s</p></td>
+<td><p>352 ms</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">เอ่อมันจะมี</span> <span class="pre">issue</span> <span class="pre">นึงที่...</span></code> (fillers kept, <code class="docutils literal notranslate"><span class="pre">issue</span></code> correct)</p></td>
+</tr>
+<tr class="row-even"><td><p>English 2.0 s / Thai 2.1 s</p></td>
+<td><p>345 / 329 ms</p></td>
+<td><p>both correct</p></td>
+</tr>
+<tr class="row-odd"><td><p>3 s of silence</p></td>
+<td><p>344 ms</p></td>
+<td><p>empty final</p></td>
+</tr>
+</tbody>
+</table>
+<p>Partials come about every 0.3 s (31 on the 9.2 s clip). The stream gives <code class="docutils literal notranslate"><span class="pre">transcript-delta</span></code> (finalized text) and <code class="docutils literal notranslate"><span class="pre">transcript-partial</span></code> (the provisional text <em>after</em> the latest delta), then one <code class="docutils literal notranslate"><span class="pre">transcript-final</span></code> with the whole transcript once the input ends.</p>
+<p>For silence, the SDK’s <code class="docutils literal notranslate"><span class="pre">text</span></code> promise rejects with “No transcript generated” even though <code class="docutils literal notranslate"><span class="pre">fullStream</span></code> ended cleanly with an empty final.</p>
+<p>After the stream finishes, the SDK closes the WebSocket with code 1000, but its TLS socket stays open for about 10 s more before it closes. A short CLI run therefore exits about 10 s after printing its transcript.</p>
+<p>$0.54 per hour of audio (the gateway’s listed price).</p>
+</section>
+<hr class="docutils" />
+<section id="typhoon-scb-10x">
+<h2>Typhoon (SCB 10X)<a class="headerlink" href="#typhoon-scb-10x" title="Link to this heading">¶</a></h2>
+<p>Run <strong>2026-09-12</strong>. Same OpenAI-compatible transcription shape as OpenRouter: <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">https://api.opentyphoon.ai/v1/audio/transcriptions</span></code>, <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span></code>, <code class="docutils literal notranslate"><span class="pre">multipart/form-data</span></code> with <code class="docutils literal notranslate"><span class="pre">model</span></code> and <code class="docutils literal notranslate"><span class="pre">file</span></code>. One request, no pacing, no partials (dtinth/vxbeamer#86).</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>output</p></th>
+<th class="head"><p>usage</p></th>
+<th class="head"><p>wall</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">typhoon-asr-realtime</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์นี้เขียนด้วยภาษา</span> <span class="pre">Thaiscribe</span> <span class="pre">ใช้เฟรมวิกชื่อเอเลเซียโดย</span> <span class="pre">Deply</span> <span class="pre">ไปที่</span> <span class="pre">Realway</span> <span class="pre">และใช้</span> <span class="pre">mango</span> <span class="pre">Debe</span> <span class="pre">Adlus</span> <span class="pre">เป็นผู้ให้บริการฐานข้อมูล</span></code> — every English loanword garbled: <code class="docutils literal notranslate"><span class="pre">TypeScript</span></code>→<code class="docutils literal notranslate"><span class="pre">Thaiscribe</span></code>, <code class="docutils literal notranslate"><span class="pre">Elysia</span></code>→<code class="docutils literal notranslate"><span class="pre">เอเลเซีย</span></code>, <code class="docutils literal notranslate"><span class="pre">deploy</span></code>→<code class="docutils literal notranslate"><span class="pre">Deply</span></code>, <code class="docutils literal notranslate"><span class="pre">Railway</span></code>→<code class="docutils literal notranslate"><span class="pre">Realway</span></code>, <code class="docutils literal notranslate"><span class="pre">MongoDB</span> <span class="pre">Atlas</span></code>→<code class="docutils literal notranslate"><span class="pre">mango</span> <span class="pre">Debe</span> <span class="pre">Adlus</span></code></p></td>
+<td><p>460 input (audio) + 74 output = 534 tokens, no cost figure in the response</p></td>
+<td><p>1.6 s</p></td>
+</tr>
+</tbody>
+</table>
+<p>The response carries no dollar cost, only a token count (<code class="docutils literal notranslate"><span class="pre">usage.type:</span> <span class="pre">&quot;tokens&quot;</span></code>) — the docs don’t publish per-token pricing either. Not added as a configuration: on this fixture every English technical term came out wrong, worse than every other Thai-capable model already compared above.</p>
+</section>
+<hr class="docutils" />
+<section id="repeat-runs">
+<h2>Repeat runs<a class="headerlink" href="#repeat-runs" title="Link to this heading">¶</a></h2>
+<p>Identical input, repeated. <strong>These are the same request each time.</strong></p>
+<section id="qwen3-asr-flash-realtime-pacing-compared-n-3-each">
+<h3><code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime</span></code>, pacing compared, n=3 each<a class="headerlink" href="#qwen3-asr-flash-realtime-pacing-compared-n-3-each" title="Link to this heading">¶</a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>pacing</p></th>
+<th class="head"><p>wall</p></th>
+<th class="head"><p>outputs (first word)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>fast dump (no delay)</p></td>
+<td><p>0.65 s</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์</span></code> ×3</p></td>
+</tr>
+<tr class="row-odd"><td><p>realtime (100 ms/chunk)</p></td>
+<td><p>9.49 s</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">project</span></code> ×2, <code class="docutils literal notranslate"><span class="pre">โปรเจกต์</span></code> ×1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Partial counts: 56 (fast dump) vs 84 (realtime). Usage quantity <strong>10</strong> in both — billing did not change with wall time.</p>
+<p>Fisher’s exact on 3/3 vs 1/3 ≈ <strong>0.4</strong>; this sample does not establish a pacing effect.</p>
+</section>
+<section id="qwen3-asr-flash-realtime-groq-realtime-n-3">
+<h3><code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime</span></code> + Groq, realtime, n=3<a class="headerlink" href="#qwen3-asr-flash-realtime-groq-realtime-n-3" title="Link to this heading">¶</a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>run</p></th>
+<th class="head"><p>output (first word)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">project</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">project</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">โปรเจกต์</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Same audio, same configuration, same pacing.</p>
+</section>
+<section id="qwen3-5-omni-flash-realtime-2026-03-15-prompt-compared-n-10-each">
+<h3><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash-realtime-2026-03-15</span></code>, prompt compared, n=10 each<a class="headerlink" href="#qwen3-5-omni-flash-realtime-2026-03-15-prompt-compared-n-10-each" title="Link to this heading">¶</a></h3>
+<p>Run <strong>2026-09-20</strong> (dtinth/vxbeamer#86). Three clips, four instructions, ten
+runs each. Two defects counted separately: <code class="docutils literal notranslate"><span class="pre">&lt;fil&gt;</span></code> filler tags with
+slash-separated alternate readings (<code class="docutils literal notranslate"><span class="pre">Issue/อิชชู</span></code>), and spaces inserted
+between Thai words, which Thai does not use.</p>
+<p>Clip A is a 13.0 s eval-set recording that reproduces the tags; clip B is a
+2.1 s Thai clip that reproduces the spacing; clip C is <code class="docutils literal notranslate"><span class="pre">test-audio.bin</span></code>, kept
+as a control because its English technical terms <em>need</em> their surrounding
+spaces.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>instruction</p></th>
+<th class="head"><p>A: tags</p></th>
+<th class="head"><p>A: alternates</p></th>
+<th class="head"><p>B: spaces</p></th>
+<th class="head"><p>C: Latin terms</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Transcribe</span> <span class="pre">the</span> <span class="pre">user's</span> <span class="pre">audio</span> <span class="pre">verbatim…</span></code> (previous)</p></td>
+<td><p>10/10</p></td>
+<td><p>10/10</p></td>
+<td><p>3 per run, 10/10</p></td>
+<td><p>preserved</p></td>
+</tr>
+<tr class="row-odd"><td><p>previous + Thai/Latin script rule</p></td>
+<td><p>10/10</p></td>
+<td><p>10/10</p></td>
+<td><p>0/10</p></td>
+<td><p>preserved</p></td>
+</tr>
+<tr class="row-even"><td><p>previous + script rule + “never output tags such as <code class="docutils literal notranslate"><span class="pre">&lt;fil&gt;</span></code>”</p></td>
+<td><p>10/10</p></td>
+<td><p>10/10</p></td>
+<td><p>—</p></td>
+<td><p>preserved</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Write</span> <span class="pre">out</span> <span class="pre">exactly</span> <span class="pre">the</span> <span class="pre">words</span> <span class="pre">the</span> <span class="pre">speaker</span> <span class="pre">says…</span></code> (current)</p></td>
+<td><p><strong>0/10</strong></p></td>
+<td><p><strong>0/10</strong></p></td>
+<td><p><strong>0/10</strong></p></td>
+<td><p>preserved</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Forbidding the behaviour did not work.</strong> Adding “never output tags in angle
+brackets such as <code class="docutils literal notranslate"><span class="pre">&lt;fil&gt;</span></code>” to the old wording left it at 10/10. Removing the
+word <em>transcribe</em> did, taking both defects to 0/10 — the working theory being
+that “transcribe … verbatim” selects a transcription-annotation register where
+those tags belong, and naming the token without leaving that register may
+prime it.</p>
+<p>Incidental, on clip C: the previous wording returned <code class="docutils literal notranslate"><span class="pre">Alecia</span></code> / <code class="docutils literal notranslate"><span class="pre">Alesia</span></code> /
+<code class="docutils literal notranslate"><span class="pre">Elysia</span></code> across runs, the current wording <code class="docutils literal notranslate"><span class="pre">Elysia</span></code> in all ten. One fixture and
+not what the instruction was aimed at, so noted rather than claimed.</p>
+<p><strong>A first version of the new wording translated English into Thai.</strong> It stated
+the Thai script rule unconditionally, which reads as a claim about the output
+rather than a rule about Thai. Re-run on a 2.0 s English clip, n=10:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>instruction</p></th>
+<th class="head"><p>output in Thai script</p></th>
+<th class="head"><p>transcript</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Transcribe</span> <span class="pre">…</span> <span class="pre">verbatim</span></code> (older)</p></td>
+<td><p>0/10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">But</span> <span class="pre">it</span> <span class="pre">only</span> <span class="pre">happens</span> <span class="pre">sometimes.</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>unconditional Thai rule</p></td>
+<td><p><strong>10/10</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">แต่มันเกิดขึ้นแค่บางครั้ง</span></code> and four other renderings</p></td>
+</tr>
+<tr class="row-even"><td><p>current, language named + Thai rule conditional</p></td>
+<td><p>0/10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">But</span> <span class="pre">it</span> <span class="pre">only</span> <span class="pre">happens</span> <span class="pre">sometimes.</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>The current wording holds every result above on the Thai clips while fixing
+this, so the language clause costs nothing. A prompt that describes the
+expected output in one language will produce that language.</p>
+<p>Counting caveat: “spaces between Thai words” counts any space with Thai on
+both sides, but Thai does use spaces at clause boundaries. On clip A the two
+remaining spaces sit around the fillers <code class="docutils literal notranslate"><span class="pre">เออ</span></code> and <code class="docutils literal notranslate"><span class="pre">อืม</span></code>, which is correct
+typography rather than the defect.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="errors-and-timeouts-observed">
+<h2>Errors and timeouts observed<a class="headerlink" href="#errors-and-timeouts-observed" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>what</p></th>
+<th class="head"><p>result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BytePlus <code class="docutils literal notranslate"><span class="pre">bigmodel</span></code>, audio dumped as fast as the socket accepted</p></td>
+<td><p><strong>60 s timeout, no final</strong> — vendor docs specify a 100–200 ms send interval</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-omni-flash-realtime</span></code> on the Qwen realtime protocol</p></td>
+<td><p>60 s timeout, no result</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime-2026-02-28</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">task-failed</span></code> / <code class="docutils literal notranslate"><span class="pre">ModelNotFound</span></code> — the vendor’s model list documents this id</p></td>
+</tr>
+<tr class="row-odd"><td><p>DashScope intl key against Beijing (<code class="docutils literal notranslate"><span class="pre">wss://dashscope.aliyuncs.com</span></code>)</p></td>
+<td><p><strong>401 at the WS handshake</strong> — keys are region-scoped</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vendor-documented-language-support-for-comparison">
+<h2>Vendor-documented language support, for comparison<a class="headerlink" href="#vendor-documented-language-support-for-comparison" title="Link to this heading">¶</a></h2>
+<p>From the Model Studio model list. Recorded because some rows above differ from it.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>model</p></th>
+<th class="head"><p>documented languages</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime</span></code> (all snapshots)</p></td>
+<td><p>incl. <strong>Thai</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime</span></code>, <code class="docutils literal notranslate"><span class="pre">fun-asr-realtime-2025-11-07</span></code></p></td>
+<td><p>incl. <strong>Thai</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime-2026-02-28</span></code></p></td>
+<td><p>Chinese, English, Japanese</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fun-asr-realtime-2025-09-15</span></code></p></td>
+<td><p>Chinese, English</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">paraformer-realtime-v2</span></code></p></td>
+<td><p>zh, en, ja, yue, ko, de, fr, ru</p></td>
+</tr>
+<tr class="row-odd"><td><p>BytePlus, <code class="docutils literal notranslate"><span class="pre">language</span></code> omitted</p></td>
+<td><p>Mandarin, English, Cantonese, Shanghainese, Minnan, Sichuan, Shaanxi</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reproducing">
+<h2>Reproducing<a class="headerlink" href="#reproducing" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vp<span class="w"> </span>run<span class="w"> </span>vxasr#build
+node<span class="w"> </span>--env-file<span class="o">=</span>.env<span class="w"> </span>packages/vxasr/dist/cli.mjs<span class="w"> </span>&lt;configuration-id&gt;<span class="w"> </span>testdata/test-audio.bin
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">vxasr</span> <span class="pre">--list</span></code> shows the configuration ids.</p>
+<p>Rows the shipped CLI <strong>can</strong> reproduce: the pinned Qwen snapshots (raw and <code class="docutils literal notranslate"><span class="pre">+groq</span></code>), <code class="docutils literal notranslate"><span class="pre">byteplus/bigmodel_nostream</span></code> with <code class="docutils literal notranslate"><span class="pre">BYTEPLUS_LANGUAGE=th-TH</span></code>, and the Qwen Omni <strong>realtime</strong> rows under <code class="docutils literal notranslate"><span class="pre">qwen-omni/…</span></code> — the undated ids in the table below are now pinned to <code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash-realtime-2026-03-15</span></code>, <code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-plus-realtime-2026-03-15</span></code>, and <code class="docutils literal notranslate"><span class="pre">qwen3-omni-flash-realtime-2025-12-01</span></code>.</p>
+<p>Rows it <strong>cannot</strong>: the floating <code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime</span></code> id and <code class="docutils literal notranslate"><span class="pre">byteplus/bigmodel</span></code> (both removed from the catalogue), the Qwen Omni <strong>offline</strong> rows and the transcription-sub-service rows (no adapter — the sub-service is deliberately silenced), and everything under Fun-ASR. Those came from throwaway scripts against the same endpoints.</p>
+</section>
+</section>
+
+</main>
+<nav class="thdocs-prev-next" aria-label="Pagination">
+  <a href="vxasr.html" class="thdocs-prev">
+    <div class="thdocs-prev-next-label">Previous</div>
+    <div class="thdocs-prev-next-title">vxasr</div>
+  </a>
+  <a href="apps/backend.html" class="thdocs-next">
+    <div class="thdocs-prev-next-label">Next</div>
+    <div class="thdocs-prev-next-title">Backend</div>
+  </a>
+</nav>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <aside class="thdocs-page-toc">
+    <div class="thdocs-page-toc-title">On this page</div>
+    <ul>
+<li><a class="reference internal" href="#">ASR model observations</a><ul>
+<li><a class="reference internal" href="#fixture">Fixture</a></li>
+<li><a class="reference internal" href="#method">Method</a></li>
+<li><a class="reference internal" href="#alibaba-cloud-dashscope-qwen">Alibaba Cloud DashScope — Qwen</a></li>
+<li><a class="reference internal" href="#alibaba-cloud-dashscope-qwen-omni-offline">Alibaba Cloud DashScope — Qwen Omni (offline)</a></li>
+<li><a class="reference internal" href="#alibaba-cloud-dashscope-qwen-omni-realtime">Alibaba Cloud DashScope — Qwen Omni (realtime)</a><ul>
+<li><a class="reference internal" href="#the-separate-transcription-sub-service">The separate transcription sub-service</a></li>
+<li><a class="reference internal" href="#with-no-instructions">With no <code class="docutils literal notranslate"><span class="pre">instructions</span></code></a></li>
+<li><a class="reference internal" href="#against-our-asr-provider">Against our ASR provider</a></li>
+<li><a class="reference internal" href="#qwen3-8-omni-flash-realtime-2026-11-12"><code class="docutils literal notranslate"><span class="pre">qwen3.8-omni-flash-realtime</span></code> (2026-11-12)</a></li>
+<li><a class="reference internal" href="#qwen-audio-3-1-asr-flash-message-and-streaming-2026-11-12"><code class="docutils literal notranslate"><span class="pre">qwen-audio-3.1-asr-flash-message</span></code> and <code class="docutils literal notranslate"><span class="pre">-streaming</span></code> (2026-11-12)</a></li>
+<li><a class="reference internal" href="#tuning-the-message-model-s-parameters-2026-11-12">Tuning the message model’s parameters (2026-11-12)</a></li>
+<li><a class="reference internal" href="#grok-voice-transcribe-2-0-2026-11-12">Grok Voice Transcribe 2.0 (2026-11-12)</a></li>
+<li><a class="reference internal" href="#scribe-realtime-v2-2026-11-14">Scribe Realtime v2 (2026-11-14)</a></li>
+<li><a class="reference internal" href="#iapp-realtime-2026-11-14">iApp realtime (2026-11-14)</a></li>
+<li><a class="reference internal" href="#pacing-fast-dump-vs-realtime">Pacing: fast dump vs realtime</a></li>
+<li><a class="reference internal" href="#byteplus-bigmodel-nostream-the-shipped-mode-fast-dump-vs-realtime">BytePlus <code class="docutils literal notranslate"><span class="pre">bigmodel_nostream</span></code> (the shipped mode), fast dump vs realtime</a></li>
+<li><a class="reference internal" href="#gummy-realtime-v1"><code class="docutils literal notranslate"><span class="pre">gummy-realtime-v1</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#alibaba-cloud-dashscope-fun-asr">Alibaba Cloud DashScope — Fun-ASR</a></li>
+<li><a class="reference internal" href="#byteplus-seed-asr">BytePlus — Seed-ASR</a></li>
+<li><a class="reference internal" href="#openrouter">OpenRouter</a></li>
+<li><a class="reference internal" href="#meta-direct-realtime-api">Meta (direct realtime API)</a></li>
+<li><a class="reference internal" href="#paxa-labs">Paxa Labs</a><ul>
+<li><a class="reference internal" href="#realtime-websocket">Realtime WebSocket</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#batch-providers-timing-compared">Batch providers, timing compared</a></li>
+<li><a class="reference internal" href="#google-gemini-3-5-transcribe">Google Gemini 3.5 Transcribe</a></li>
+<li><a class="reference internal" href="#microsoft-mai-transcribe-2-streaming-vercel-ai-gateway">Microsoft MAI-Transcribe-2 Streaming (Vercel AI Gateway)</a></li>
+<li><a class="reference internal" href="#typhoon-scb-10x">Typhoon (SCB 10X)</a></li>
+<li><a class="reference internal" href="#repeat-runs">Repeat runs</a><ul>
+<li><a class="reference internal" href="#qwen3-asr-flash-realtime-pacing-compared-n-3-each"><code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime</span></code>, pacing compared, n=3 each</a></li>
+<li><a class="reference internal" href="#qwen3-asr-flash-realtime-groq-realtime-n-3"><code class="docutils literal notranslate"><span class="pre">qwen3-asr-flash-realtime</span></code> + Groq, realtime, n=3</a></li>
+<li><a class="reference internal" href="#qwen3-5-omni-flash-realtime-2026-03-15-prompt-compared-n-10-each"><code class="docutils literal notranslate"><span class="pre">qwen3.5-omni-flash-realtime-2026-03-15</span></code>, prompt compared, n=10 each</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#errors-and-timeouts-observed">Errors and timeouts observed</a></li>
+<li><a class="reference internal" href="#vendor-documented-language-support-for-comparison">Vendor-documented language support, for comparison</a></li>
+<li><a class="reference internal" href="#reproducing">Reproducing</a></li>
+</ul>
+</li>
+</ul>
+
+  </aside>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="thdocs-sidebar">
+  <nav class="thdocs-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="contents" aria-selected="true">Contents</button>
+    <button type="button" role="tab" data-tab="search" aria-selected="false">Search</button>
+  </nav>
+  <div class="thdocs-tab-panel" data-panel="contents" role="tabpanel">
+    <thdocs-tree id="toctree-root">
+      
+      <div class="thdocs-fallback-tree"><p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Speech recognition</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="asr-configurations.html">Model configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vxasr.html">vxasr</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ASR model observations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#fixture">Fixture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#method">Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alibaba-cloud-dashscope-qwen">Alibaba Cloud DashScope — Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alibaba-cloud-dashscope-qwen-omni-offline">Alibaba Cloud DashScope — Qwen Omni (offline)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alibaba-cloud-dashscope-qwen-omni-realtime">Alibaba Cloud DashScope — Qwen Omni (realtime)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alibaba-cloud-dashscope-fun-asr">Alibaba Cloud DashScope — Fun-ASR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#byteplus-seed-asr">BytePlus — Seed-ASR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openrouter">OpenRouter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#meta-direct-realtime-api">Meta (direct realtime API)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paxa-labs">Paxa Labs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#batch-providers-timing-compared">Batch providers, timing compared</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#google-gemini-3-5-transcribe">Google Gemini 3.5 Transcribe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#microsoft-mai-transcribe-2-streaming-vercel-ai-gateway">Microsoft MAI-Transcribe-2 Streaming (Vercel AI Gateway)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#typhoon-scb-10x">Typhoon (SCB 10X)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#repeat-runs">Repeat runs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#errors-and-timeouts-observed">Errors and timeouts observed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vendor-documented-language-support-for-comparison">Vendor-documented language support, for comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reproducing">Reproducing</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apps/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/website.html">Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/desktop.html">vxbeamer Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/watch.html">vxbeamer transmitter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Decisions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adr/index.html">Decisions</a></li>
+</ul>
+</div>
+    </thdocs-tree>
+    <a href="_static/vxbeamer.pdf" class="thdocs-pdf-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      Download PDF
+    </a>
+  </div>
+  <div class="thdocs-tab-panel" data-panel="search" role="tabpanel" hidden>
+    <div class="thdocs-search">
+      <input type="text" id="thdocs-search-input" class="thdocs-search__input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="thdocs-search__results"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="thdocs-footer">
+    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Thai Pangsakulyanont.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </div>
+  </body>
+</html>
